@@ -1,0 +1,10 @@
+const routes = require('next-routes')
+
+module.exports = routes()
+// .add({name: 'beta', pattern: '/v3', page: 'v3'})
+.add('index', '/')
+.add('dashboard', '/dashboard')
+.add('score_rule','/score')
+.add('score_domain', '/domain')
+.add('score_domain_name', '/domain/:domain/:subdomain')
+.add('score_web', '/web')
