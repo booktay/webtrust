@@ -1,0 +1,4 @@
+url,http,code,hsts,https,scode,shsts,CertificateStatus,SignatureStatus,Expired(days),Fingerprint,SSLv2,SSLv3,TLS1,TLS1.1,TLS1.2,TLS1.3,NPN/SPDY,ALPN/HTTP2,Active-http,Active-https,Inactive-http,Inactive-https,ScoreDomain,Timestamp
+www.nu.ac.th,yes,301,no,yes,200,max-age=31536000,good,no,551,SHA1,no,no,no,yes,yes,no,yes,yes,4,4,0,0,A,20181206-104631
+www.mahidol.ac.th,yes,301,max-age=31536000;,yes,301,max-age=31536000;,good,no,555,SHA1,no,no,yes,yes,yes,no,yes,yes
+www.chula.ac.th,yes,302,no,yes,200,no,good,no,387,SHA1,no,no,no,no,yes,no,yes,yes
