@@ -12,7 +12,7 @@ export default class resultDomain extends Component {
     constructor(props) {
         super(props)
         this.state = {
-        sidebarOpened: false
+        sidebarOpened: true
         }
         this.handleOpenSidebar = this.handleOpenSidebar.bind(this)
     }
@@ -31,7 +31,6 @@ export default class resultDomain extends Component {
                 <Sidebar.Pushable as={Segment} style={{backgroundColor:"#e4e5e6", borderRadius: 0, marginTop: "auto"}}>
                 <Sidemenu sidebarOpened={this.state.sidebarOpened} />
                 <Sidebar.Pusher>
-                    {/* <p>{JSON.stringify(this.props.url.query)}</p> */}
                     <Domain/>
                 </Sidebar.Pusher>
                 </Sidebar.Pushable>

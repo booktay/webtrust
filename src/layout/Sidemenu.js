@@ -40,7 +40,7 @@ export default class Plate extends Component {
             </Link>
         </Menu.Item>
         < Menu.Item as='a'>
-            <Link route="score_rule" >
+            <Link route="score" >
               <Header as='h4' inverted textAlign='left'>
                 < Icon name = 'file alternate' / >
                 <Header.Content >
@@ -51,7 +51,7 @@ export default class Plate extends Component {
             </Link>
         </Menu.Item>
         < Menu.Item as='a'>
-            <Link route="score_domain">
+            <Link route="domain">
               <Header as='h4' inverted textAlign='left' >
                 < Icon name = 'line chart' / >
                 <Header.Content >
