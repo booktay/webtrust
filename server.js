@@ -33,7 +33,7 @@ app.prepare()
         })
 
         server.get('/domain/:domain/:subdomain', (req, res) => {
-          const actualPage = '/domain/'
+          const actualPage = '/resultDomain'
           const queryParams = {
               domain: req.params.domain,
               subdomain: req.params.subdomain

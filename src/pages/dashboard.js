@@ -20,7 +20,6 @@ export default class Index extends Component {
   handleOpenSidebar() {
     this.setState(state => {
       state.sidebarOpened = !state.sidebarOpened
-      console.log(state)
       return state
     })
   }

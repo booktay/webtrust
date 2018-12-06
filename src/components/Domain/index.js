@@ -1,28 +1,33 @@
 import React, { Component } from 'react'
 import {
-  Form, Card
+  Form, Card, Segment, Grid, Header, GridColumn
 } from 'semantic-ui-react'
 import stateOptions from "./domain.json";
 import {Router} from "../../routes";
 export default class Domain extends Component {
-  state = { domain: 'th', subdomain: ''}
+  state = { domain: '', subdomain: '', header_domain:''}
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleSubmit = () => {
-    Router.pus
+    const {domain, subdomain} = this.state
+    if (domain !== '' && subdomain != '') {
+      this.setState({header_domain:domain.toUpperCase()+"."+subdomain.toUpperCase()})
+    } 
+    Router.pushRoute(`/domain/${domain}/${subdomain}`)
   }
 
   render() {
-    const { domain, subdomain } = this.state
+    const { domain, subdomain, header_domain } = this.state
     return (
-      <div>
-        <div style={{margin:"2em", minHeight: 'calc(100vh - 100px)'}}>
-          < Card fluid >
-            <Card.Content>
-              <Card.Header>Scoring Domain Monitoring</Card.Header>
-            </Card.Content>
-            <Card.Content>
+      <div style={{margin:"2em", minHeight: 'calc(100vh - 100px)'}}>
+        <Grid>
+          <GridColumn column={2}>
+            
+          </GridColumn>
+        </Grid>
+        <Segment>
+              <Header>Scoring Domain Monitoring</Header>
               <Form>
                 <Form.Group inline>
                   <Form.Field>
@@ -40,8 +45,6 @@ export default class Domain extends Component {
                     onChange={this.handleChange}
                     />
                   </Form.Field>
-                </Form.Group>
-                <Form.Group inline>
                   <Form.Field>
                     <label>Selected Subdomain</label>
                     < Form.Select options = {
@@ -57,12 +60,10 @@ export default class Domain extends Component {
                     onChange={this.handleChange}
                     />
                   </Form.Field>
+                  <Form.Button content='Submit' onClick={this.handleSubmit}  style={{marginTop: "1.1em"}} />
                 </Form.Group>
-                <Form.Button content='Submit' />
               </Form>
-            </Card.Content>
-          </Card>
-        </div>
+        </Segment >
       </div>
     )
   }

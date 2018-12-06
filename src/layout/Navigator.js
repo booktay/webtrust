@@ -8,7 +8,7 @@ import {
     Image
 } from 'semantic-ui-react'
 import {Link} from '../routes';
-
+import LogoPNG from '../img/brand/logo.png'
 export default class Navigator extends Component {
 
   render() {
@@ -16,7 +16,7 @@ export default class Navigator extends Component {
     return (
       <Menu icon secondary size='tiny' style={{marginBottom: "auto"}}>
         <Menu.Item>
-          <Image src="img/brand/logo.png" size='tiny'/>
+          <Image src={LogoPNG} size='tiny'/>
         </Menu.Item>
         <Menu.Item name='sidemenu' onClick={this.props.onReqOpenSidebar}>
           <Icon name='list layout' size='large' />
@@ -28,7 +28,7 @@ export default class Navigator extends Component {
         </Link>
         <Menu.Menu position='right'>
           <Menu.Item>
-            <Header as='h2' textAlign='center'>Trusted Web Domain Analysis based on SSL TLS Certificate</Header>
+            <Header as='h3' textAlign='center'>Trusted Web Domain Analysis based on SSL TLS Certificate</Header>
           </Menu.Item>
         </Menu.Menu>
       </Menu>
