@@ -17,28 +17,13 @@ app.prepare()
         
         server.get('/api/score/:domain/:subdomain', (req, res) => {
             var results = []
-            getCSV(`data/${req.params.domain}/${req.params.subdomain}.txt`, { headers: false }).then(rows =>
+            var PATHURL = 'http://localhost:9000/data/'+req.params.subdomain+'.'+req.params.domain+'.txt'
+            console.log(PATHURL)
+            getCSV(PATHURL, {
+                    headers: true
+                }).then(rows =>
                 res.send(rows)
             );
-
-            // var list_cert_have = [{name: 'Yes', value: 400}, {name: 'No', value: 300}];
-            // var list_cert_valid = [
-            //     {name: 'Valid', number: 40},
-            //     {name: 'Invalid', number: 90},
-            //     {name: 'Other', number: 90},
-            // ];
-            // var list_web = [
-            //     {url: "www.tu.ac.th", certhave:"Yes", certvalid:"Yes", status:"Active",expired:"82"},
-            //     {url: "www.ku.ac.th", certhave:"Yes", certvalid:"No", status:"Inactive",expired:"32"},
-
-            // ]
-            // res.json({
-            //     grade:"C+",
-            //     certhave:list_cert_have,
-            //     certvalid: list_cert_valid,
-            //     protocol: list_protocol,
-            //     webscore: list_web
-            // });
         });
         
         server.get('/dashboard', (req, res) => {

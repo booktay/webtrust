@@ -39,8 +39,8 @@ export default class Plate extends Component {
               </Header>
             </Link>
         </Menu.Item>
-        {/* < Menu.Item as='a'>
-            <Link route="score" >
+        < Menu.Item as='a'>
+            <Link route="/" >
               <Header as='h4' inverted textAlign='left'>
                 < Icon name = 'file alternate' / >
                 <Header.Content >
@@ -49,7 +49,18 @@ export default class Plate extends Component {
                 </Header.Content>
               </Header>
             </Link>
-        </Menu.Item> */}
+        </Menu.Item>
+        < Menu.Item as='a'>
+            <Link route="/" >
+              <Header as='h4' inverted textAlign='left'>
+                < Icon name = 'file alternate' / >
+                <Header.Content >
+                  Upload file 
+                  < Header.Subheader > URL LIST IN CSV </Header.Subheader>
+                </Header.Content>
+              </Header>
+            </Link>
+        </Menu.Item>
         < Menu.Item as='a'>
             <Link route="domain">
               <Header as='h4' inverted textAlign='left' >
@@ -61,14 +72,14 @@ export default class Plate extends Component {
               </Header>
             </Link>
         </Menu.Item>
-        {/* < Menu.Item as='a'>
-            <Link route="score_web" >
+        < Menu.Item as='a'>
+            <Link route="/" >
               <Header as='h4' inverted>
                 < Icon name = 'pie chart' / >
                 Scoring
               </Header>
             </Link>
-        </Menu.Item> */}
+        </Menu.Item>
       </Sidebar>
     )
   }

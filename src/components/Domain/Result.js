@@ -151,8 +151,65 @@ class Result extends Component {
     return fetch('/api/score/' + router.query.domain + "/" + router.query.subdomain)
     .then((response) => response.json())
     .then((responseJson) => {
+      var count_cert = [0,0];
+      var count_protocol_yes = [0,0,0,0,0,0,0];
+      var count_protocol_no = [0, 0, 0, 0, 0, 0, 0];
+      
+      var list_web = []
+      for (var resline in responseJson) {
+        var daata_web = responseJson[resline]
+        if (daata_web.CertificateStatus === "good") count_cert[0] += 1
+        else count_cert[1] += 1
+        if (daata_web['SSLv2'] === "yes") count_protocol_yes[0]+=1
+        else count_protocol_no[0]+=1
+        if(daata_web['SSLv3'] === "yes") count_protocol_yes[1] += 1
+        else count_protocol_no[1] += 1
+        if (daata_web['TLS1'] === "yes") count_protocol_yes[2] += 1
+        else count_protocol_no[2] += 1
+        if (daata_web['TLS1.1'] === "yes") count_protocol_yes[3] += 1
+        else count_protocol_no[3] += 1
+        if (daata_web['TLS1.2'] === "yes") count_protocol_yes[4] += 1
+        else count_protocol_no[4] += 1
+        if (daata_web['TLS1.3'] === "yes") count_protocol_yes[5] += 1
+        else count_protocol_no[5] += 1
+        
+        list_web.push({
+          url: daata_web['url'],
+          certhave: daata_web['CertificateStatus'],
+          certvalid: daata_web['Fingerprint'],
+          status: daata_web['scode'],
+          expired: daata_web['Expired(days)']
+        })
+      }
+      
+      var list_cert_valid = {
+        "active": responseJson[0]['Active-https'],
+        "inactive": responseJson[0]['Inactive-https']
+      }
+
+      var list_cert_have = [
+        {name:"Yes", number:count_cert[0].toString()},
+        {name:"No", number:count_cert[1].toString()},
+      ]
+      var list_protocol = [
+        {name:"Other", yes:count_protocol_yes[6].toString(), no:count_protocol_no[6].toString()},
+        {name:"SSLv2", yes:count_protocol_yes[0].toString(), no:count_protocol_no[0].toString()},
+        {name:"SSLv3", yes:count_protocol_yes[1].toString(), no:count_protocol_no[1].toString()},
+        {name:"TLS1", yes:count_protocol_yes[2].toString(), no:count_protocol_no[2].toString()},
+        {name:"TLS1.1", yes:count_protocol_yes[3].toString(), no:count_protocol_no[3].toString()},
+        {name:"TLS1.2", yes:count_protocol_yes[4].toString(), no:count_protocol_no[4].toString()},
+        {name:"TLS1.3", yes:count_protocol_yes[5].toString(), no:count_protocol_no[5].toString()},
+      ]
+      
+      var data_from_api = {
+          grade: responseJson[0]['ScoreDomain'],
+          certhave:list_cert_have,
+          certvalid: list_cert_valid,
+          protocol: list_protocol,
+          webscore: list_web
+      }
       this.setState({
-        data: responseJson
+        data: data_from_api
         })
       this.setState({loaded: true});
     })
@@ -282,7 +339,7 @@ class Result extends Component {
                         Found
                       </Header>
                     </Table.Cell>
-                    <Table.Cell singleLine>{certhave[0].value}</Table.Cell>
+                    <Table.Cell singleLine>{certhave[0].number}</Table.Cell>
                   </Table.Row>
                   <Table.Row>
                     <Table.Cell>
@@ -290,11 +347,42 @@ class Result extends Component {
                         NotFound
                       </Header>
                     </Table.Cell>
-                    <Table.Cell singleLine>{certhave[1].value}</Table.Cell>
+                    <Table.Cell singleLine>{certhave[1].number}</Table.Cell>
                   </Table.Row>
                 </Table.Body>
               </Table>
-              <Table celled selectable size="large" headerRow={headerRowValid} tableData={certvalid} renderBodyRow={renderBodyRowValid} />
+              <Segment>
+                <Header as="h2">
+                  Active/Inactive
+                </Header>
+              </Segment>
+              <Table celled padded>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell singleLine>Domain</Table.HeaderCell>
+                    <Table.HeaderCell>Number</Table.HeaderCell>
+                  </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                  <Table.Row>
+                    <Table.Cell>
+                      <Header as='h5'>
+                        Active
+                      </Header>
+                    </Table.Cell>
+                    <Table.Cell singleLine>{certvalid['active']}</Table.Cell>
+                  </Table.Row>
+                  <Table.Row>
+                    <Table.Cell>
+                      <Header as='h5'>
+                        Inactive
+                      </Header>
+                    </Table.Cell>
+                    <Table.Cell singleLine>{certvalid['inactive']}</Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+              </Table>
+              {/* <Table celled selectable size="large" headerRow={headerRowValid} tableData={certvalid} renderBodyRow={renderBodyRowValid} /> */}
             </Grid.Column>
             <Grid.Column width={8}>
               <Segment>
@@ -303,7 +391,7 @@ class Result extends Component {
                 </Header>
               </Segment>
               <Segment>
-                <BarChart width={640} height={450} data={certvalid}
+                <BarChart width={640} height={450} data={certhave}
                         margin={{top: 15, right: 30, left: 20, bottom: 5}}>
                   <CartesianGrid strokeDasharray="3 3"/>
                   <XAxis dataKey="name"/>
