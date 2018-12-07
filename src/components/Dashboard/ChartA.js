@@ -1,41 +1,97 @@
-import React, {Component} from 'react';
-import {Line} from 'react-chartjs-2';
+import React, {Component} from "react";
+import {
+  PieChart, 
+  Pie, 
+  Sector
+}
+from 'recharts';
+import {
+  Header, Segment, Grid, Table, Icon
+} from 'semantic-ui-react'
 
-const data = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  datasets: [
-    {
-      label: 'My First dataset',
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: 'rgba(75,192,192,0.4)',
-      borderColor: 'rgba(75,192,192,1)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(75,192,192,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
-      data: [65, 59, 80, 81, 56, 55, 40]
-    }
-  ]
+const dataA = [{name: 'Group A', value: 400}, {name: 'Group B', value: 300}];
+
+const renderActiveShape = (props) => {
+  const RADIAN = Math.PI / 180;
+  const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle,
+    fill, payload, percent, value } = props;
+  const sin = Math.sin(-RADIAN * midAngle);
+  const cos = Math.cos(-RADIAN * midAngle);
+  const sx = cx + (outerRadius + 10) * cos;
+  const sy = cy + (outerRadius + 10) * sin;
+  const mx = cx + (outerRadius + 30) * cos;
+  const my = cy + (outerRadius + 30) * sin;
+  const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+  const ey = my;
+  const textAnchor = cos >= 0 ? 'start' : 'end';
+
+  return (
+    <g>
+      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>{payload.name}</text>
+      <Sector
+        cx={cx}
+        cy={cy}
+        innerRadius={innerRadius}
+        outerRadius={outerRadius}
+        startAngle={startAngle}
+        endAngle={endAngle}
+        fill={fill}
+      />
+      <Sector
+        cx={cx}
+        cy={cy}
+        startAngle={startAngle}
+        endAngle={endAngle}
+        innerRadius={outerRadius + 6}
+        outerRadius={outerRadius + 10}
+        fill={fill}
+      />
+      <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none"/>
+      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none"/>
+      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`PV ${value}`}</text>
+      <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
+        {`(Rate ${(percent * 100).toFixed(2)}%)`}
+      </text>
+    </g>
+  );
 };
-
 export default class ChartA extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      activeIndex: 0
+    }
+    this.onPieEnter = this.onPieEnter.bind(this)
+  }
 
-  render() {
-    return (
-      <div>
-        <h2>Line Example</h2>
-        <Line data={data} />
-      </div>
+  onPieEnter(data, index) {
+    this.setState({
+      activeIndex: index,
+    });
+  }
+  render () {
+  	return (
+        < Grid.Row columns = "equal" >
+          <Grid.Column width={8} style={{minWidth: "688.6px"}}>
+            <Segment>
+              <Header as="h2">
+                Have Certifacation
+              </Header>
+            </Segment>
+            <Segment>
+              
+            </Segment>
+          </Grid.Column>
+          <Grid.Column width={8} style={{minWidth: "688.6px"}}>
+            <Segment>
+              <Header as="h2">
+                Valid/Invalid Certifacation
+              </Header>
+            </Segment>
+            <Segment>
+            </Segment>
+          </Grid.Column>
+        </Grid.Row>
     );
   }
 }

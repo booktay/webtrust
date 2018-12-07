@@ -13,7 +13,12 @@ class Domain extends Component {
 
   handleSubmit = () => {
     const {domain, subdomain} = this.state
-    Router.pushRoute(`/domain/${domain}/${subdomain}`)
+    if (domain !== "" && subdomain !== ""){
+      Router.pushRoute(`/domain/${domain}/${subdomain}`)
+    }
+    else {
+      alert("Please choose Domain and Subdomain!!!")
+    }
   }
 
   render() {

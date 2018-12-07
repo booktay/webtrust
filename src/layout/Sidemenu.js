@@ -39,7 +39,7 @@ export default class Plate extends Component {
               </Header>
             </Link>
         </Menu.Item>
-        < Menu.Item as='a'>
+        {/* < Menu.Item as='a'>
             <Link route="score" >
               <Header as='h4' inverted textAlign='left'>
                 < Icon name = 'file alternate' / >
@@ -49,7 +49,7 @@ export default class Plate extends Component {
                 </Header.Content>
               </Header>
             </Link>
-        </Menu.Item>
+        </Menu.Item> */}
         < Menu.Item as='a'>
             <Link route="domain">
               <Header as='h4' inverted textAlign='left' >

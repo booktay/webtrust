@@ -12,7 +12,7 @@ export default class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      sidebarOpened: true
+      sidebarOpened: false
     }
     this.handleOpenSidebar = this.handleOpenSidebar.bind(this)
   }
