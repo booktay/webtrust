@@ -1,5 +1,6 @@
 const express = require('express')
 const next = require('next')
+const getCSV = require('get-csv');
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({
@@ -15,35 +16,29 @@ app.prepare()
         server.use(express.static('public'))
         
         server.get('/api/score/:domain/:subdomain', (req, res) => {
-            var list_protocol = [
-                {name: 'TLSv1.3', yes: 4000, no: 2400},
-                {name: 'TLSv1.2', yes: 3000, no: 1398},
-                {name: 'TLSv1.1', yes: 2000, no: 8},
-                {name: 'TLSv1.0', yes: 2780, no: 3908},
-                {name: 'SSLv3', yes: 18, no: 4800},
-                {name: 'SSLv2', yes: 2390, no: 3800},
-                {name: 'SSLv1', yes: 3490, no: 4300},
-                {name: 'None', yes: 490, no: 400},
-            ];
+            var results = []
+            getCSV(`data/${req.params.domain}/${req.params.subdomain}.txt`, { headers: false }).then(rows =>
+                res.send(rows)
+            );
 
-            var list_cert_have = [{name: 'Yes', value: 400}, {name: 'No', value: 300}];
-            var list_cert_valid = [
-                {name: 'Valid', number: 40},
-                {name: 'Invalid', number: 90},
-                {name: 'Other', number: 90},
-            ];
-            var list_web = [
-                {url: "www.tu.ac.th", certhave:"Yes", certvalid:"Yes", status:"Active",expired:"82"},
-                {url: "www.ku.ac.th", certhave:"Yes", certvalid:"No", status:"Inactive",expired:"32"},
+            // var list_cert_have = [{name: 'Yes', value: 400}, {name: 'No', value: 300}];
+            // var list_cert_valid = [
+            //     {name: 'Valid', number: 40},
+            //     {name: 'Invalid', number: 90},
+            //     {name: 'Other', number: 90},
+            // ];
+            // var list_web = [
+            //     {url: "www.tu.ac.th", certhave:"Yes", certvalid:"Yes", status:"Active",expired:"82"},
+            //     {url: "www.ku.ac.th", certhave:"Yes", certvalid:"No", status:"Inactive",expired:"32"},
 
-            ]
-            res.json({
-                grade:"C+",
-                certhave:list_cert_have,
-                certvalid: list_cert_valid,
-                protocol: list_protocol,
-                webscore: list_web
-            });
+            // ]
+            // res.json({
+            //     grade:"C+",
+            //     certhave:list_cert_have,
+            //     certvalid: list_cert_valid,
+            //     protocol: list_protocol,
+            //     webscore: list_web
+            // });
         });
         
         server.get('/dashboard', (req, res) => {
