@@ -17,8 +17,7 @@ app.prepare()
         
         server.get('/api/score/:domain/:subdomain', (req, res) => {
             var results = []
-            var PATHURL = 'http://localhost:9000/data/'+req.params.subdomain+'.'+req.params.domain+'.txt'
-            console.log(PATHURL)
+            var PATHURL = 'http://localhost:9000/data/'+req.params.subdomain+'.'+req.params.domain+'.txt';
             getCSV(PATHURL, {
                     headers: true
                 }).then(rows =>
