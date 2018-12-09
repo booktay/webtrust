@@ -16,5 +16,6 @@ domain_file=$1
 while read -r p; do
         #echo $p
 	sh ./calculated-echo.sh $p  </dev/null
+        rm TXT c fix-use-gor-test-pro.txt
 done < $domain_file
-sh calculated-score-domain.sh 
+sh ./calculated-score-domain.sh 

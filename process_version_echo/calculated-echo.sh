@@ -15,7 +15,7 @@ protocal_all=""
 logProtocol=("yes" "yes" "yes" "yes" "yes" "yes" "yes" "yes")
 
 check_fp () {
-     fp=$(timeout -k 4 4 openssl s_client -connect $p:443 |& openssl x509 -fingerprint -noout | cut -d ' ' -f 1 )
+     fp=$(timeout -k 4 4 openssl s_client -connect $p:443 |& openssl x509 -fingerprint -noout | cut -d ' ' -f 1 2>/dev/null)
 }
 
 res=$(curl -I -s http://$p  --stderr - | grep -i "https"); 
@@ -56,11 +56,11 @@ fi
 
 if [ $HTTPS != "no" ]
 then
-	a=$( check_ssl_cert/check_ssl_cert -H $p --ignore-ocsp --ignore-sig-alg --ignore-ssl-labs-cache )
+	a=$( check_ssl_cert/check_ssl_cert -H $p --ignore-ocsp --ignore-sig-alg --ignore-ssl-labs-cache 2>/dev/null)
 	a=$(echo $a |  cut -d  '|' -f 2)
 	expired=$(echo ${a//;} | cut  -d '=' -f 2) 
         temp_1=$(echo ${expired} |  cut -d ' ' -f 1)
-        if [ "${temp_1}"  == "SSL_CERT" ]; then a=$( check_ssl_cert/check_ssl_cert -H $p --ignore-ocsp --ignore-sig-alg --ignore-ssl-labs-cache );  a=$(echo $a |  cut -d  '|' -f 2); expired=$(echo ${a//;} | cut  -d '=' -f 2); fi;
+        if [ "${temp_1}"  == "SSL_CERT" ]; then a=$( check_ssl_cert/check_ssl_cert -H $p --ignore-ocsp --ignore-sig-alg --ignore-ssl-labs-cache 2>/dev/null);  a=$(echo $a |  cut -d  '|' -f 2); expired=$(echo ${a//;} | cut  -d '=' -f 2); fi;
 fi
 
 if [ $HTTPS == "no" ]
@@ -72,8 +72,8 @@ if [ $HTTPS != "no" ]
 then
         j=0
         check_fp;
-	fp=$(timeout -k 4 4 openssl s_client -connect $p:443 |& openssl x509 -fingerprint -noout | cut -d ' ' -f 1 )
-        if [ "${fp}" == "" ]; then fp=$(timeout -k 4 4 openssl s_client -connect $p:443 |& openssl x509 -fingerprint -noout | cut -d ' ' -f 1 ); fi;
+	fp=$(timeout -k 4 4 openssl s_client -connect $p:443 |& openssl x509 -fingerprint -noout | cut -d ' ' -f 1 2>/dev/null)
+        if [ "${fp}" == "" ]; then fp=$(timeout -k 4 4 openssl s_client -connect $p:443 |& openssl x509 -fingerprint -noout | cut -d ' ' -f 1 2>/dev/null); fi;
 fi
 
 if [ $HTTPS == "no" ]
@@ -85,9 +85,9 @@ if [ $HTTPS != "no" ]
 then
 	logProtocol=("yes" "yes" "yes" "yes" "yes" "yes" "yes" "yes")
 	num_temp=0
-	rm TXT
-	testssl.sh/testssl.sh -p --parallel --quiet --color 0 $p >> TXT
-	rm c
+	rm TXT 2>/dev/null
+	testssl.sh/testssl.sh -p --parallel --quiet --color 0 $p >> TXT 2>/dev/null
+	rm c 2>/dev/null
 	cat TXT | sed -ne '/ SSLv2/,/ ALPN\/HTTP2/p' >> c
         if [ -z `cat c` ] 2>/dev/null; 
         then 
