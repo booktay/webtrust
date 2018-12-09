@@ -1,4 +1,5 @@
 p=$1
+
 HTTP="no"
 HTTPS="no"
 HSTS="no"
@@ -12,6 +13,7 @@ expired="no"
 fp="no"
 protocal_all=""
 logProtocol=("yes" "yes" "yes" "yes" "yes" "yes" "yes" "yes")
+
 check_fp () {
      fp=$(timeout -k 4 4 openssl s_client -connect $p:443 |& openssl x509 -fingerprint -noout | cut -d ' ' -f 1 )
 }

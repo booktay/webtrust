@@ -23,6 +23,12 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/count/:index', (req, res) => {
+    client.count({index: req.params.index}, function (count) {
+        res.send(count);
+    });
+});
+
 router.get('/score/:domain/:subdomain/', (req, res) => {
     client.search({
         index: 'score',
