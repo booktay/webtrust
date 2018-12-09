@@ -303,5 +303,7 @@ DATE_WITH_TIME_f=`date "+%Y%m%d-%H%M%S"`
 temp=$( echo $active_http","$active_https","$inactive_http","$inactive_https","$domain_grade","${count_certificate}","${count_no_certificate}","${DATE_WITH_TIME_f} )
 echo $active_http","$active_https","$inactive_http","$inactive_https","$domain_grade","${count_certificate}","${count_no_certificate}","${DATE_WITH_TIME_f}","${score1}","${score2}","${score3}","${score4}","${score5}","${score6}","${domain_grade}","${total_score}
 mkdir -p ./result-score-domain
-echo $active_http","$active_https","$inactive_http","$inactive_https","$domain_grade","${count_certificate}","${count_no_certificate}","${DATE_WITH_TIME_f}","${score1}","${score2}","${score3}","${score4}","${score5}","${score6}","${domain_grade}","${total_score} >> ${DATE_WITH_TIME_f}"-"$domain".txt"
+echo $active_http","$active_https","$inactive_http","$inactive_https","$domain_grade","${count_certificate}","${count_no_certificate}","${DATE_WITH_TIME_f}","${score1}","${score2}","${score3}","${score4}","${score5}","${score6}","${domain_grade}","${total_score} >> temp-test.txt
+cp temp-test.txt ${DATE_WITH_TIME_f}"-"$domain".txt"
+rm temp-test.txt
 mv ${DATE_WITH_TIME_f}"-"$domain".txt" ./result-score-domain
