@@ -1,0 +1,22 @@
+{
+  "name": "webtrust_web",
+  "version": "1.0.0",
+  "description": "TH domain ssltest visualization",
+  "main": "server.js",
+  "repository": "https://github.com/booktay/webtrust_web.git",
+  "author": "Siwanont Sittinam & Panida Khuphiran",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "next": "^7.0.2",
+    "nodemon": "^1.18.7",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  }
+}
