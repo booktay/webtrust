@@ -1,4 +1,5 @@
 const withCss = require('@zeit/next-css')
+const getRoutes = require('./src/routes');
 
 module.exports = withCss({
   webpack (config) {
@@ -12,9 +13,12 @@ module.exports = withCss({
           outputPath: 'static/css/',
           name: '[name].[ext]'
         }
-      }
+      },
+      
     })
 
     return config
   }
-})
+}),{
+  exportPathMap: getRoutes
+}
