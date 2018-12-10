@@ -10,7 +10,9 @@ const app = next({
     dev,
     dir: './src'
 });
-const handle = app.getRequestHandler();
+const routes = require('./src/Routes')
+const handle = routes.getRequestHandler(app)
+
 const {
     parse
 } = require('url');
@@ -37,10 +39,11 @@ app.prepare().then(() => {
     server.use(express.static('public'))
     // Server-side
     const route = pathMatch();
-    // Domain
-    server.get('/domain', (req, res) => {
-        return app.render(req, res, '/domain', req.query);
+
+    server.get('/', (req, res) => {
+        return app.render(req, res, '/');
     });
+    // Domain
     server.get('/domain/:domain/:subdomain', (req, res) => {
         const params = route('/domain/:domain/:subdomain')(parse(req.url).pathname);
         return app.render(req, res, '/domain', params);
