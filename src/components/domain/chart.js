@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import {
-    Segment, Dimmer, Loader, Statistic, Grid, Header
+    Segment, Dimmer, Loader, Statistic, Grid, Header, Progress, GridColumn
 } from 'semantic-ui-react'
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 }
 from 'recharts';
-import {Router, withRouter} from "next/router";;
+import {Router, withRouter} from "next/router";
 
 class Chart extends Component {
     constructor(props) {
@@ -23,7 +23,6 @@ class Chart extends Component {
         return fetch(`/api/test/score/${router.query.domain}/${router.query.subdomain}`)
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson)
                 this.setState({
                     data_domain:responseJson[0],
                     data_all:responseJson[1],
@@ -32,79 +31,154 @@ class Chart extends Component {
             });
     }
 
+    certHave() {
+        const {data_domain} = this.state
+        return [
+            {name:"Yes", value:data_domain.havecertificate},
+            {name:"No", value:data_domain.nothavecertificate},
+        ]
+    }
+
+    protocolHave() {
+        const {data_all} = this.state
+
+        const search = ["SSLv2", "SSLv3", "TLS1", "TLS11", "TLS12", "TLS13"]
+        var protocol = [];
+
+        for (var lookup in search) {
+            var temp = {name:search[lookup], yes:0, no:0, undefined:0};
+            for (var data in data_all){
+                if (data_all[data][search[lookup]] === "yes") temp['yes'] += 1
+                else if (data_all[data][search[lookup]] === "no") temp['no'] += 1
+                else temp['undefined'] += 1
+            }
+            protocol.push(temp)
+        }
+        return protocol;
+    }
+
+    activeHave() {
+        const {data_domain} = this.state
+        var active = [
+            {name:"activehttp", value:data_domain['activehttp']},
+            {name:"inactivehttp", value:data_domain['inactivehttp']},
+            {name:"activehttps", value:data_domain['activehttps']},
+            {name:"inactivehttps", value:data_domain['inactivehttps']},
+        ];
+        return active;
+    }
+
     render() {
         const {router} = this.props
         const {loaded, data_domain, data_all} = this.state
 
         if (router.query.domain && router.query.subdomain) {
             const header_url = router.query.subdomain + "." + router.query.domain
-
             if (loaded) {
                 return (
                     <React.Fragment>
                         <Grid columns='equal' textAlign='center' className="chartgrid">
                             <Grid.Row>
-                                <Grid.Column style={{minWidth:"247.31px"}}>
-                                <Segment.Group horizontal>
-                                    <Segment>
-                                        <Statistic size='huge'>
-                                            <Statistic.Label>Subdomain</Statistic.Label>
-                                            <Statistic.Value>{router.query.subdomain}</Statistic.Value>
-                                        </Statistic>
-                                    </Segment>
-                                    <Segment>
-                                        <Statistic size='huge'>
-                                            <Statistic.Label>Domain</Statistic.Label>
-                                            <Statistic.Value>{router.query.domain}</Statistic.Value>
-                                        </Statistic>
-                                    </Segment>
-                                </Segment.Group>
-                                </Grid.Column>
-                                <Grid.Column width={5}>
-                                    <Segment.Group horizontal>
-                                        <Segment>
-                                            <Statistic size='huge'>
-                                                <Statistic.Label>Grade</Statistic.Label>
-                                                <Statistic.Value>{data_domain.domaingrade}</Statistic.Value>
-                                            </Statistic>
-                                        </Segment>
-                                    </Segment.Group>
-                                </Grid.Column>
+                                <Header as="h2">Scoring Detail</Header>
                             </Grid.Row>
                             <Grid.Row>
+                                <Grid.Column>
+                                    <Segment>
+                                        <Header as="h2">Active-Inactive</Header>
+                                        <Progress value={data_domain.score1} color='orange' total='10' inverted progress='ratio' />
+                                        <Header as="h2">Basic status</Header>
+                                        <Progress value={data_domain.score2} color='olive' total='20' inverted progress='ratio' />
+                                        <Header as="h2">Revoke status</Header>
+                                        <Progress value={data_domain.score3} color='green' total='10' inverted progress='ratio' />
+                                    </Segment>
+                                </Grid.Column>
+                                <Grid.Column>
+                                    <Segment>
+                                        <Header as="h2">Expired</Header>
+                                        <Progress value={data_domain.score4} color='blue' total='10' inverted progress='ratio' />
+                                        <Header as="h2">Valid-Invalid</Header>
+                                        <Progress value={data_domain.score5} color='purple' total='10' inverted progress='ratio' />
+                                        <Header as="h2">Protocol type</Header>
+                                        <Progress value={data_domain.score6} color='pink' total='40' inverted progress='ratio' />
+                                    </Segment>
+                                </Grid.Column>
+                            </Grid.Row>
+                            {/* <Grid.Row>
                                 <Header as="h2">Certification Detail</Header>
-                            </Grid.Row>
+                            </Grid.Row> */}
                             <Grid.Row>
                                 <Grid.Column>
                                     <Segment>
-                                        <BarChart width={640} height={450} data=""
+                                        <Header as="h2">
+                                            Have Certification
+                                        </Header>
+                                        <BarChart width={640} height={450} data={this.certHave()}
                                             margin={{top: 15, right: 30, left: 20, bottom: 5}}>
                                             <CartesianGrid strokeDasharray="3 3"/>
                                             <XAxis dataKey="name"/>
                                             <YAxis/>
                                             <Tooltip/>
                                             <Legend />
-                                            <Bar dataKey="no" fill="#8804d8" minPointSize={5}/>
-                                            <Bar dataKey="number" fill="#82ca9d" minPointSize={10}/>
+                                            <Bar dataKey="value" fill="#82ca9d" minPointSize={10}/>
                                         </BarChart>
                                     </Segment>
                                 </Grid.Column>
                                 <Grid.Column>
                                     <Segment>
-                                        <BarChart width={640} height={450} data=""
+                                        <Header as="h2">
+                                            Valid Certification
+                                        </Header>
+                                        <BarChart width={640} height={450} data={this.certHave()}
                                             margin={{top: 15, right: 30, left: 20, bottom: 5}}>
                                             <CartesianGrid strokeDasharray="3 3"/>
                                             <XAxis dataKey="name"/>
                                             <YAxis/>
                                             <Tooltip/>
                                             <Legend />
-                                            <Bar dataKey="no" fill="#8804d8" minPointSize={5}/>
-                                            <Bar dataKey="number" fill="#82ca9d" minPointSize={10}/>
+                                            <Bar dataKey="value" fill="#82ca9d" minPointSize={10}/>
                                         </BarChart>
                                     </Segment>
                                 </Grid.Column>
                             </Grid.Row>
-
+                            {/* <Grid.Row>
+                                <Header as="h2">Protocol Detail</Header>
+                            </Grid.Row> */}
+                            <Grid.Row>
+                                <Grid.Column>
+                                    <Segment>
+                                        <Header as="h2">
+                                            Protocol Detail
+                                        </Header>
+                                        <BarChart width={640} height={450} data={this.protocolHave()}
+                                            margin={{top: 15, right: 30, left: 20, bottom: 5}}>
+                                            <CartesianGrid strokeDasharray="3 3"/>
+                                            <XAxis dataKey="name"/>
+                                            <YAxis/>
+                                            <Tooltip/>
+                                            <Legend />
+                                            <Bar dataKey="undefined" fill="#82ca9d" minPointSize={2}/>
+                                            <Bar dataKey="no" fill="#82ca9d" minPointSize={6}/>
+                                            <Bar dataKey="yes" fill="#82ca9d" minPointSize={10}/>
+                                        </BarChart>
+                                    </Segment>
+                                </Grid.Column>
+                                <Grid.Column>
+                                    <Segment>
+                                        <Header as="h2">
+                                            Active-Inactive
+                                        </Header>
+                                        <BarChart width={640} height={450} data={this.activeHave()}
+                                            margin={{top: 15, right: 30, left: 20, bottom: 5}}>
+                                            <CartesianGrid strokeDasharray="3 3"/>
+                                            <XAxis dataKey="name"/>
+                                            <YAxis/>
+                                            <Tooltip/>
+                                            <Legend />
+                                            <Bar dataKey="value" fill="#82ca9d" minPointSize={10}/>
+                                        </BarChart>
+                                    </Segment>
+                                </Grid.Column>
+                            </Grid.Row>
                         </Grid>
                     </React.Fragment>
                 )

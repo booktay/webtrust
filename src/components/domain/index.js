@@ -4,8 +4,9 @@ import {
 } from 'semantic-ui-react'
 import {withRouter} from "next/router";
 import {Router} from "../../Routes";
-import Chart from './chart';
+import Content from './content';
 import BreadcrumbSearch from './breadcrumbsearch';
+import MenuSearch from './menusearch';
 
 class Domain extends Component {
     constructor(props) {
@@ -17,8 +18,10 @@ class Domain extends Component {
             subdomain: '',
             options_all: [],
             options_domain:[],
-            options_subdomain:[]
+            options_subdomain:[],
+            contentTable: false
         }
+        this.handleOpenTable = this.handleOpenTable.bind(this)
     }
 
     handleChange = (e, { name, value }) => this.setState({ [name]: value })
@@ -68,9 +71,15 @@ class Domain extends Component {
             });
     }
 
-    
+    handleOpenTable() {
+        this.setState(state => {
+            state.contentTable = !state.contentTable
+            return state
+        })
+    }
+
     render() {
-        const {options_domain, options_subdomain, loadOption} = this.state
+        const {options_domain, options_subdomain, loadOption, contentTable} = this.state
 
         if (loadOption) {
             return (
@@ -84,6 +93,7 @@ class Domain extends Component {
                                 <BreadcrumbSearch/>
                             </Breadcrumb>
                         </Menu.Item>
+                        <MenuSearch onReqOpen={this.handleOpenTable}/>
                     </Menu>
                     <Segment attached='bottom' className="bottomcontent">
                         <Segment className="chartcontent">
@@ -102,7 +112,7 @@ class Domain extends Component {
                                 <Form.Button content='Search' fluid primary onClick={this.handleSubmit} />
                             </Form>
                         </Segment>
-                        <Chart/>
+                        <Content contentTable={contentTable}/>
                     </Segment>
                     <style jsx>{`
                     `}</style>
