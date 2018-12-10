@@ -1,0 +1,16 @@
+#sidebarhead {
+    margin: auto;
+    border-radius: 0px;
+    background-color:#e6e6e6;
+    min-height:calc(100vh - 50px);
+    min-width: calc(100vw - 30px);
+}
+
+#sidebarcontent {
+    margin: 1em;
+}
+
+.ui.menu {
+    margin: auto;
+    border-radius: 0px;
+}

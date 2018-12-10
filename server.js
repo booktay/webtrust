@@ -37,15 +37,14 @@ app.prepare().then(() => {
     server.use(express.static('public'))
     // Server-side
     const route = pathMatch();
-
-    // server.get('/search', (req, res) => {
-    //     return app.render(req, res, '/search', req.query);
-    // });
-
-    // server.get('/artist/:id', (req, res) => {
-    //     const params = route('/artist/:id')(parse(req.url).pathname);
-    //     return app.render(req, res, '/artist', params);
-    // });
+    // Domain
+    server.get('/domain', (req, res) => {
+        return app.render(req, res, '/domain', req.query);
+    });
+    server.get('/domain/:domain/:subdomain', (req, res) => {
+        const params = route('/domain/:domain/:subdomain')(parse(req.url).pathname);
+        return app.render(req, res, '/domain', params);
+    });
 
     server.get('*', (req, res) => {
         return handle(req, res);

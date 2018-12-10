@@ -11,7 +11,7 @@ var client = new elasticsearch.Client({
     log: 'trace'
 });
 
-router.get('/', (req, res) => {
+router.get('/elasticsearch', (req, res) => {
     client.ping({
         requestTimeout: 1000
     }, function (error) {
@@ -98,6 +98,13 @@ router.get('/add/score/:domain/:subdomain/', (req, res) => {
 router.get('/test/score/:website', (req, res) => {
     shell.exec('./server/calculate/calculated-echo.sh ' + req.params.website + ' </dev/null', (code, output) => {
         res.send(output)
+    })
+});
+
+// Test Part
+router.get('/test/domain', (req, res) => {
+    res.json({
+        th: ['ac', 'co', 'in', 'mi', 'go', 'or', 'net']
     })
 });
 

@@ -6,7 +6,7 @@ import {
 } from 'semantic-ui-react'
 import Nav from "../components/layout/navigator";
 import Sidemenu from "../components/layout/sidemenu";
-import Dashboard from '../components/dashboard';
+import Domain from '../components/domain';
 
 export default class Index extends Component {
   constructor(props) {
@@ -31,7 +31,7 @@ export default class Index extends Component {
             <Sidebar.Pushable as={Segment} id="sidebarhead">
                 <Sidemenu sidebarOpened={this.state.sidebarOpened} />
                 <Sidebar.Pusher id="sidebarcontent">
-                    <Dashboard/>
+                    <Domain/>
                 </Sidebar.Pusher>
             </Sidebar.Pushable>
         </React.Fragment>
