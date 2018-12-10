@@ -42,7 +42,7 @@ class Chart extends Component {
             if (loaded) {
                 return (
                     <React.Fragment>
-                        <Grid columns='equal' divided textAlign='center' className="chartgrid">
+                        <Grid columns='equal' textAlign='center' className="chartgrid">
                             <Grid.Row>
                                 <Grid.Column style={{minWidth:"247.31px"}}>
                                 <Segment.Group horizontal>
@@ -75,18 +75,34 @@ class Chart extends Component {
                                 <Header as="h2">Certification Detail</Header>
                             </Grid.Row>
                             <Grid.Row>
-                                <Segment>
-                                    <BarChart width={640} height={450} data={certhave}
-                                        margin={{top: 15, right: 30, left: 20, bottom: 5}}>
-                                        <CartesianGrid strokeDasharray="3 3"/>
-                                        <XAxis dataKey="name"/>
-                                        <YAxis/>
-                                        <Tooltip/>
-                                        <Legend />
-                                        {/* <Bar dataKey="no" fill="#8804d8" minPointSize={5}/> */}
-                                        <Bar dataKey="number" fill="#82ca9d" minPointSize={10}/>
-                                    </BarChart>
-                                </Segment>
+                                <Grid.Column>
+                                    <Segment>
+                                        <BarChart width={640} height={450} data=""
+                                            margin={{top: 15, right: 30, left: 20, bottom: 5}}>
+                                            <CartesianGrid strokeDasharray="3 3"/>
+                                            <XAxis dataKey="name"/>
+                                            <YAxis/>
+                                            <Tooltip/>
+                                            <Legend />
+                                            <Bar dataKey="no" fill="#8804d8" minPointSize={5}/>
+                                            <Bar dataKey="number" fill="#82ca9d" minPointSize={10}/>
+                                        </BarChart>
+                                    </Segment>
+                                </Grid.Column>
+                                <Grid.Column>
+                                    <Segment>
+                                        <BarChart width={640} height={450} data=""
+                                            margin={{top: 15, right: 30, left: 20, bottom: 5}}>
+                                            <CartesianGrid strokeDasharray="3 3"/>
+                                            <XAxis dataKey="name"/>
+                                            <YAxis/>
+                                            <Tooltip/>
+                                            <Legend />
+                                            <Bar dataKey="no" fill="#8804d8" minPointSize={5}/>
+                                            <Bar dataKey="number" fill="#82ca9d" minPointSize={10}/>
+                                        </BarChart>
+                                    </Segment>
+                                </Grid.Column>
                             </Grid.Row>
 
                         </Grid>
