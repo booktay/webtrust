@@ -18,12 +18,10 @@ class Domain extends Component {
             subdomain: '',
             options_all: [],
             options_domain:[],
-            options_subdomain:[],
-            contentTable: false
+            options_subdomain:[]
         }
-        this.handleOpenTable = this.handleOpenTable.bind(this)
     }
-
+    
     handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
     handleDomainChange = (e, { name, value }) => {
@@ -71,13 +69,6 @@ class Domain extends Component {
             });
     }
 
-    handleOpenTable() {
-        this.setState(state => {
-            state.contentTable = !state.contentTable
-            return state
-        })
-    }
-
     render() {
         const {options_domain, options_subdomain, loadOption, contentTable} = this.state
 
@@ -93,7 +84,6 @@ class Domain extends Component {
                                 <BreadcrumbSearch/>
                             </Breadcrumb>
                         </Menu.Item>
-                        <MenuSearch onReqOpen={this.handleOpenTable}/>
                     </Menu>
                     <Segment attached='bottom' className="bottomcontent">
                         <Segment className="chartcontent">
@@ -112,7 +102,7 @@ class Domain extends Component {
                                 <Form.Button content='Search' fluid primary onClick={this.handleSubmit} />
                             </Form>
                         </Segment>
-                        <Content contentTable={contentTable}/>
+                        <Content />
                     </Segment>
                     <style jsx>{`
                     `}</style>

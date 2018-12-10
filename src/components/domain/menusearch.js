@@ -11,12 +11,11 @@ class MenuSearch extends Component {
 
     render() {
         const {router} = this.props
-
         if (router.query.domain && router.query.subdomain) {
             return(
                 <React.Fragment>
                     <Menu.Item>
-                        <Menu.Item name='Score Detail Or Website'
+                        <Menu.Item name="Website"
                         onClick={this.props.onReqOpen}/>
                     </Menu.Item>
                 </React.Fragment>

@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
 import {
-    Segment, Dimmer, Loader, Statistic, Grid, Header, Progress, GridColumn
+    Segment, Dimmer, Loader, Statistic, Grid
 } from 'semantic-ui-react'
-import {
-    BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend
-}
-from 'recharts';
 import {Router, withRouter} from "next/router";
 import Chart from "./chart";
-import Table from "./table";
 
 class Content extends Component {
     constructor(props) {
@@ -16,14 +11,8 @@ class Content extends Component {
         this.state = {
             loaded : false,
             data_domain: {},
-            contentTable : false
+            data: []
         }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState(state => {
-            state.contentTable = nextProps.contentTable
-        })
     }
 
     componentDidMount() {
@@ -33,6 +22,7 @@ class Content extends Component {
             .then((responseJson) => {
                 this.setState({
                     data_domain:responseJson[0],
+                    data : responseJson,
                     loaded: true
                 })
             });
@@ -40,7 +30,7 @@ class Content extends Component {
 
     render() {
         const {router} = this.props
-        const {loaded, data_domain, contentTable} = this.state
+        const {loaded, data_domain, data} = this.state
 
         if (router.query.domain && router.query.subdomain) {
             const header_url = router.query.subdomain + "." + router.query.domain
@@ -81,7 +71,7 @@ class Content extends Component {
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid>
-                        {!contentTable ? <Chart/>:<Table/> }
+                        <Chart data={data} />
                     </React.Fragment>
                 )
             }

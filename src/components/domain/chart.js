@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
-    Segment, Dimmer, Loader, Statistic, Grid, Header, Progress, GridColumn
+    Segment, Dimmer, Loader, Table, Grid, Header, Progress, GridColumn
 } from 'semantic-ui-react'
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend
@@ -8,31 +8,24 @@ import {
 from 'recharts';
 import {Router, withRouter} from "next/router";
 
+const renderBodyRow = ({ name, status, notes }, i) => ({
+    key: name || `row-${i}`,
+    warning: !!(status && status.match('Requires Action')),
+    cells: [
+        name || 'No name specified',
+        status ? { key: 'status', icon: 'attention', content: status } : 'Unknown',
+        notes ? { key: 'notes', icon: 'attention', content: notes, warning: true } : 'None',
+    ],
+})
+
+
 class Chart extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            loaded : false,
-            data_all: [],
-            data_domain: {}
-        }
-    }
-
-    componentDidMount() {
-        const {router} = this.props
-        return fetch(`/api/test/score/${router.query.domain}/${router.query.subdomain}`)
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.setState({
-                    data_domain:responseJson[0],
-                    data_all:responseJson[1],
-                    loaded: true
-                })
-            });
     }
 
     certHave() {
-        const {data_domain} = this.state
+        const data_domain = this.props.data[0];
         return [
             {name:"Yes", value:data_domain.havecertificate},
             {name:"No", value:data_domain.nothavecertificate},
@@ -40,7 +33,7 @@ class Chart extends Component {
     }
 
     protocolHave() {
-        const {data_all} = this.state
+        const data_all = this.props.data[1];
 
         const search = ["SSLv2", "SSLv3", "TLS1", "TLS11", "TLS12", "TLS13"]
         var protocol = [];
@@ -58,7 +51,7 @@ class Chart extends Component {
     }
 
     activeHave() {
-        const {data_domain} = this.state
+        const data_domain = this.props.data[0];
         var active = [
             {name:"activehttp", value:data_domain['activehttp']},
             {name:"inactivehttp", value:data_domain['inactivehttp']},
@@ -68,133 +61,132 @@ class Chart extends Component {
         return active;
     }
 
-    render() {
-        const {router} = this.props
-        const {loaded, data_domain, data_all} = this.state
+    websiteHave() {
+        const data_all = this.props.data[1];
+        return data_all
+    }
 
-        if (router.query.domain && router.query.subdomain) {
-            const header_url = router.query.subdomain + "." + router.query.domain
-            if (loaded) {
-                return (
-                    <React.Fragment>
-                        <Grid columns='equal' textAlign='center' className="chartgrid">
-                            <Grid.Row>
-                                <Header as="h2">Scoring Detail</Header>
-                            </Grid.Row>
-                            <Grid.Row>
-                                <Grid.Column>
-                                    <Segment>
-                                        <Header as="h2">Active-Inactive</Header>
-                                        <Progress value={data_domain.score1} color='orange' total='10' inverted progress='ratio' />
-                                        <Header as="h2">Basic status</Header>
-                                        <Progress value={data_domain.score2} color='olive' total='20' inverted progress='ratio' />
-                                        <Header as="h2">Revoke status</Header>
-                                        <Progress value={data_domain.score3} color='green' total='10' inverted progress='ratio' />
-                                    </Segment>
-                                </Grid.Column>
-                                <Grid.Column>
-                                    <Segment>
-                                        <Header as="h2">Expired</Header>
-                                        <Progress value={data_domain.score4} color='blue' total='10' inverted progress='ratio' />
-                                        <Header as="h2">Valid-Invalid</Header>
-                                        <Progress value={data_domain.score5} color='purple' total='10' inverted progress='ratio' />
-                                        <Header as="h2">Protocol type</Header>
-                                        <Progress value={data_domain.score6} color='pink' total='40' inverted progress='ratio' />
-                                    </Segment>
-                                </Grid.Column>
-                            </Grid.Row>
-                            {/* <Grid.Row>
-                                <Header as="h2">Certification Detail</Header>
-                            </Grid.Row> */}
-                            <Grid.Row>
-                                <Grid.Column>
-                                    <Segment>
-                                        <Header as="h2">
-                                            Have Certification
-                                        </Header>
-                                        <BarChart width={640} height={450} data={this.certHave()}
-                                            margin={{top: 15, right: 30, left: 20, bottom: 5}}>
-                                            <CartesianGrid strokeDasharray="3 3"/>
-                                            <XAxis dataKey="name"/>
-                                            <YAxis/>
-                                            <Tooltip/>
-                                            <Legend />
-                                            <Bar dataKey="value" fill="#82ca9d" minPointSize={10}/>
-                                        </BarChart>
-                                    </Segment>
-                                </Grid.Column>
-                                <Grid.Column>
-                                    <Segment>
-                                        <Header as="h2">
-                                            Valid Certification
-                                        </Header>
-                                        <BarChart width={640} height={450} data={this.certHave()}
-                                            margin={{top: 15, right: 30, left: 20, bottom: 5}}>
-                                            <CartesianGrid strokeDasharray="3 3"/>
-                                            <XAxis dataKey="name"/>
-                                            <YAxis/>
-                                            <Tooltip/>
-                                            <Legend />
-                                            <Bar dataKey="value" fill="#82ca9d" minPointSize={10}/>
-                                        </BarChart>
-                                    </Segment>
-                                </Grid.Column>
-                            </Grid.Row>
-                            {/* <Grid.Row>
-                                <Header as="h2">Protocol Detail</Header>
-                            </Grid.Row> */}
-                            <Grid.Row>
-                                <Grid.Column>
-                                    <Segment>
-                                        <Header as="h2">
-                                            Protocol Detail
-                                        </Header>
-                                        <BarChart width={640} height={450} data={this.protocolHave()}
-                                            margin={{top: 15, right: 30, left: 20, bottom: 5}}>
-                                            <CartesianGrid strokeDasharray="3 3"/>
-                                            <XAxis dataKey="name"/>
-                                            <YAxis/>
-                                            <Tooltip/>
-                                            <Legend />
-                                            <Bar dataKey="undefined" fill="#82ca9d" minPointSize={2}/>
-                                            <Bar dataKey="no" fill="#82ca9d" minPointSize={6}/>
-                                            <Bar dataKey="yes" fill="#82ca9d" minPointSize={10}/>
-                                        </BarChart>
-                                    </Segment>
-                                </Grid.Column>
-                                <Grid.Column>
-                                    <Segment>
-                                        <Header as="h2">
-                                            Active-Inactive
-                                        </Header>
-                                        <BarChart width={640} height={450} data={this.activeHave()}
-                                            margin={{top: 15, right: 30, left: 20, bottom: 5}}>
-                                            <CartesianGrid strokeDasharray="3 3"/>
-                                            <XAxis dataKey="name"/>
-                                            <YAxis/>
-                                            <Tooltip/>
-                                            <Legend />
-                                            <Bar dataKey="value" fill="#82ca9d" minPointSize={10}/>
-                                        </BarChart>
-                                    </Segment>
-                                </Grid.Column>
-                            </Grid.Row>
-                        </Grid>
-                    </React.Fragment>
-                )
-            }
-            return (
-                <React.Fragment>
-                    <Segment className="chartcontent">
-                        <Dimmer active inverted inline='centered' size='massive'>
-                            <Loader size='large'>Loading</Loader>
-                        </Dimmer>
-                    </Segment>
-                </React.Fragment>
-            )
-        }
+    websiteRowHave() {
+        const data_all = this.props.data[1];
+        return Object.keys(data_all[0]);
+    }
+
+    render() {
+        const data_domain = this.props.data[0];
         return (
-            <React.Fragment></React.Fragment>
+            <React.Fragment>
+                <Grid columns='equal' textAlign='center' className="chartgrid">
+                    <Grid.Row>
+                        <Header as="h2">Scoring Detail</Header>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <Grid.Column>
+                            <Segment>
+                                <Header as="h2">Active-Inactive</Header>
+                                <Progress value={data_domain.score1} color='orange' total='10' inverted progress='ratio' />
+                                <Header as="h2">Basic status</Header>
+                                <Progress value={data_domain.score2} color='olive' total='20' inverted progress='ratio' />
+                                <Header as="h2">Revoke status</Header>
+                                <Progress value={data_domain.score3} color='green' total='10' inverted progress='ratio' />
+                            </Segment>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <Segment>
+                                <Header as="h2">Expired</Header>
+                                <Progress value={data_domain.score4} color='blue' total='10' inverted progress='ratio' />
+                                <Header as="h2">Valid-Invalid</Header>
+                                <Progress value={data_domain.score5} color='purple' total='10' inverted progress='ratio' />
+                                <Header as="h2">Protocol type</Header>
+                                <Progress value={data_domain.score6} color='pink' total='40' inverted progress='ratio' />
+                            </Segment>
+                        </Grid.Column>
+                    </Grid.Row>
+                    {/* <Grid.Row>
+                        <Header as="h2">Certification Detail</Header>
+                    </Grid.Row> */}
+                    <Grid.Row>
+                        <Grid.Column>
+                            <Segment>
+                                <Header as="h2">
+                                    Have Certification
+                                </Header>
+                                <BarChart width={640} height={450} data={this.certHave()}
+                                    margin={{top: 15, right: 30, left: 20, bottom: 5}}>
+                                    <CartesianGrid strokeDasharray="3 3"/>
+                                    <XAxis dataKey="name"/>
+                                    <YAxis/>
+                                    <Tooltip/>
+                                    <Legend />
+                                    <Bar dataKey="value" fill="#82ca9d" minPointSize={10}/>
+                                </BarChart>
+                            </Segment>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <Segment>
+                                <Header as="h2">
+                                    Valid Certification
+                                </Header>
+                                <BarChart width={640} height={450} data={this.certHave()}
+                                    margin={{top: 15, right: 30, left: 20, bottom: 5}}>
+                                    <CartesianGrid strokeDasharray="3 3"/>
+                                    <XAxis dataKey="name"/>
+                                    <YAxis/>
+                                    <Tooltip/>
+                                    <Legend />
+                                    <Bar dataKey="value" fill="#82ca9d" minPointSize={10}/>
+                                </BarChart>
+                            </Segment>
+                        </Grid.Column>
+                    </Grid.Row>
+                    {/* <Grid.Row>
+                        <Header as="h2">Protocol Detail</Header>
+                    </Grid.Row> */}
+                    <Grid.Row>
+                        <Grid.Column>
+                            <Segment>
+                                <Header as="h2">
+                                    Protocol Detail
+                                </Header>
+                                <BarChart width={640} height={450} data={this.protocolHave()}
+                                    margin={{top: 15, right: 30, left: 20, bottom: 5}}>
+                                    <CartesianGrid strokeDasharray="3 3"/>
+                                    <XAxis dataKey="name"/>
+                                    <YAxis/>
+                                    <Tooltip/>
+                                    <Legend />
+                                    <Bar dataKey="undefined" fill="#82ca9d" minPointSize={2}/>
+                                    <Bar dataKey="no" fill="#82ca9d" minPointSize={6}/>
+                                    <Bar dataKey="yes" fill="#82ca9d" minPointSize={10}/>
+                                </BarChart>
+                            </Segment>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <Segment>
+                                <Header as="h2">
+                                    Active-Inactive
+                                </Header>
+                                <BarChart width={640} height={450} data={this.activeHave()}
+                                    margin={{top: 15, right: 30, left: 20, bottom: 5}}>
+                                    <CartesianGrid strokeDasharray="3 3"/>
+                                    <XAxis dataKey="name"/>
+                                    <YAxis/>
+                                    <Tooltip/>
+                                    <Legend />
+                                    <Bar dataKey="value" fill="#82ca9d" minPointSize={10}/>
+                                </BarChart>
+                            </Segment>
+                        </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <Header as="h2">Website</Header>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <GridColumn>
+                            {/* <Table celled headerRow={this.websiteRowHave} tableData={this.websiteHave} /> */}
+                        </GridColumn>
+                    </Grid.Row>
+                </Grid>
+            </React.Fragment>
         )
     }
 }

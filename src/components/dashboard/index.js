@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
-  Segment, Menu, Dimmer, Loader, Breadcrumb, Image
+  Segment, Menu, Dimmer, Loader, Breadcrumb
 } from 'semantic-ui-react'
 import {Router, withRouter} from "next/router";
 
@@ -52,7 +52,6 @@ class Dashboard extends Component {
                     <Dimmer className={dimmershow} inverted inline='centered' size='massive'>
                         <Loader size='large'>Loading</Loader>
                     </Dimmer>
-                    <p>{router.query.subdomain}</p>
                     <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
                     <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
                     <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
