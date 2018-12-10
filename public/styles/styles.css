@@ -1,6 +1,8 @@
 #sidebarhead {
     margin: auto;
     border-radius: 0px;
+    border: none;
+    border-bottom: white;
     background-color:#e6e6e6;
     min-height:calc(100vh - 50px);
     min-width: calc(100vw - 30px);
@@ -10,7 +12,20 @@
     margin: 1em;
 }
 
+.menuhide {
+    width: 100vw;
+}
+
+.menushow {
+    width: 91vw;
+}
+
 .ui.menu {
     margin: auto;
     border-radius: 0px;
+}
+
+.ui.breadcrumb a,
+.ui.breadcrumb .divider {
+    color: white;
 }

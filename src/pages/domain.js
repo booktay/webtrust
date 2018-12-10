@@ -25,12 +25,17 @@ export default class Index extends Component {
   }
 
   render() {
+    var sidebarcontent = 'menushow'
+    if (!this.state.sidebarOpened) {
+      sidebarcontent = 'menuhide'
+    }
+
     return (
         <React.Fragment>
             <Nav onReqOpenSidebar={this.handleOpenSidebar} />
             <Sidebar.Pushable as={Segment} id="sidebarhead">
                 <Sidemenu sidebarOpened={this.state.sidebarOpened} />
-                <Sidebar.Pusher id="sidebarcontent">
+                <Sidebar.Pusher className={sidebarcontent}>
                     <Domain/>
                 </Sidebar.Pusher>
             </Sidebar.Pushable>
