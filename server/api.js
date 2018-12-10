@@ -23,12 +23,14 @@ router.get('/elasticsearch', (req, res) => {
     });
 });
 
+// Count
 router.get('/count/:index', (req, res) => {
     client.count({index: req.params.index}, function (count) {
         res.send(count);
     });
 });
 
+// Search
 router.get('/score/:domain/:subdomain/', (req, res) => {
     client.search({
         index: 'score',
@@ -47,6 +49,7 @@ router.get('/score/:domain/:subdomain/', (req, res) => {
     });
 });
 
+// Add
 router.get('/add/score/:domain/:subdomain/', (req, res) => {
     var bulk = [];
     
@@ -59,8 +62,9 @@ router.get('/add/score/:domain/:subdomain/', (req, res) => {
                     _id: current
                 }
             }, {
-                'constituencyname': bulklist[current].ConstituencyName,
-                'constituencyID': bulklist[current].ConstituencyID
+                // Reindex
+                id: bulklist.id,
+                activehttp: bulklist.activehttp
             });
         }
         callback(bulk);
@@ -84,7 +88,6 @@ router.get('/add/score/:domain/:subdomain/', (req, res) => {
     shell.exec('./calculate/calculated-echo.sh' + url + '</dev/null', (code, output) => {
         console.log(output)
     })
-
     var inputfile = []
 
     makebulk(inputfile, function (response) {
@@ -93,6 +96,7 @@ router.get('/add/score/:domain/:subdomain/', (req, res) => {
             console.log(response);
         })
     });
+
 });
 
 // router.get('/test/score/:website', (req, res) => {
