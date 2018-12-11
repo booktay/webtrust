@@ -1,23 +1,28 @@
 import React, { Component } from 'react'
 import {
-  Menu
+  Breadcrumb
 } from 'semantic-ui-react'
 import {Router, withRouter} from "next/router";;
 
-class MenuSearch extends Component {
+class BreadcrumbSearch extends Component {
     constructor(props) {
         super(props)
     }
 
+    componentDidMount() {}
+
     render() {
         const {router} = this.props
+
         if (router.query.domain && router.query.subdomain) {
+            const header_url = router.query.subdomain + "." + router.query.domain;
             return(
                 <React.Fragment>
-                    <Menu.Item>
-                        <Menu.Item name="Website"
-                        onClick={this.props.onReqOpen}/>
-                    </Menu.Item>
+                    <Breadcrumb.Divider icon='right angle' />
+                    <Breadcrumb.Section active>
+                        Search for : 
+                        <a href={router.asPath}> {header_url}</a>
+                    </Breadcrumb.Section>
                 </React.Fragment>
             )
         }
@@ -27,4 +32,4 @@ class MenuSearch extends Component {
     }
 }
 
-export default withRouter(MenuSearch)
+export default withRouter(BreadcrumbSearch)

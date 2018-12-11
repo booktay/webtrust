@@ -177,14 +177,6 @@ class Chart extends Component {
                             </Segment>
                         </Grid.Column>
                     </Grid.Row>
-                    <Grid.Row>
-                        <Header as="h2">Website</Header>
-                    </Grid.Row>
-                    <Grid.Row>
-                        <GridColumn>
-                            {/* <Table celled headerRow={this.websiteRowHave} tableData={this.websiteHave} /> */}
-                        </GridColumn>
-                    </Grid.Row>
                 </Grid>
             </React.Fragment>
         )

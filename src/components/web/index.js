@@ -7,7 +7,7 @@ import {Router} from "../../Routes";
 import Content from './content';
 import BreadcrumbSearch from './breadcrumbsearch';
 
-class Domain extends Component {
+class Web extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -33,7 +33,7 @@ class Domain extends Component {
     handleSubmit = () => {
         const {domain, subdomain} = this.state
         if (domain !== "" && subdomain !== ""){
-            Router.pushRoute(`/domain/${domain}/${subdomain}`)
+            Router.pushRoute(`/web/${domain}/${subdomain}`)
         }
         else {
             alert("Please choose Domain and Subdomain!!!")
@@ -79,7 +79,7 @@ class Domain extends Component {
                             <Breadcrumb>
                                 <Breadcrumb.Section><a href='/'>Home</a></Breadcrumb.Section>
                                 <Breadcrumb.Divider />
-                                <Breadcrumb.Section><a href='/domain'>Domain</a></Breadcrumb.Section>
+                                <Breadcrumb.Section><a href='/web'>Web</a></Breadcrumb.Section>
                                 <BreadcrumbSearch/>
                             </Breadcrumb>
                         </Menu.Item>
@@ -116,7 +116,7 @@ class Domain extends Component {
                             <Breadcrumb>
                                 <Breadcrumb.Section><a href='/'>Home</a></Breadcrumb.Section>
                                 <Breadcrumb.Divider />
-                                <Breadcrumb.Section><a href='/domain'>Domain</a></Breadcrumb.Section>
+                                <Breadcrumb.Section><a href='/web'>Web</a></Breadcrumb.Section>
                             </Breadcrumb>
                         </Menu.Item>
                     </Menu>
@@ -136,4 +136,4 @@ class Domain extends Component {
     }
 }
 
-export default withRouter(Domain)
+export default withRouter(Web)

@@ -35,7 +35,7 @@ export default class Plate extends Component {
             < Icon name = 'line chart' / >
             <Header.Content >
               DomainScore
-              < Header.Subheader > Security Grade </Header.Subheader>
+              < Header.Subheader > Test Score </Header.Subheader>
             </Header.Content>
           </Header>
         </Menu.Item>
@@ -44,7 +44,7 @@ export default class Plate extends Component {
             < Icon name = 'line chart' / >
             <Header.Content >
               WebScore
-              < Header.Subheader > Security Score </Header.Subheader>
+              < Header.Subheader > Test Score </Header.Subheader>
             </Header.Content>
           </Header>
         </Menu.Item>
