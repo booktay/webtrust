@@ -1,17 +1,30 @@
 import React, { Component } from 'react'
 import {
-    Segment, Dimmer, Loader, Statistic, Grid, Table, Header
+    Segment, Dimmer, Loader, Statistic, Grid, Table, Header, Pagination
 } from 'semantic-ui-react'
 import {Router, withRouter} from "next/router";
 
-const renderBodyRow = ({ name, status, notes }, i) => ({
-    key: name || `row-${i}`,
-    warning: !!(status && status.match('Requires Action')),
-    cells: [
-        name || 'No name specified',
-        status ? { key: 'status', icon: 'attention', content: status } : 'Unknown',
-        notes ? { key: 'notes', icon: 'attention', content: notes, warning: true } : 'None',
+const tableData = [
+    [
+        { name: undefined, status: undefined, notes: undefined },
+        { name: 'Jimmy', status: 'Requires Action', notes: undefined },
     ],
+    [
+        { name: 'Jamie', status: undefined, notes: 'Hostile' },
+        { name: 'Jill', status: undefined, notes: undefined },
+    ]
+]
+
+const headerRow = ['Name', 'Status', 'Notes']
+
+const renderBodyRow = ({ name, status, notes }, i) => ({
+  key: name || `row-${i}`,
+  warning: !!(status && status.match('Requires Action')),
+  cells: [
+    name || 'No name specified',
+    status ? { key: 'status', icon: 'attention', content: status } : 'Unknown',
+    notes ? { key: 'notes', icon: 'attention', content: notes, warning: true } : 'None',
+  ],
 })
 
 class Content extends Component {
@@ -20,9 +33,12 @@ class Content extends Component {
         this.state = {
             loaded : false,
             data_domain: {},
-            data_all: []
+            data_all: [],
+            activePage: 1
         }
     }
+
+    handlePaginationChange = (e, { activePage }) => this.setState({ activePage })
 
     componentDidMount() {
         const {router} = this.props
@@ -39,18 +55,20 @@ class Content extends Component {
 
     websiteHave() {
         const {data_all} = this.state;
+        console.log(data_all)
         return data_all
     }
 
     websiteRowHave() {
         const {data_all} = this.state;
+        console.log(Object.keys(data_all[0]))
         return Object.keys(data_all[0]);
     }
 
     render() {
         const {router} = this.props
-        const {loaded, data_domain, data_all} = this.state
-
+        const {loaded, data_domain, data_all,activePage} = this.state
+        
         if (router.query.domain && router.query.subdomain) {
             if (loaded) {
                 return (
@@ -95,8 +113,11 @@ class Content extends Component {
                             </Grid.Row>
                             <Grid.Row>
                                 <Grid.Column>
-                                    {/* <Table celled headerRow={this.websiteRowHave} tableData={this.websiteHave} /> */}
+                                    <Table celled headerRow={headerRow} renderBodyRow={renderBodyRow} tableData={tableData[activePage-1]} />
                                 </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <Pagination activePage={activePage} onPageChange={this.handlePaginationChange} totalPages={5} />
                             </Grid.Row>
                         </Grid>
                     </React.Fragment>
