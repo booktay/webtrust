@@ -42,7 +42,7 @@ class Content extends Component {
 
     componentDidMount() {
         const {router} = this.props
-        return fetch(`/api/test/score/${router.query.domain}/${router.query.subdomain}`)
+        return fetch(`/test/score/${router.query.domain}/${router.query.subdomain}`)
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({

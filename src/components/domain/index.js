@@ -41,7 +41,7 @@ class Domain extends Component {
     }
 
     componentDidMount() {
-        return fetch('/api/test/domain')
+        return fetch('/test/domain')
             .then((response) => response.json())
             .then((responseJson) => {
                 var keys = [], values = {};

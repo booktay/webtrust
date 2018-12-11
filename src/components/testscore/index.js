@@ -13,20 +13,17 @@ class Web extends Component {
         this.state = {
             data: {},
             url: '',
-            search: false
         }
     }
     
     handleChange = (e, { name, value }) => {
         this.setState({ 
             [name]: value,
-            search: false
         })
     }
     handleSubmit = () => {
         const {url} = this.state
         if (url !== ""){
-            this.setState({search:true})
             Router.pushRoute(`/testscore/${url}`)
         }
         else {
@@ -46,7 +43,7 @@ class Web extends Component {
                         <Breadcrumb>
                             <Breadcrumb.Section><a href='/'>Home</a></Breadcrumb.Section>
                             <Breadcrumb.Divider />
-                            <Breadcrumb.Section><a href='/testweb'>Testweb</a></Breadcrumb.Section>
+                            <Breadcrumb.Section><a href='/testscore'>Testweb</a></Breadcrumb.Section>
                             <BreadcrumbSearch/>
                         </Breadcrumb>
                     </Menu.Item>
@@ -57,7 +54,7 @@ class Web extends Component {
                         <Form>
                             <Form.Field>
                                 <label>Input URL</label>
-                                <Input fluid action>
+                                <Input action>
                                     <Input label='https://' placeholder='example.com' name='url' value={url} onChange={this.handleChange}/>
                                     <Button onClick={this.handleSubmit} color='blue' >Scoring!!!</Button>
                                 </Input>
@@ -65,7 +62,7 @@ class Web extends Component {
                         </Form>
                     </Segment>
                     {
-                        search ? <Content /> : <React.Fragment></React.Fragment>
+                        this.props.router.query.url ? <Content /> : <React.Fragment></React.Fragment>
                     }
                 </Segment>
                 <style jsx>{`

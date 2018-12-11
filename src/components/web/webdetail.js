@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import {
-    Segment, Dimmer, Loader, Statistic, Grid, Table, Header, Progress, GridRow
+    Segment, Dimmer, Loader, Statistic, Grid, Table, Header, Progress
 } from 'semantic-ui-react'
 import {Router, withRouter} from "next/router";
 
-class Content extends Component {
+class Webdetail extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -223,4 +223,4 @@ class Content extends Component {
     }
 }
 
-export default withRouter(Content)
+export default withRouter(Webdetail)
