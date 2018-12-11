@@ -120,7 +120,7 @@ class Domain extends Component {
                             </Breadcrumb>
                         </Menu.Item>
                     </Menu>
-                <Segment attached='bottom'>
+                <Segment attached='bottom' className="bottomcontent">
                     <Dimmer active inverted inline='centered' size='massive'>
                         <Loader size='large'>Loading</Loader>
                     </Dimmer>
