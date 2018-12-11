@@ -35,7 +35,7 @@ export default class Plate extends Component {
             < Icon name = 'line chart' / >
             <Header.Content >
               DomainScore
-              < Header.Subheader > Security Test </Header.Subheader>
+              < Header.Subheader > Security Grade </Header.Subheader>
             </Header.Content>
           </Header>
         </Menu.Item>
@@ -44,7 +44,16 @@ export default class Plate extends Component {
             < Icon name = 'line chart' / >
             <Header.Content >
               WebScore
-              < Header.Subheader > Security Test </Header.Subheader>
+              < Header.Subheader > Security Score </Header.Subheader>
+            </Header.Content>
+          </Header>
+        </Menu.Item>
+        < Menu.Item as='a' onClick={() => Router.push('/webscore')}>
+          <Header as='h4' inverted textAlign='left' >
+            < Icon name = 'line chart' / >
+            <Header.Content >
+              TestScore
+              < Header.Subheader > Web Test </Header.Subheader>
             </Header.Content>
           </Header>
         </Menu.Item>

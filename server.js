@@ -48,6 +48,11 @@ app.prepare().then(() => {
         const params = route('/domain/:domain/:subdomain')(parse(req.url).pathname);
         return app.render(req, res, '/domain', params);
     });
+    // Web
+    server.get('/web/:domain/:subdomain', (req, res) => {
+        const params = route('/web/:domain/:subdomain')(parse(req.url).pathname);
+        return app.render(req, res, '/web', params);
+    });
 
     server.get('*', (req, res) => {
         return handle(req, res);
