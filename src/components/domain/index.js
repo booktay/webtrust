@@ -69,7 +69,7 @@ class Domain extends Component {
     }
 
     render() {
-        const {options_domain, options_subdomain, loadOption, contentTable} = this.state
+        const {options_domain, options_subdomain, loadOption} = this.state
 
         if (loadOption) {
             return (

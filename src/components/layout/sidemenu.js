@@ -32,7 +32,7 @@ export default class Plate extends Component {
         </Menu.Item>
         < Menu.Item as='a' onClick={() => Router.push('/domain')}>
           <Header as='h4' inverted textAlign='left' >
-            < Icon name = 'line chart' / >
+            < Icon name = 'area graph' / >
             <Header.Content >
               Domain
               < Header.Subheader > Total Score </Header.Subheader>
@@ -41,7 +41,7 @@ export default class Plate extends Component {
         </Menu.Item>
         < Menu.Item as='a' onClick={() => Router.push('/web')}>
           <Header as='h4' inverted textAlign='left' >
-            < Icon name = 'line chart' / >
+            < Icon name = 'line graph' / >
             <Header.Content >
               Web
               < Header.Subheader > Web Score </Header.Subheader>
@@ -50,10 +50,19 @@ export default class Plate extends Component {
         </Menu.Item>
         < Menu.Item as='a' onClick={() => Router.push('/testscore')}>
           <Header as='h4' inverted textAlign='left' >
-            < Icon name = 'line chart' / >
+            < Icon name = 'less' / >
             <Header.Content >
               Grade
               < Header.Subheader > Score Test</Header.Subheader>
+            </Header.Content>
+          </Header>
+        </Menu.Item>
+        < Menu.Item as='a' onClick={() => Router.push('/rule')}>
+          <Header as='h4' inverted textAlign='left' >
+            < Icon name = 'file code' / >
+            <Header.Content >
+              Rule
+              < Header.Subheader > Grade Test</Header.Subheader>
             </Header.Content>
           </Header>
         </Menu.Item>

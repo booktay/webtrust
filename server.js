@@ -46,6 +46,9 @@ app.prepare().then(() => {
     server.get('/', (req, res) => {
         return app.render(req, res, '/');
     });
+    server.get('/rule', (req, res) => {
+        return app.render(req, res, '/rule');
+    });
     // Domain
     server.get('/domain/:domain/:subdomain', (req, res) => {
         const params = route('/domain/:domain/:subdomain')(parse(req.url).pathname);
