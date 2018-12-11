@@ -69,7 +69,7 @@ class Web extends Component {
     }
 
     render() {
-        const {options_domain, options_subdomain, loadOption, contentTable} = this.state
+        const {options_domain, options_subdomain, loadOption} = this.state
 
         if (loadOption) {
             return (
@@ -86,7 +86,7 @@ class Web extends Component {
                     </Menu>
                     <Segment attached='bottom' className="bottomcontent">
                         <Segment className="chartcontent">
-                            <Header>Scoring Domain Monitoring</Header>
+                            <Header>Scoring Websites In Subdomain Monitoring</Header>
                             <Form>
                                 <Form.Field>
                                     <label>Selected Domain</label>

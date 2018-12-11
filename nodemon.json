@@ -2,6 +2,7 @@
     "verbose": true,
     "ignore": ["node_modules", ".next"],
     "watch": [
+        "server/test.js",
         "server/api.js",
         "server.js"
     ],

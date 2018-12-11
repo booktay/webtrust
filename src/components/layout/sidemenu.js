@@ -34,8 +34,8 @@ export default class Plate extends Component {
           <Header as='h4' inverted textAlign='left' >
             < Icon name = 'line chart' / >
             <Header.Content >
-              DomainScore
-              < Header.Subheader > Test Score </Header.Subheader>
+              Domain
+              < Header.Subheader > Total Score </Header.Subheader>
             </Header.Content>
           </Header>
         </Menu.Item>
@@ -43,17 +43,17 @@ export default class Plate extends Component {
           <Header as='h4' inverted textAlign='left' >
             < Icon name = 'line chart' / >
             <Header.Content >
-              WebScore
-              < Header.Subheader > Test Score </Header.Subheader>
+              Web
+              < Header.Subheader > Web Score </Header.Subheader>
             </Header.Content>
           </Header>
         </Menu.Item>
-        < Menu.Item as='a' onClick={() => Router.push('/webscore')}>
+        < Menu.Item as='a' onClick={() => Router.push('/testscore')}>
           <Header as='h4' inverted textAlign='left' >
             < Icon name = 'line chart' / >
             <Header.Content >
-              TestScore
-              < Header.Subheader > Web Test </Header.Subheader>
+              Grade
+              < Header.Subheader > Score Test</Header.Subheader>
             </Header.Content>
           </Header>
         </Menu.Item>

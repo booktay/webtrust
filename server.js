@@ -19,6 +19,7 @@ const {
 
 const PORT = process.env.PORT || 3000;
 const APIRoutes = require('./server/api.js');
+const TestRoutes = require('./server/test.js');
 
 app.prepare().then(() => {
     const server = express();
@@ -35,6 +36,8 @@ app.prepare().then(() => {
 
     // API Route
     server.use('/api', APIRoutes);
+    // Test Route
+    server.use('/test', TestRoutes);
     // Public side
     server.use(express.static('public'))
     // Server-side
@@ -52,6 +55,11 @@ app.prepare().then(() => {
     server.get('/web/:domain/:subdomain', (req, res) => {
         const params = route('/web/:domain/:subdomain')(parse(req.url).pathname);
         return app.render(req, res, '/web', params);
+    });
+    // Score
+    server.get('/testscore/:url', (req, res) => {
+        const params = route('/testscore/:url')(parse(req.url).pathname);
+        return app.render(req, res, '/testscore', params);
     });
 
     server.get('*', (req, res) => {
