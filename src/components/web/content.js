@@ -4,10 +4,10 @@ import {
 } from 'semantic-ui-react'
 import {Router, withRouter} from "next/router";
 
-const renderBodyRow = ({ url,CertificateStatus,Expired,total_score, domain_grade }, i) => ({
-  key: url,
+const renderBodyRow = ({ id,url,CertificateStatus,Expired,total_score, domain_grade }, i) => ({
+  key: id,
   cells: [
-    url,CertificateStatus,Expired,total_score, domain_grade
+    id,url,CertificateStatus,Expired,total_score, domain_grade
   ],
 })
 
@@ -18,7 +18,7 @@ class Content extends Component {
             loaded : false,
             data_domain: {},
             data_all: [],
-            header: ['url','CertificateStatus','Expired','total_score', 'domain_grade'],
+            header: ['id','url','CertificateStatus','Expired','total_score', 'domain_grade'],
             all_page:1,
             activePage: 1
         }
