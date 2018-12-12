@@ -61,16 +61,6 @@ class Chart extends Component {
         return active;
     }
 
-    websiteHave() {
-        const data_all = this.props.data[1];
-        return data_all
-    }
-
-    websiteRowHave() {
-        const data_all = this.props.data[1];
-        return Object.keys(data_all[0]);
-    }
-
     render() {
         const data_domain = this.props.data[0];
         return (

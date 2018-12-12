@@ -4,26 +4,10 @@ import {
 } from 'semantic-ui-react'
 import {Router, withRouter} from "next/router";
 
-const tableData = [
-    [
-        { name: undefined, status: undefined, notes: undefined },
-        { name: 'Jimmy', status: 'Requires Action', notes: undefined },
-    ],
-    [
-        { name: 'Jamie', status: undefined, notes: 'Hostile' },
-        { name: 'Jill', status: undefined, notes: undefined },
-    ]
-]
-
-const headerRow = ['Name', 'Status', 'Notes']
-
-const renderBodyRow = ({ name, status, notes }, i) => ({
-  key: name || `row-${i}`,
-  warning: !!(status && status.match('Requires Action')),
+const renderBodyRow = ({ url,CertificateStatus,Expired,total_score, domain_grade }, i) => ({
+  key: url,
   cells: [
-    name || 'No name specified',
-    status ? { key: 'status', icon: 'attention', content: status } : 'Unknown',
-    notes ? { key: 'notes', icon: 'attention', content: notes, warning: true } : 'None',
+    url,CertificateStatus,Expired,total_score, domain_grade
   ],
 })
 
@@ -34,41 +18,70 @@ class Content extends Component {
             loaded : false,
             data_domain: {},
             data_all: [],
+            header: ['url','CertificateStatus','Expired','total_score', 'domain_grade'],
+            all_page:1,
             activePage: 1
         }
+        this.handlePaginationChange = this.handlePaginationChange.bind(this)
+        this.loadTableData = this.loadTableData.bind(this)
     }
 
-    handlePaginationChange = (e, { activePage }) => this.setState({ activePage })
-
-    componentDidMount() {
+    handlePaginationChange = async (e, { activePage }) => {
         const {router} = this.props
-        return fetch(`/test/score/${router.query.domain}/${router.query.subdomain}`)
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.setState({
-                    data_domain:responseJson[0],
-                    data_all : responseJson[1],
-                    loaded: true
-                })
-            });
+        const data_all = await this.loadTableData(router.query.domain, router.query.subdomain, activePage)
+        this.setState(state => {
+            state.data_all = data_all
+            state.loaded = true
+            state.activePage = activePage
+            return state
+        })
     }
 
-    websiteHave() {
-        const {data_all} = this.state;
-        console.log(data_all)
+    async componentDidMount() {
+        const {router} = this.props
+        const {activePage} = this.state
+        const data_domain = await this.loadGrade(router.query.domain, router.query.subdomain)
+        const all_page = await this.loadPage()
+        const data_all  = await this.loadTableData(router.query.domain, router.query.subdomain, activePage)
+        this.setState(state => {
+            state.data_domain = data_domain
+            state.data_all = data_all
+            state.all_page = all_page
+            state.loaded = true
+            return state
+        })
+    }
+
+    async loadPage() {
+        const response = await fetch(`/test/scoredomain/total`)
+        const responseJson = await response.json()
+        return responseJson['total']
+    }
+
+    async loadGrade(domain, subdomain) {
+        const response = await fetch(`/test/scoredomain/${domain}/${subdomain}`)
+        const responseJson = await response.json()
+        return responseJson
+    }
+
+    async loadTableData(domain, subdomain, page) {
+        const {header} = this.state
+        const url = `/test/scoresubdomain/${domain}/${subdomain}/${page}`
+        const response = await fetch(url)
+        const responseJson = await response.json()
+        const data_all = responseJson.map(item => {
+            const result = {}
+            for (let column of header) {
+                result[column] = item[column]
+            }
+            return result
+        })
         return data_all
-    }
-
-    websiteRowHave() {
-        const {data_all} = this.state;
-        console.log(Object.keys(data_all[0]))
-        return Object.keys(data_all[0]);
     }
 
     render() {
         const {router} = this.props
-        const {loaded, data_domain, data_all,activePage} = this.state
-        
+        const {loaded, data_domain, data_all,activePage, header, all_page} = this.state
         if (router.query.domain && router.query.subdomain) {
             if (loaded) {
                 return (
@@ -113,11 +126,20 @@ class Content extends Component {
                             </Grid.Row>
                             <Grid.Row>
                                 <Grid.Column>
-                                    <Table celled headerRow={headerRow} renderBodyRow={renderBodyRow} tableData={tableData[activePage-1]} />
+                                    {
+                                        data_all ? <Table celled headerRow={header} tableData={data_all} renderBodyRow={renderBodyRow} />:
+                                        <React.Fragment>
+                                            <Segment basic className="chartcontent">
+                                                <Dimmer active inverted inline='centered' size='massive'>
+                                                    <Loader size='large'>Loading</Loader>
+                                                </Dimmer>
+                                            </Segment>
+                                        </React.Fragment>
+                                    }
                                 </Grid.Column>
                             </Grid.Row>
                             <Grid.Row>
-                                <Pagination activePage={activePage} onPageChange={this.handlePaginationChange} totalPages={5} />
+                                <Pagination activePage={activePage} onPageChange={this.handlePaginationChange} totalPages={all_page} />
                             </Grid.Row>
                         </Grid>
                     </React.Fragment>
