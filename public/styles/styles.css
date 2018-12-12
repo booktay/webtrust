@@ -33,6 +33,7 @@
 .bottomcontent {
     min-height: 88vh;
     width: inherit;
+    background: lightgrey;
 }
 
 .ui.segment.chartcontent {

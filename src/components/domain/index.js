@@ -5,32 +5,34 @@ import {
 import {withRouter} from "next/router";
 import {Router} from "../../Routes";
 import Content from './content';
-import BreadcrumbSearch from './breadcrumbsearch';
 
 class Domain extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: {},
+            optionsDomain: [],
+            optionsSubdomain:[{key:'', value: '', text: ''}],
             loadOption: false,
             domain: '',
             subdomain: '',
-            options_all: [],
-            options_domain:[],
-            options_subdomain:[]
+            dataDomain: undefined
         }
+        this.loadDataDomain = this.loadDataDomain.bind(this)
+        this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this)
     }
     
     handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
-    handleDomainChange = (e, { name, value }) => {
-        this.setState({ 
-            [name]: value,
-            options_subdomain: this.state.options_all[value]
+    handleDomainChange = async (e, { name, value }) => {
+        this.setState({ [name]: value })
+        const {optionsSubdomain} = await this.loadOptionSubdomain(value)
+        this.setState(state=>{ 
+            state.optionsSubdomain = optionsSubdomain
+            return state
         })
     }
     
-    handleSubmit = () => {
+    handleSubmit = async () => {
         const {domain, subdomain} = this.state
         if (domain !== "" && subdomain !== ""){
             Router.pushRoute(`/domain/${domain}/${subdomain}`)
@@ -40,97 +42,115 @@ class Domain extends Component {
         }
     }
 
-    componentDidMount() {
-        return fetch('/test/domain')
-            .then((response) => response.json())
-            .then((responseJson) => {
-                var keys = [], values = {};
-                for(var res in responseJson) {
-                    keys.push({ 
-                        key: res, value: res, text: res.toUpperCase()
-                    });
-                    values[res]=[]
-                    for (var temp in responseJson[res]) {
-                        var val = responseJson[res][temp]
-                        values[res].push({
-                            key:val, value: val, text: val.toUpperCase()
-                        });
-                    }
-                }
-                this.setState({
-                    options_all:values,
-                    options_domain:keys,
-                    options_subdomain:[{
-                        key:'', value: '', text: ''
-                    }],
-                    loadOption: true
-                })
+    async componentDidMount() {
+        const {optionsDomain} = await this.loadOptionDomain()
+        this.setState(state => {
+            state.optionsDomain = optionsDomain
+            state.loadOption=true
+            return state
+        })
+        const {router} = this.props
+        if (router.query.domain && router.query.subdomain) {
+            const { dataDomain } = await this.loadDataDomain(router.query.domain, router.query.subdomain)
+            this.setState(state => {
+                state.dataDomain = dataDomain
+                return state
+            })
+        }
+    }
+
+    async componentWillReceiveProps(nextProps) {
+        if (this.props.router.asPath !== nextProps.router.asPath) {
+            const {dataDomain} = await this.loadDataDomain(nextProps.router.query.domain, nextProps.router.query.subdomain)
+            this.setState(state => {
+                state.dataDomain = dataDomain
+                return state
+            })
+        }
+    }
+
+    async loadOptionDomain() {
+        const response = await fetch('/test/domain')
+        const responseJson = await response.json()
+        var keys = []
+        for(var res of responseJson) {
+            keys.push({ 
+                key: res, value: res, text: res.toUpperCase()
             });
+        }
+        return {optionsDomain:keys}
+    }
+    
+    async loadOptionSubdomain(domain) {
+        const response = await fetch(`/test/subdomain/${domain}`)
+        const responseJson = await response.json()
+        var values = []
+        for (var val of responseJson) {
+            values.push({ key: val, value: val, text: val.toUpperCase()});
+        }
+        return {optionsSubdomain:values}
+    }
+
+    async loadDataDomain(domain, subdomain) {
+        const response = await fetch(`/test/score/subdomain/${domain}/${subdomain}`)
+        const responseJson = await response.json()
+        return { dataDomain: responseJson }
     }
 
     render() {
-        const {options_domain, options_subdomain, loadOption} = this.state
-
-        if (loadOption) {
-            return (
-                <React.Fragment>
-                    <Menu secondary inverted color="blue" attached='top'>
-                        <Menu.Item>
-                            <Breadcrumb>
-                                <Breadcrumb.Section><a href='/'>Home</a></Breadcrumb.Section>
-                                <Breadcrumb.Divider />
-                                <Breadcrumb.Section><a href='/domain'>Domain</a></Breadcrumb.Section>
-                                <BreadcrumbSearch/>
-                            </Breadcrumb>
-                        </Menu.Item>
-                    </Menu>
+        const {optionsDomain, optionsSubdomain, loadOption, dataDomain} = this.state
+        const {router} = this.props
+        return (
+            <React.Fragment>
+                <Menu secondary inverted color="blue" attached='top'>
+                    <Menu.Item>
+                        <Breadcrumb>
+                            <Breadcrumb.Section><a href='/'>Home</a></Breadcrumb.Section>
+                            <Breadcrumb.Divider />
+                            <Breadcrumb.Section><a href='/domain'>Domain</a></Breadcrumb.Section>
+                            {
+                                router.query.domain && router.query.subdomain ?
+                                <React.Fragment>
+                                    <Breadcrumb.Divider icon='right angle' />
+                                    <Breadcrumb.Section active>
+                                        Search for Domain : 
+                                        <a href={router.asPath}> {router.query.domain}.{router.query.subdomain}</a>
+                                    </Breadcrumb.Section>
+                                </React.Fragment>:<React.Fragment></React.Fragment>
+                            }
+                        </Breadcrumb>
+                    </Menu.Item>
+                </Menu>
+                { loadOption ? 
                     <Segment attached='bottom' className="bottomcontent">
                         <Segment className="chartcontent">
                             <Header>Scoring Domain Monitoring</Header>
                             <Form>
                                 <Form.Field>
                                     <label>Selected Domain</label>
-                                    < Form.Select options = { options_domain } placeholder = 'Domain' name = "domain" fluid
+                                    < Form.Select options = { optionsDomain } placeholder = 'Domain' name = "domain" fluid
                                     search searchInput = {{ id: 'form-select-domain' }} onChange={this.handleDomainChange} />
                                 </Form.Field>
                                 <Form.Field>
                                     <label>Selected Subdomain</label>
-                                    < Form.Select options = { options_subdomain } placeholder = 'Subdomain' name = "subdomain"
+                                    < Form.Select options = { optionsSubdomain } placeholder = 'Subdomain' name = "subdomain"
                                     search searchInput = {{ id: 'form-select-subdomain' }} onChange={this.handleChange} />
                                 </Form.Field>
                                 <Form.Button content='Search' fluid primary onClick={this.handleSubmit} />
                             </Form>
                         </Segment>
-                        <Content />
+                        { dataDomain ? <Content dataDomain={dataDomain}/> : <React.Fragment></React.Fragment>}
+                    </Segment> :
+                    <Segment basic attached='bottom' className="bottomcontent">
+                        <Dimmer active inverted inline='centered' size='massive'>
+                            <Loader size='large'>Loading</Loader>
+                        </Dimmer>
+                        <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+                        <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+                        <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+                        <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
                     </Segment>
-                    <style jsx>{`
-                    `}</style>
-                </React.Fragment>
-            )
-        }
-
-        return (
-            <React.Fragment>
-                <Menu secondary inverted color="blue" attached='top'>
-                        <Menu.Item>
-                            <Breadcrumb>
-                                <Breadcrumb.Section><a href='/'>Home</a></Breadcrumb.Section>
-                                <Breadcrumb.Divider />
-                                <Breadcrumb.Section><a href='/domain'>Domain</a></Breadcrumb.Section>
-                            </Breadcrumb>
-                        </Menu.Item>
-                    </Menu>
-                <Segment attached='bottom' className="bottomcontent">
-                    <Dimmer active inverted inline='centered' size='massive'>
-                        <Loader size='large'>Loading</Loader>
-                    </Dimmer>
-                    <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
-                    <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
-                    <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
-                    <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
-                    <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
-                    <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
-                </Segment>
+                }
             </React.Fragment>
         )
     }

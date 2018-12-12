@@ -39,15 +39,6 @@ export default class Plate extends Component {
             </Header.Content>
           </Header>
         </Menu.Item>
-        < Menu.Item as='a' onClick={() => Router.push('/web')}>
-          <Header as='h4' inverted textAlign='left' >
-            < Icon name = 'line graph' / >
-            <Header.Content >
-              Web
-              < Header.Subheader > Web Score </Header.Subheader>
-            </Header.Content>
-          </Header>
-        </Menu.Item>
         < Menu.Item as='a' onClick={() => Router.push('/testscore')}>
           <Header as='h4' inverted textAlign='left' >
             < Icon name = 'less' / >

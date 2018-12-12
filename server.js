@@ -54,11 +54,6 @@ app.prepare().then(() => {
         const params = route('/domain/:domain/:subdomain')(parse(req.url).pathname);
         return app.render(req, res, '/domain', params);
     });
-    // Web
-    server.get('/web/:domain/:subdomain', (req, res) => {
-        const params = route('/web/:domain/:subdomain')(parse(req.url).pathname);
-        return app.render(req, res, '/web', params);
-    });
     // Score
     server.get('/testscore/:url', (req, res) => {
         const params = route('/testscore/:url')(parse(req.url).pathname);

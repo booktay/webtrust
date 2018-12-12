@@ -4,14 +4,13 @@ import {
 } from 'semantic-ui-react'
 import {withRouter} from "next/router";
 import {Router} from "../../Routes";
-import BreadcrumbSearch from './breadcrumbsearch';
 import Content from './content';
 
 class Web extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: {},
+            data: undefined,
             url: '',
         }
     }
@@ -21,6 +20,7 @@ class Web extends Component {
             [name]: value,
         })
     }
+
     handleSubmit = () => {
         const {url} = this.state
         if (url !== ""){
@@ -31,10 +31,50 @@ class Web extends Component {
         }
     }
 
-    componentDidMount() {}
+    async componentDidMount() {
+        const {router} = this.props
+        if (router.query.url) {
+            const {data} = await this.loadData(router.query.url)
+            this.setState(state => {
+                state.data = data
+                return state
+            })
+        }
+    }
+
+    async componentWillReceiveProps(nextProps) {
+        if (this.props.router.asPath !== nextProps.router.asPath) {
+            const {data} = await this.loadData(nextProps.router.query.url)
+            this.setState(state => {
+                state.data = data
+                return state
+            })
+        }
+    }
+
+    async loadData(url) {
+        const response = await fetch(`/test/score/${url}`)
+        const responseJson = await response.json()
+        return { data: responseJson }
+    }
+
+    loadStatus() {
+        return (
+            <Segment basic attached='bottom' className="bottomcontent">
+                <Dimmer active inverted inline='centered' size='massive'>
+                    <Loader size='large'>Loading</Loader>
+                </Dimmer>
+                <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+                <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+                <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+                <img src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+            </Segment>
+        )
+    }
 
     render() {
-        const {url, search} = this.state
+        const {url, data} = this.state
+        const {router} = this.props
 
         return (
             <React.Fragment>
@@ -44,7 +84,16 @@ class Web extends Component {
                             <Breadcrumb.Section><a href='/'>Home</a></Breadcrumb.Section>
                             <Breadcrumb.Divider />
                             <Breadcrumb.Section><a href='/testscore'>Testweb</a></Breadcrumb.Section>
-                            <BreadcrumbSearch/>
+                            {
+                                router.query.url ?
+                                <React.Fragment>
+                                    <Breadcrumb.Divider icon='right angle' />
+                                    <Breadcrumb.Section active>
+                                        Search for Website : 
+                                        <a href={router.asPath}> {router.query.url}</a>
+                                    </Breadcrumb.Section>
+                                </React.Fragment>:<React.Fragment></React.Fragment>
+                            }
                         </Breadcrumb>
                     </Menu.Item>
                 </Menu>
@@ -61,12 +110,9 @@ class Web extends Component {
                             </Form.Field>
                         </Form>
                     </Segment>
-                    {
-                        this.props.router.query.url ? <Content /> : <React.Fragment></React.Fragment>
-                    }
+                    {!router.query.url ? <React.Fragment></React.Fragment> : 
+                        data ? <Content data={data} /> : this.loadStatus() }
                 </Segment>
-                <style jsx>{`
-                `}</style>
             </React.Fragment>
         )
     }
