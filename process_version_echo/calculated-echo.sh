@@ -12,7 +12,16 @@ c2="no"
 expired="no"
 fp="no"
 protocal_all=""
-logProtocol=("yes" "yes" "yes" "yes" "yes" "yes" "yes" "yes")
+logProtocol=(
+    "yes" 
+    "yes" 
+    "yes" 
+    "yes" 
+    "yes" 
+    "yes"
+    "yes" 
+    "yes"
+)
 
 check_fp () {
      fp=$(timeout -k 4 4 openssl s_client -connect $p:443 |& openssl x509 -fingerprint -noout | cut -d ' ' -f 1 2>/dev/null)
@@ -38,7 +47,7 @@ word2=","$HTTPS","$scode","$SHSTS
 
 if [ $HTTPS != "no" ]
 then 
-	rm c
+	rm c  2>/dev/null
 	if [ $HTTPS != "no" ]; then ocspcheck/ocspcheck $p 2>/dev/null >> c; fi;
 	if [ $HTTPS == "no" ]; then echo "HTTPS: not avalible"; fi;
 	c1=$(cat c | grep "Certificate status:" | cut -d ' ' -f 3)
