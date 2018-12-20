@@ -1,0 +1,12 @@
+www.ku.ac.th,yes,301,no,yes,200,no,no,no,37,,no,no,yes,no,no,no,no,no,10,15,0,10,0,20,B,55
+www.ku.ac.th,yes,301,no,yes,200,no,no,no,37,,no,no,yes,no,no,no,no,no,10,15,0,10,0,20,B,55
+www.ku.ac.th,yes,301,no,yes,200,no,no,no,37,,no,no,yes,no,no,no,no,no,10,15,0,10,0,20,B,55
+www.ku.ac.th,yes,301,no,yes,200,no,no,no,36,,no,no,yes,no,no,no,no,no,10,15,0,10,0,20,B,55
+www.ku.ac.th,yes,301,no,yes,200,no,no,no,34,,no,no,yes,no,no,no,no,no,10,15,0,10,0,20,B,55
+www.ku.ac.th,yes,301,no,yes,200,no,no,no,34,,no,no,yes,no,no,no,no,no,10,15,0,10,0,20,B,55
+www.ku.ac.th,yes,301,no,yes,200,no,no,no,34,,no,no,yes,no,no,no,no,no,10,15,0,10,0,20,B,55
+www.ku.ac.th,yes,301,no,yes,200,no,no,no,34,,no,no,yes,no,no,no,no,no,10,15,0,10,0,20,B,55
+www.ku.ac.th,yes,301,no,yes,200,no,no,no,34,,no,no,yes,no,no,no,no,no,10,15,0,10,0,20,B,55
+www.tu.ac.th,yes,200,no,no,no,no,-,-,-,-,-,-,-,-,-,-,-,-,10,0,0,0,0,0,F,10
+www.chula.ac.th,yes,302,no,yes,200,no,no,no,375,,no,no,no,no,yes,no,yes,yes,10,15,0,10,0,40,A,75
+11,10,0,1,B,10,1,20181220-010315,9,13,0,9,0,20,B,51

@@ -1,0 +1,2 @@
+www.ku.ac.th,yes,301,no,yes,200,no,no,no,37,,no,no,yes,no,no,no,no,no,10,15,0,10,0,20,B,55
+www.ku.ac.th,yes,301,no,yes,200,no,no,no,37,,no,no,yes,no,no,no,no,no,10,15,0,10,0,20,B,55

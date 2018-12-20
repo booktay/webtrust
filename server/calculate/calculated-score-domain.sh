@@ -7,7 +7,12 @@
 #--------------------------------------------------------------------------#
 
 #clean 
-file_use=temp-test.txt
+file_use=$1
+check_header=$( head -n 1 ${file_use} | cut -d ',' -f 1 )
+if [ "${check_header}" == "id" ]; then
+     cut -d"," -f2- ${file_use} > temp-test-2.txt
+     file_use=temp-test-2.txt
+fi;
 DATE_WITH_TIME_s=`date "+%Y%m%d-%H%M%S"`
 rm output.txt output-1.txt temp output-3.txt  output-4.txt temp_2 temp-a 2>/dev/null
 #######################INPUT FILE#######################
@@ -293,17 +298,16 @@ else
           domain_grade="F"
 fi;
 
-#echo "url,http,code,hsts,https,scode,shsts,CertificateStatus,SignatureStatus,Expired(days),Fingerprint,SSLv2,SSLv3,TLS1,TLS1.1,TLS1.2,TLS1.3,NPN/SPDY,ALPN/HTTP2" >> v2_test.txt
 domain=$( cat fix-use-gor-test-pro.txt | cut -d ',' -f 1 | rev | cut -d'.' -f 1-2 | rev | sort | uniq -c | xargs | cut -d' ' -f 2 )
-#echo "Your domain is" ${domain} "Grade is" ${domain_grade}
 
 #Timestamp
 DATE_WITH_TIME_f=`date "+%Y%m%d-%H%M%S"`
-#echo "Start :" ${DATE_WITH_TIME_s} "Calculated :" ${DATE_WITH_TIME_f}
-temp=$( echo $active_http","$active_https","$inactive_http","$inactive_https","$domain_grade","${count_certificate}","${count_no_certificate}","${DATE_WITH_TIME_f} )
-echo $active_http","$active_https","$inactive_http","$inactive_https","$domain_grade","${count_certificate}","${count_no_certificate}","${DATE_WITH_TIME_f}","${score1}","${score2}","${score3}","${score4}","${score5}","${score6}","${domain_grade}","${total_score}
-mkdir -p ./result-score-domain
-echo $active_http","$active_https","$inactive_http","$inactive_https","$domain_grade","${count_certificate}","${count_no_certificate}","${DATE_WITH_TIME_f}","${score1}","${score2}","${score3}","${score4}","${score5}","${score6}","${domain_grade}","${total_score} >> temp-test.txt
-cp temp-test.txt ${DATE_WITH_TIME_f}"-"$domain".txt"
-rm temp-test.txt
+mkdir -p /Users/macbook/Downloads/now_used/webtrust_web/server/calculate/result-score-domain
+old_path=$( echo $PWD )
+cd /Users/macbook/Downloads/now_used/webtrust_web/server/calculate
+cat temp-test.txt >> ${DATE_WITH_TIME_f}"-"$domain".txt"
+echo $active_http","$active_https","$inactive_http","$inactive_https","$domain_grade","${count_certificate}","${count_no_certificate}","${DATE_WITH_TIME_f}","${score1}","${score2}","${score3}","${score4}","${score5}","${score6}","${domain_grade}","${total_score} >> ${DATE_WITH_TIME_f}"-"$domain".txt"
+rm temp-test.txt temp-test-2.txt fix-use-gor-test-pro.txt output-1.txt output-3.txt output-4.txt temp_2 output.txt temp  
 mv ${DATE_WITH_TIME_f}"-"$domain".txt" ./result-score-domain
+echo $active_http","$active_https","$inactive_http","$inactive_https","$domain_grade","${count_certificate}","${count_no_certificate}","${DATE_WITH_TIME_f}","${score1}","${score2}","${score3}","${score4}","${score5}","${score6}","${domain_grade}","${total_score}
+cd $old_path

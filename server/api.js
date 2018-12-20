@@ -50,7 +50,7 @@ router.get('/score/:domain/:subdomain/', (req, res) => {
 });
 
 // Add
-router.get('/add/score/:domain/:subdomain/', (req, res) => {
+router.get('/add/score/:url', (req, res) => {
     var bulk = [];
     
     var makebulk = function (bulklist, callback) {
@@ -85,8 +85,10 @@ router.get('/add/score/:domain/:subdomain/', (req, res) => {
         })
     }
 
-    shell.exec('./calculate/calculated-echo.sh' + url + '</dev/null', (code, output) => {
-        console.log(output)
+    shell.exec('/Users/macbook/Downloads/now_used/webtrust_web/server/calculate/calculated-echo.sh' + req.params.url + ' 2>/dev/null', (code, output) => {
+            var result;
+	    result = output.split(","); 
+	    console.log(result[0])
     })
     var inputfile = []
 

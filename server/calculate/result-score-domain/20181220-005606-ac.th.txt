@@ -1,0 +1,102 @@
+id,url,http,code,hsts,https,scode,shsts,CertificateStatus,SignatureStatus,Expired,Fingerprint,SSLv2,SSLv3,TLS1,NPN/SPDY,ALPN/HTTP2,score1,score2,score3,score4,score5,score6,total_score,domain_grade
+1,www.dlit.bodin3.ac.th,no,500,,no,300,max-age=31536000,no,ok,25.6,-,-,no,-,yes,no,9.4,7.8,0.7,3.9,8.8,9.5,40.1,C
+2,www.tonkla.ac.th,no,500,,no,500,max-age=31536000,no,-,11.6,no,-,yes,yes,-,http2.1,5.9,16.3,6.1,4.2,9.6,20.6,62.7,B
+3,www.lambda900.phys.sc.chula.ac.th,yes,500,no,yes,500,max-age=31536000 include-subdomain,-,-,63.3,no,-,-,-,-,no,5.6,16.9,1.8,3.5,9.5,20.7,58,C+
+4,www.www2014.nida.ac.th,yes,400,,no,200,max-age=31536000,no,-,81.6,-,-,-,no,yes,no,9.6,0.2,3.9,7.6,1.5,2.6,25.4,F
+5,www.prlprt1.phys.sc.chula.ac.th,yes,300,no,yes,400,max-age=31536000 include-subdomain,-,-,46,no,-,no,yes,no,no,7.7,6.3,1.8,7.6,8.6,1.9,33.9,D
+6,www.1pondo.phys.sc.chula.ac.th,no,500,no,no,400,no,-,ok,1.5,no,yes,no,-,yes,-,9,17.2,8.4,5.3,3.8,16.5,60.2,B
+7,www.npif5ae03.acc.chula.ac.th,yes,400,,yes,300,max-age=31536000 include-subdomain,-,ok,35.4,sha1,yes,-,yes,-,http2.1,4.5,6.5,6,2.9,9,28.8,57.7,C+
+8,www.cardmg.nmrsw2.ac.th,yes,300,,no,300,max-age=31536000,no,-,92.3,sha1,no,yes,-,no,no,0.2,11.2,4.3,1.7,2.4,16.1,35.9,D
+9,www.webdisk.bk2.ac.th,yes,200,no,no,200,max-age=31536000,-,-,60.3,sha1,-,-,no,yes,http2.1,2.7,6.8,0.8,5,0.1,32.8,48.2,C
+10,www.chalerm60.ac.th,no,500,no,yes,400,no,good,ok,10.5,sha1,no,yes,-,no,no,7.4,1.8,0.6,9,3.1,30.6,52.5,C+
+11,www.finbsd1.acc.chula.ac.th,no,400,no,yes,400,max-age=31536000 include-subdomain,good,-,14.5,-,-,no,no,yes,-,6.1,15.8,6.3,8.5,8.5,18.9,64.1,B
+12,www.npi22e423.acc.chula.ac.th,yes,400,,no,200,no,no,ok,86.6,no,no,no,-,yes,-,8.8,12.5,2.4,2.4,4.6,36.6,67.3,B
+13,www.tesaban7.ac.th,yes,300,no,no,500,no,no,-,42,sha1,-,no,-,no,-,6.3,10.1,7.2,9.9,1.1,7.7,42.3,C
+14,www.cuml.md.chula.ac.th,yes,400,,yes,400,max-age=31536000,good,-,90.6,no,-,yes,yes,no,-,6.8,17.4,2.1,3,6.9,2.5,38.7,D
+15,www.nox.acc.chula.ac.th,no,500,,no,400,no,good,ok,16.9,sha1,yes,yes,no,no,-,9.2,19.6,2.5,9.8,3.6,26,70.7,B+
+16,www.kud.phys.sc.chula.ac.th,no,200,no,no,500,max-age=31536000 include-subdomain,no,ok,1.2,no,yes,-,no,-,http2.1,0.5,13,9.5,2.1,9,5.6,39.7,D
+17,www.ns1.sw2.ac.th,no,200,no,yes,300,no,no,no,0.5,sha1,yes,yes,yes,yes,no,8.5,13.6,9.3,3.8,7.9,12.7,55.8,C+
+18,www.npif29311.acc.chula.ac.th,no,200,no,no,400,max-age=31536000,good,ok,8.9,sha1,no,yes,no,no,no,7,1.5,5.1,4.2,0.9,28.4,47.1,C
+19,www.medlib.md.chula.ac.th,yes,400,,yes,300,max-age=31536000 include-subdomain,no,no,40.3,sha1,yes,-,no,-,http2.1,9.4,8,0.8,1.2,6.6,14,40,C
+20,www.education.phys.sc.chula.ac.th,no,500,no,no,400,max-age=31536000 include-subdomain,no,no,95.8,sha1,-,no,-,-,no,3.5,5.2,3.5,1.6,7.5,19.4,40.7,C
+21,www.it04.phys.sc.chula.ac.th,no,200,,yes,300,no,-,ok,56.5,sha1,no,no,yes,yes,-,1.9,15,2.5,0.9,0.6,5.7,26.6,F
+22,www.bodin3.ac.th,no,500,no,yes,500,max-age=31536000,no,no,7.3,no,-,yes,yes,-,no,8.1,19.3,3.9,1.2,6.7,25.2,64.4,B
+23,www.ts3.ac.th,yes,200,no,yes,500,max-age=31536000 include-subdomain,-,-,70.8,no,no,-,-,-,no,3.3,9.8,9,5.9,7.2,27.8,63,B
+24,www.cms-squid.sc.chula.ac.th,yes,400,no,yes,500,no,no,no,84.9,sha1,yes,yes,no,no,-,2.6,11.9,3.7,8.7,1.9,32.1,60.9,B
+25,www.nitrogen.phys.sc.chula.ac.th,yes,400,no,no,300,no,good,-,37.9,sha1,yes,-,yes,no,no,4.7,9.3,3.8,5.6,2,22.2,47.6,C
+26,www.www1.md.chula.ac.th,yes,500,no,no,400,max-age=31536000 include-subdomain,no,ok,60.1,sha1,yes,-,no,no,-,9.5,17.3,5.6,4.5,3.5,8.5,48.9,C
+27,www.escience3.sc.chula.ac.th,yes,400,,no,400,max-age=31536000,-,ok,79.1,no,no,-,yes,no,-,5.7,16.5,2.1,9.3,8.7,1.2,43.5,C
+28,www.admission.bodin3.ac.th,yes,500,,no,200,max-age=31536000 include-subdomain,good,no,78.4,-,no,-,-,no,no,0.8,18.4,0.2,0.3,0.7,3.5,23.9,F
+29,www.gspahost.nida.ac.th,no,400,,no,300,no,no,ok,84.2,-,no,yes,no,no,no,3.8,17.6,6.5,6.7,5.6,11,51.2,C+
+30,www.cer.lic.chula.ac.th,yes,200,no,no,400,max-age=31536000 include-subdomain,good,no,30.2,-,yes,no,no,-,no,3,16.1,9.6,6.8,7.6,2.2,45.3,C
+31,www.classic.phys.sc.chula.ac.th,yes,300,,yes,400,max-age=31536000,-,ok,26.7,sha1,yes,no,yes,-,-,1.4,3.6,8.9,2,3.3,34.7,53.9,C+
+32,www.abc.md.chula.ac.th,no,300,,yes,400,max-age=31536000,good,no,30.7,-,yes,-,-,no,-,3.5,5.8,8.6,7.7,1.9,14.7,42.2,C
+33,www.acm.md.chula.ac.th,yes,500,,no,300,max-age=31536000,-,ok,77.8,no,yes,yes,-,no,-,5,14.1,8.4,8,7.7,25.6,68.8,B
+34,www.nw5.ac.th,no,500,no,yes,400,max-age=31536000,no,ok,60.2,sha1,-,yes,-,no,-,5.5,16.8,3.6,0.4,2.6,7,35.9,D
+35,www.reg.md.chula.ac.th,no,200,,yes,500,max-age=31536000,-,ok,68.2,sha1,-,-,yes,yes,-,9.1,0.6,8.9,3,3.4,15.2,40.2,C
+36,www.hubble.sc.chula.ac.th,yes,300,,no,200,max-age=31536000 include-subdomain,no,no,14,-,-,no,-,-,http2.1,4.5,7.5,6.5,8.1,6.6,4.9,38.1,D
+37,www.lib.photha.ac.th,yes,300,no,yes,500,max-age=31536000,no,-,88.7,-,-,yes,yes,yes,http2.1,6.1,3.1,8,7.1,2.3,11.8,38.4,D
+38,www.conference.nida.ac.th,yes,300,,yes,500,max-age=31536000 include-subdomain,good,no,51.9,no,no,-,yes,yes,no,1.1,0.8,3.5,3.9,7.3,8.7,25.3,F
+39,www.app.strec.chula.ac.th,yes,200,no,no,400,no,-,-,99.5,no,no,no,-,no,http2.1,4.2,15.2,1.8,0.7,4.8,12.5,39.2,D
+40,www.higgs.phys.sc.chula.ac.th,no,400,no,yes,300,max-age=31536000 include-subdomain,good,no,0.2,-,no,no,-,no,no,6.4,10.5,5.4,5,6.7,17.8,51.8,C+
+41,www.undergrdpc3.phys.sc.chula.ac.th,no,300,no,no,300,max-age=31536000 include-subdomain,no,ok,45.8,-,yes,-,-,no,http2.1,6,18.2,5.5,0.2,8.6,2.9,41.4,C
+42,www.aruba.cuml1.md.chula.ac.th,yes,400,,yes,200,max-age=31536000 include-subdomain,good,-,42.7,sha1,yes,no,-,-,no,8.5,1.3,8.2,5.3,0.7,13.5,37.5,D
+43,www.c2049009s-imac.acc.chula.ac.th,yes,400,no,yes,500,max-age=31536000,no,no,8.4,-,yes,yes,no,yes,-,5.4,3.9,6.5,5.1,3.2,20.9,45,C
+44,www.aaa.md.chula.ac.th,yes,300,no,yes,200,max-age=31536000,-,-,45.1,-,-,no,-,-,-,0.3,18.8,4.3,9.1,7.2,2.7,42.4,C
+45,www.room619.phys.sc.chula.ac.th,yes,500,no,yes,500,max-age=31536000,good,no,66.7,sha1,yes,-,-,no,no,0.4,11.9,4.6,10,8,38.8,73.7,B+
+46,www.food.rpg15.ac.th,no,300,no,yes,300,max-age=31536000,no,no,92.8,no,-,yes,-,no,http2.1,5.2,3.3,0.3,8.4,2.8,24.8,44.8,C
+47,www.nmrsw2.ac.th,no,300,,yes,500,max-age=31536000 include-subdomain,no,ok,50.5,no,-,yes,-,yes,http2.1,6.9,7,8.1,4.5,7,5,38.5,D
+48,www.backup.md.chula.ac.th,yes,400,,yes,400,max-age=31536000,no,no,89.2,no,yes,yes,yes,-,-,1.7,5,7.4,4.5,8.3,32.7,59.6,C+
+49,www.c10290ta.acc.chula.ac.th,no,300,,no,200,no,good,-,88.7,no,-,-,yes,no,http2.1,5,8,1.1,1.3,7.2,14.8,37.4,D
+50,www.md3.md.chula.ac.th,no,200,,no,500,no,good,no,33.3,-,no,yes,yes,-,http2.1,6,19.8,9.5,6.3,5.3,17.8,64.7,B
+51,www.copper.phys.sc.chula.ac.th,yes,500,,yes,500,no,-,ok,71,-,yes,yes,yes,no,no,3.8,8.8,5.4,4.1,6.7,6.3,35.1,D
+52,www.indium.phys.sc.chula.ac.th,yes,400,no,no,400,max-age=31536000,no,ok,86.4,no,no,no,-,no,-,4.8,10.9,6.8,6.2,9.3,7.6,45.6,C
+53,www.plasma.phys.sc.chula.ac.th,yes,400,,yes,200,max-age=31536000,no,no,48.9,no,yes,no,no,no,no,1.7,5.5,9.5,6.7,4.7,21.9,50,C+
+54,www.hubble.sc.chula.ac.th,yes,400,,no,300,max-age=31536000,good,no,82.6,-,no,-,-,-,no,5.6,11.1,7.3,7.2,4.9,36.1,72.2,B+
+55,www.eoffice.bodin2.ac.th,no,500,no,yes,200,max-age=31536000 include-subdomain,good,ok,9.2,-,no,yes,no,-,no,9.5,12.1,9.5,4.9,6.5,33.5,76,B+
+56,www.ftp.md.chula.ac.th,no,500,,yes,300,no,no,-,80.4,no,-,no,no,-,-,7,8.4,5.1,8.4,7.7,18,54.6,C+
+57,www.gradpc3.phys.sc.chula.ac.th,no,300,,no,200,max-age=31536000 include-subdomain,good,-,20.1,no,yes,no,no,yes,no,9.4,7.7,4.2,1.7,7.6,22.2,52.8,C+
+58,www.sec001599439acc.acc.chula.ac.th,no,200,no,no,200,max-age=31536000,-,ok,45.7,no,-,no,-,-,no,3.9,3.8,8.7,9.4,4.6,17.1,47.5,C
+59,www.parada.ac.th,no,400,,yes,200,max-age=31536000,good,no,76.6,sha1,yes,no,no,no,http2.1,1.5,9.7,1.7,2,6.4,29,50.3,C+
+60,www.iven1.ac.th,no,300,no,yes,300,max-age=31536000,no,no,12.5,no,no,no,yes,yes,http2.1,2.6,13.3,7.3,5.8,3.5,0.8,33.3,D
+61,www.cme.phys.sc.chula.ac.th,yes,300,,no,200,no,no,-,97.3,no,no,-,-,-,http2.1,6.1,8.6,7.8,4.7,8,1.8,37,D
+62,www.mail.kp10.ac.th,yes,500,no,no,400,max-age=31536000 include-subdomain,no,-,4.6,-,no,yes,no,no,-,6,7.5,9.6,5.9,1,19.3,49.3,C
+63,www.reg.nida.ac.th,no,500,,no,300,max-age=31536000,good,no,72.7,sha1,yes,no,-,-,-,4.9,8.4,1.7,1,2.1,12.6,30.7,D
+64,www.kud.phys.sc.chula.ac.th,yes,500,,yes,300,max-age=31536000,-,ok,48.8,no,no,no,yes,no,no,3.9,19.8,2.5,5.9,1,2.5,35.6,D
+65,www.pikulonline.sw2.ac.th,no,400,,yes,300,max-age=31536000,-,ok,75.4,-,-,yes,no,yes,-,8.3,13.2,7.1,3.2,2.5,28,62.3,B
+66,www.mail.pakphanang2.ac.th,yes,400,,no,500,max-age=31536000 include-subdomain,no,no,56.7,no,-,yes,-,-,-,6.1,0.9,6.9,2.1,3.5,13.1,32.6,D
+67,www.banhan3.ac.th,no,400,no,yes,200,max-age=31536000 include-subdomain,-,no,36.8,-,yes,-,no,no,http2.1,7.6,8.9,0.5,2.3,9,13.2,41.5,C
+68,www.modern.phys.sc.chula.ac.th,yes,500,no,no,500,max-age=31536000 include-subdomain,good,-,45.8,sha1,yes,-,yes,no,http2.1,4.1,18.2,4.1,6,1.9,8.5,42.8,C
+69,www.mail.pakphanang2.ac.th,no,300,,yes,400,max-age=31536000,no,no,53,-,-,yes,no,no,http2.1,4.6,3.3,5.8,2.4,3.2,18,37.3,D
+70,www.bk2.ac.th,yes,300,,yes,200,no,-,-,10.3,no,yes,-,yes,-,-,8.9,8.6,9.6,0.9,5.6,23.2,56.8,C+
+71,www.dr.acc.chula.ac.th,no,300,no,no,200,max-age=31536000,good,no,68.2,-,no,no,yes,-,-,1.6,9.5,1.3,7.9,1.7,28.6,50.6,C+
+72,www.ts1.ac.th,no,300,no,no,200,max-age=31536000,no,-,36.8,-,no,no,-,-,-,6.6,17.2,2.2,9.3,2.8,10.2,48.3,C
+73,www.mpa-sm.rpca.ac.th,no,200,,yes,300,no,no,no,5.2,no,no,no,no,yes,-,5.9,10.8,7.1,1.6,1.6,39,66,B
+74,www.zr.phys.sc.chula.ac.th,no,500,,yes,500,max-age=31536000 include-subdomain,good,ok,96.9,no,no,no,-,yes,no,8.9,12.5,2.4,1.1,9.4,27.2,61.5,B
+75,www.ktp.md.chula.ac.th,yes,200,,no,200,max-age=31536000 include-subdomain,-,ok,3.7,no,-,yes,no,yes,-,1.3,5,4.8,3.7,1.9,29.7,46.4,C
+76,www.debye.phys.sc.chula.ac.th,no,300,no,yes,500,no,good,-,97.6,no,no,yes,-,-,-,3,4,3.6,0.3,1.7,6.3,18.9,F
+77,www.helium.phys.sc.chula.ac.th,yes,300,,yes,300,max-age=31536000,good,no,26.3,-,-,no,no,yes,-,6.4,15.9,6.8,0.1,1.7,39.2,70.1,B+
+78,www.mbe2.phys.sc.chula.ac.th,no,300,no,no,300,no,-,-,59,sha1,no,no,yes,-,no,1.8,17.4,4.2,4.8,0.6,22.4,51.2,C+
+79,www.sw101.ac.th,no,400,,no,200,no,good,no,3.2,no,-,-,no,-,-,6,0.2,6.9,7.8,1.4,1.5,23.8,F
+80,www.lib.rpca.ac.th,no,500,no,no,200,no,no,no,38,sha1,yes,yes,-,yes,no,6.2,15.4,3.7,3.3,0.8,39.5,68.9,B
+81,www.ns1.bcnyala.ac.th,yes,500,no,no,400,max-age=31536000,-,no,0.4,no,yes,yes,-,-,-,8.1,17.5,4.4,4.4,0.7,27.2,62.3,B
+82,www.testing.md.chula.ac.th,no,300,,yes,500,no,no,no,50.8,no,-,yes,-,yes,http2.1,4.4,3.4,2.5,3.4,3.6,10.5,27.8,F
+83,www.c20490ta.acc.chula.ac.th,no,500,,no,200,no,good,-,85.5,sha1,no,no,yes,-,http2.1,9.2,5.8,9.4,7.3,6.9,13.7,52.3,C+
+84,www.mail.npp6.ac.th,yes,200,no,no,300,max-age=31536000,good,no,41.5,no,-,no,yes,yes,http2.1,2.7,18.6,2.9,9.8,1.2,31.3,66.5,B
+85,www.alumni.md.chula.ac.th,no,200,no,no,300,no,-,ok,90.2,no,-,yes,no,-,http2.1,3.3,5,4.9,0.9,8.6,4.4,27.1,F
+86,www.mail.npp6.ac.th,no,200,,yes,400,no,no,-,91.3,no,no,-,no,-,no,7.1,14,9.1,9.9,1.2,14.6,55.9,C+
+87,www.surasak.nmrsw2.ac.th,yes,200,,no,500,no,good,no,9.1,no,yes,yes,no,yes,-,4.4,14.7,9.1,1.2,8.1,37.2,74.7,B+
+88,www.alpha.phys.sc.chula.ac.th,no,200,,no,300,max-age=31536000 include-subdomain,good,ok,57.8,-,yes,yes,-,-,-,5.6,14.9,3.2,1.9,8.2,10.9,44.7,C
+89,www.npifde321.acc.chula.ac.th,no,500,no,no,300,max-age=31536000 include-subdomain,good,ok,1.7,no,no,yes,no,-,http2.1,0.9,11.6,7.8,7.3,6.5,10.8,44.9,C
+90,www.kbyala.ac.th,yes,300,no,no,400,no,good,no,75.1,no,-,-,-,no,-,1.6,12.1,9.4,8.5,4.2,37.1,72.9,B+
+91,www.radical3.sc.chula.ac.th,yes,500,,yes,500,max-age=31536000,good,-,59.2,no,-,-,-,no,http2.1,7.2,10.4,9.1,8.9,0.5,26.5,62.6,B
+92,www.db2server1.math.sc.chula.ac.th,yes,200,no,yes,500,max-age=31536000 include-subdomain,good,-,33.8,sha1,no,-,-,no,http2.1,5.2,15.5,5.5,6.6,7.2,19.2,59.2,C+
+93,www.mailsrv.acc.chula.ac.th,no,500,no,yes,400,max-age=31536000 include-subdomain,-,-,13.2,sha1,-,-,no,no,-,2.7,6.9,7.3,7.1,3.7,39.3,67,B
+94,www.physcloud.phys.sc.chula.ac.th,no,300,,no,200,max-age=31536000,good,-,99.8,sha1,yes,yes,no,yes,http2.1,6.4,9.2,4.8,0.5,6.3,6.2,33.4,D
+95,www.edu4kids.md.chula.ac.th,no,200,,no,300,max-age=31536000 include-subdomain,no,-,67.8,-,-,yes,yes,yes,-,5.5,15.5,9.9,4.2,4.9,29.1,69.1,B
+96,www.ivec4.ac.th,no,500,no,no,500,max-age=31536000,-,ok,41,sha1,-,no,-,yes,http2.1,5,0.8,2.9,1.8,4.8,30.3,45.6,C
+97,www.mybox.nmrsw2.ac.th,yes,300,,yes,400,max-age=31536000 include-subdomain,no,ok,22.7,-,yes,no,yes,no,no,9.8,10.2,6,4.7,1.2,34.7,66.6,B
+98,www.forensic.md.chula.ac.th,yes,200,no,no,300,max-age=31536000 include-subdomain,-,ok,68.5,sha1,yes,-,no,yes,no,0.4,1.8,1.3,7.6,6.1,8.1,25.3,F
+99,www.zinc.phys.sc.chula.ac.th,no,200,,yes,400,max-age=31536000,good,no,4.1,sha1,no,yes,yes,-,-,3.3,6.5,2.8,6.6,1.8,26.5,47.5,C
+100,www.npp6.ac.th,no,300,,no,200,no,-,no,45.9,-,no,-,yes,yes,-,3.2,12.7,8,5.1,2.5,5.5,37,D
+22,24,79,77,D,74,27,20181220-005606,1,8,3,0,0,17,D,29

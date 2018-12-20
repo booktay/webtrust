@@ -4,6 +4,7 @@ if [[ ! -e ./ocspcheck ]]; then
     cd ocspcheck
     go get -u golang.org/x/crypto/ocsp
     go build check.go 
+    cd ..
 fi
 if [[ ! -e ./testssl.sh ]]; then
     git clone https://github.com/drwetter/testssl.sh
