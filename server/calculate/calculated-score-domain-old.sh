@@ -1,13 +1,21 @@
 #!/bin/bash
+#------------------------/FORMAT/------------------------------------------#
 
+#url,http,code,hsts,https,scode,shsts,CertificateStatus,SignatureStatus,Expired(days),Fingerprint,SSLv2,SSLv3,TLS1,TLS1.1,TLS1.2,TLS1.3,NPN/SPDY,ALPN/HTTP2
+#www.nu.ac.th,yes,301,no,yes,200,max-age=31536000,good,no,565,SHA1,no,no,no,yes,yes,no,yes,yes
+
+#--------------------------------------------------------------------------#
+
+#clean 
 file_use=$1
-DATE_WITH_TIME_s=`date "+%Y%m%d-%H%M%S"`
 check_header=$( head -n 1 ${file_use} | cut -d ',' -f 1 )
 if [ "${check_header}" == "id" ]; then
      cut -d"," -f2- ${file_use} > temp-test-2.txt
      file_use=temp-test-2.txt
 fi;
+DATE_WITH_TIME_s=`date "+%Y%m%d-%H%M%S"`
 rm output.txt output-1.txt temp output-3.txt  output-4.txt temp_2 temp-a 2>/dev/null
+#######################INPUT FILE#######################
 cp $file_use fix-use-gor-test-pro.txt
 active_https=""
 inactive_https=""
@@ -88,19 +96,6 @@ score1=$((score1_1+score1_2))
 #Only HTTPS (10)
 #Only HTTP (0)
 #score =  (flag-type-per-web*score)/all_num
-count_code_100_http=0
-count_code_200_http=0
-count_code_300_http=0
-count_code_400_http=0
-count_code_500_http=0
-count_code_100_https=0
-count_code_200_https=0
-count_code_300_https=0
-count_code_400_https=0
-count_code_500_https=0
-count_code_other_http=0
-count_code_other_https=0
-
 count_hsts_https=0
 count_http_https=0
 count_only_https=0
@@ -112,51 +107,11 @@ count_no_certificate=0
 
 while read -r p; do
      echo $p >> temp-a
-     v_code_https=$( cut -d ',' -f 6 temp-a )
-     v_code_http=$( cut -d ',' -f 3 temp-a )
      v_http=$( cut -d ',' -f 2 temp-a)
      v_hsts=$( cut -d ',' -f 4 temp-a)
      v_https=$( cut -d ',' -f 5 temp-a) 
      v_shsts=$( cut -d ',' -f 7 temp-a)
      v_certificate=$( cut -d ',' -f 8 temp-a )
-     if [ "${v_code_http:0:1}" == "1" ];
-     then
-           ((++count_code_100_http))
-     elif [ "${v_code_http:0:1}" == "2" ] ;
-     then
-           ((++count_code_200_http))
-     elif [ "${v_code_http:0:1}" == "3" ] ;
-     then
-           ((++count_code_300_http))
-     elif [ "${v_code_http:0:1}" == "4" ] ;
-     then
-           ((++count_code_400_http))
-     elif [ "${v_code_http:0:1}" == "5" ] ;
-     then
-           ((++count_code_500_http))
-     else
-           ((++count_code_other_http))
-     fi;
-
-     if [ "${v_code_https:0:1}" == "1" ];
-     then
-           ((++count_code_100_https))
-     elif [ "${v_code_https:0:1}" == "2" ] ;
-     then
-           ((++count_code_200_https))
-     elif [ "${v_code_https:0:1}" == "3" ] ;
-     then
-           ((++count_code_300_https))
-     elif [ "${v_code_https:0:1}" == "4" ] ;
-     then
-           ((++count_code_400_https))
-     elif [ "${v_code_https:0:1}" == "5" ] ;
-     then
-           ((++count_code_500_https))
-     else
-            ((++count_code_other_https))
-     fi;
-
      ####echo $v_http $v_hsts $v_https $v_shsts 
      if [ "${v_https}" == "yes" ] && [ "${v_shsts}" != "no" ];
      then
@@ -278,16 +233,6 @@ count_tls1_1=0
 count_sslv3_tls1=0
 count_sslv2=0
 
-#-------------------------------------
-count_tls1_2=0
-count_tls1_3=0
-count_tls1_1_temp=0
-count_sslv3=0
-count_tls1=0
-count_sslv2_temp=0 
-#-------------------------------------
-count_other_protocol=0
-
 while read -r p; do
      echo $p >> temp-a
 
@@ -298,13 +243,6 @@ while read -r p; do
      v_tls1_2=$( cut -d ',' -f 16 temp-a)
      v_tls1_3=$( cut -d ',' -f 17 temp-a)
      
-     if [ "${v_tls1_2}" == "yes" ]; then ((++count_tls1_2)); fi;
-     if [ "${v_tls1_3}" == "yes" ]; then ((++count_tls1_3)); fi;
-     if [ "${v_sslv3}" == "yes" ]; then ((++count_sslv3)); fi;
-     if [ "${v_tls1}" == "yes" ]; then ((++count_tls1)); fi;
-     if [ "${v_sslv2}" == "yes" ]; then ((++count_sslv2_temp)); fi;
-     if [ "${v_tls1_1}" == "yes" ]; then ((++count_tls1_1_temp)); fi;
-     #count_only_https=$((count_only_https+1))
      ####echo $v_sslv2 $v_sslv3 $v_tls1 $v_tls1_1 $v_tls1_2 $v_tls1_3
      if [ "${v_tls1_2}" == "yes" ] || [ "${v_tls1_3}" == "yes" ];
      then
@@ -322,8 +260,6 @@ while read -r p; do
      then
           #count_only_http=$((count_only_http+1))
           ((++count_sslv2))
-     else
-          ((++count_other_protocol))
      fi;
      ####echo $count_tls1_2_tls1_3 $count_tls1_1 $count_sslv3_tls1 $count_sslv2
      rm temp-a
@@ -361,22 +297,17 @@ then
 else
           domain_grade="F"
 fi;
-#echo "url,http,code,hsts,https,scode,shsts,CertificateStatus,SignatureStatus,Expired(days),Fingerprint,SSLv2,SSLv3,TLS1,TLS1.1,TLS1.2,TLS1.3,NPN/SPDY,ALPN/HTTP2" >> v2_test.txt
+
 domain=$( cat fix-use-gor-test-pro.txt | cut -d ',' -f 1 | rev | cut -d'.' -f 1-2 | rev | sort | uniq -c | xargs | cut -d' ' -f 2 )
-#echo "Your domain is" ${domain} "Grade is" ${domain_grade}
 
 #Timestamp
 DATE_WITH_TIME_f=`date "+%Y%m%d-%H%M%S"`
-mkdir -p /Users/macbook/Downloads/now_used/webtrust_web/server/result-score-domain
-mkdir -p /Users/macbook/Downloads/now_used/webtrust_web/server/result-score-domain-each-web
+mkdir -p /Users/macbook/Downloads/now_used/webtrust_web/server/calculate/result-score-domain
 old_path=$( echo $PWD )
-cd /Users/macbook/Downloads/now_used/webtrust_web
-cat $1 >> ${DATE_WITH_TIME_f}"-"$domain".txt"
-mv ${DATE_WITH_TIME_f}"-"$domain".txt" /Users/macbook/Downloads/now_used/webtrust_web/server/result-score-domain-each-web
-#echo "Start :" ${DATE_WITH_TIME_s} "Calculated :" ${DATE_WITH_TIME_f}
-echo $active_http","$active_https","$inactive_http","$inactive_https","$count_certificate","$count_no_certificate","${DATE_WITH_TIME_f}","${score1}","${score2}","${score3}","${score4}","${score5}","${score6}","${domain_grade}","${total_score}","${count_code_100_http}","${count_code_200_http}","${count_code_300_http}","${count_code_400_http}","${count_code_500_http}","${count_code_other_http}","${count_code_100_https}","${count_code_200_https}","${count_code_300_https}","${count_code_400_https}","${count_code_500_https}","${count_code_other_https}","${count_tls1_2}","${count_tls1_3}","${count_tls1_1_temp}","${count_sslv3}","${count_tls1}","${count_sslv2_temp}","${count_other_protocol}
-echo $active_http","$active_https","$inactive_http","$inactive_https","$count_certificate","$count_no_certificate","${DATE_WITH_TIME_f}","${score1}","${score2}","${score3}","${score4}","${score5}","${score6}","${domain_grade}","${total_score}","${count_code_100_http}","${count_code_200_http}","${count_code_300_http}","${count_code_400_http}","${count_code_500_http}","${count_code_other_http}","${count_code_100_https}","${count_code_200_https}","${count_code_300_https}","${count_code_400_https}","${count_code_500_https}","${count_code_other_https}","${count_tls1_2}","${count_tls1_3}","${count_tls1_1_temp}","${count_sslv3}","${count_tls1}","${count_sslv2_temp}","${count_other_protocol}  >> ${DATE_WITH_TIME_f}"-"$domain".txt"
-mv ${DATE_WITH_TIME_f}"-"$domain".txt" /Users/macbook/Downloads/now_used/webtrust_web/server/result-score-domain
-rm temp-test.txt temp-calculate.csv temp-test-2.txt fix-use-gor-test-pro.txt output-1.txt output-3.txt output-4.txt temp_2 output.txt temp
-cd /Users/macbook/Downloads/now_used/webtrust_web/server/calculate/
-rm temp-test.txt temp-calculate.csv temp-test-2.txt fix-use-gor-test-pro.txt output-1.txt output-3.txt output-4.txt temp_2 output.txt temp
+cd /Users/macbook/Downloads/now_used/webtrust_web/server/calculate
+cat temp-test.txt >> ${DATE_WITH_TIME_f}"-"$domain".txt"
+echo $active_http","$active_https","$inactive_http","$inactive_https","$domain_grade","${count_certificate}","${count_no_certificate}","${DATE_WITH_TIME_f}","${score1}","${score2}","${score3}","${score4}","${score5}","${score6}","${domain_grade}","${total_score} >> ${DATE_WITH_TIME_f}"-"$domain".txt"
+rm temp-test.txt temp-test-2.txt fix-use-gor-test-pro.txt output-1.txt output-3.txt output-4.txt temp_2 output.txt temp  
+mv ${DATE_WITH_TIME_f}"-"$domain".txt" ./result-score-domain
+echo $active_http","$active_https","$inactive_http","$inactive_https","$domain_grade","${count_certificate}","${count_no_certificate}","${DATE_WITH_TIME_f}","${score1}","${score2}","${score3}","${score4}","${score5}","${score6}","${domain_grade}","${total_score}
+cd $old_path

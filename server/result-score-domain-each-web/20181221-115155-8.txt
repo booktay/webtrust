@@ -1,0 +1,9 @@
+www.cmu.ac.th,no,no,no,yes,200,no,no,no,,,no,no,yes,yes,yes,no,no,no,10,10,0,0,0,40,B+,60
+www.stou.ac.th,yes,302,no,no,no,no,-,-,-,-,-,-,-,-,-,-,-,-,10,0,0,0,0,0,F,10
+www.ubu.ac.th,yes,200,no,no,no,no,-,-,-,-,-,-,-,-,-,-,-,-,10,0,0,0,0,0,F,10
+www.tsu.ac.th,yes,200,no,no,no,no,-,-,-,-,-,-,-,-,-,-,-,-,10,0,0,0,0,0,F,10
+www.chula.ac.th,yes,302,no,yes,200,no,no,no,373,,,10,15,0,10,0,0,C,35
+www.psu.ac.th,yes,301,no,yes,200,no,no,no,163,,E,E,E,E,E,E,E,E,10,15,0,10,0,0,C,35
+,10,0,0,0,0,0,F,10
+www.buu.ac.th,yes,200,no,yes,200,no,no,no,83,,E,E,E,E,E,E,E,E,10,15,0,10,0,0,C,35
+www.cmu.ac.th,no,no,no,yes,200,no,no,no,,,no,no,yes,yes,yes,no,no,no,10,10,0,0,0,40,B+,60
