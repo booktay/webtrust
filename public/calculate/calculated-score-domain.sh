@@ -367,16 +367,16 @@ domain=$( cat fix-use-gor-test-pro.txt | cut -d ',' -f 1 | rev | cut -d'.' -f 1-
 
 #Timestamp
 DATE_WITH_TIME_f=`date "+%Y%m%d-%H%M%S"`
-mkdir -p /Users/macbook/Downloads/now_used/webtrust_web/server/result-score-domain
-mkdir -p /Users/macbook/Downloads/now_used/webtrust_web/server/result-score-domain-each-web
+mkdir -p ./result-score-domain
+mkdir -p ./result-score-domain-each-web
 old_path=$( echo $PWD )
 cd /Users/macbook/Downloads/now_used/webtrust_web
 cat $1 >> ${DATE_WITH_TIME_f}"-"$domain".txt"
-mv ${DATE_WITH_TIME_f}"-"$domain".txt" /Users/macbook/Downloads/now_used/webtrust_web/server/result-score-domain-each-web
+mv ${DATE_WITH_TIME_f}"-"$domain".txt" ./result-score-domain-each-web
 #echo "Start :" ${DATE_WITH_TIME_s} "Calculated :" ${DATE_WITH_TIME_f}
 echo $active_http","$active_https","$inactive_http","$inactive_https","$count_certificate","$count_no_certificate","${DATE_WITH_TIME_f}","${score1}","${score2}","${score3}","${score4}","${score5}","${score6}","${domain_grade}","${total_score}","${count_code_100_http}","${count_code_200_http}","${count_code_300_http}","${count_code_400_http}","${count_code_500_http}","${count_code_other_http}","${count_code_100_https}","${count_code_200_https}","${count_code_300_https}","${count_code_400_https}","${count_code_500_https}","${count_code_other_https}","${count_tls1_2}","${count_tls1_3}","${count_tls1_1_temp}","${count_sslv3}","${count_tls1}","${count_sslv2_temp}","${count_other_protocol}
 echo $active_http","$active_https","$inactive_http","$inactive_https","$count_certificate","$count_no_certificate","${DATE_WITH_TIME_f}","${score1}","${score2}","${score3}","${score4}","${score5}","${score6}","${domain_grade}","${total_score}","${count_code_100_http}","${count_code_200_http}","${count_code_300_http}","${count_code_400_http}","${count_code_500_http}","${count_code_other_http}","${count_code_100_https}","${count_code_200_https}","${count_code_300_https}","${count_code_400_https}","${count_code_500_https}","${count_code_other_https}","${count_tls1_2}","${count_tls1_3}","${count_tls1_1_temp}","${count_sslv3}","${count_tls1}","${count_sslv2_temp}","${count_other_protocol}  >> ${DATE_WITH_TIME_f}"-"$domain".txt"
-mv ${DATE_WITH_TIME_f}"-"$domain".txt" /Users/macbook/Downloads/now_used/webtrust_web/server/result-score-domain
+mv ${DATE_WITH_TIME_f}"-"$domain".txt" ./result-score-domain
 rm temp-test.txt temp-calculate.csv temp-test-2.txt fix-use-gor-test-pro.txt output-1.txt output-3.txt output-4.txt temp_2 output.txt temp
-cd /Users/macbook/Downloads/now_used/webtrust_web/server/calculate/
+cd ./calculate/
 rm temp-test.txt temp-calculate.csv temp-test-2.txt fix-use-gor-test-pro.txt output-1.txt output-3.txt output-4.txt temp_2 output.txt temp

@@ -62,6 +62,6 @@ typings/
 
 # Calculate Module 
 # Please read readme for install
-server/calculate/check_ssl_cert/
-server/calculate/ocspcheck/
-server/calculate/testssl.sh/
+public/calculate/check_ssl_cert/
+public/calculate/oscpcheck/
+public/calculate/testssl.sh/
