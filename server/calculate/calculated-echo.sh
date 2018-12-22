@@ -38,8 +38,8 @@ word2=","$HTTPS","$scode","$SHSTS
 
 if [ $HTTPS != "no" ]
 then 
-	rm c
-	if [ $HTTPS != "no" ]; then ocspcheck/ocspcheck $p 2>/dev/null >> c; fi;
+	rm c  2>/dev/null
+	if [ $HTTPS != "no" ]; then /Users/macbook/Downloads/now_used/webtrust_web/server/calculate/ocspcheck/ocspcheck $p 2>/dev/null >> c; fi;
 	if [ $HTTPS == "no" ]; then echo "HTTPS: not avalible"; fi;
 	c1=$(cat c | grep "Certificate status:" | cut -d ' ' -f 3)
 	c2=$(cat c | grep "Signature status:" | cut -d ' ' -f 3)
@@ -56,7 +56,7 @@ fi
 
 if [ $HTTPS != "no" ]
 then
-	a=$( check_ssl_cert/check_ssl_cert -H $p --ignore-ocsp --ignore-sig-alg --ignore-ssl-labs-cache )
+	a=$( /Users/macbook/Downloads/now_used/webtrust_web/server/calculate/check_ssl_cert/check_ssl_cert -H $p --ignore-ocsp --ignore-sig-alg --ignore-ssl-labs-cache )
 	a=$(echo $a |  cut -d  '|' -f 2)
 	expired=$(echo ${a//;} | cut  -d '=' -f 2) 
         temp_1=$(echo ${expired} |  cut -d ' ' -f 1)
@@ -85,13 +85,13 @@ if [ $HTTPS != "no" ]
 then
 	logProtocol=("yes" "yes" "yes" "yes" "yes" "yes" "yes" "yes")
 	num_temp=0
-	rm TXT
-	testssl.sh/testssl.sh -p --parallel --quiet --color 0 $p >> TXT
-	rm c
+	rm TXT 2>/dev/null
+	/Users/macbook/Downloads/now_used/webtrust_web/server/calculate/testssl.sh/testssl.sh -p --parallel --quiet --color 0 $p >> TXT
+	rm c 2>/dev/null
 	cat TXT | sed -ne '/ SSLv2/,/ ALPN\/HTTP2/p' >> c
         if [ -z `cat c` ] 2>/dev/null; 
         then 
-                testssl.sh -p --parallel --quiet --color 0 $p >> TXT 2>/dev/null
+                /Users/macbook/Downloads/now_used/webtrust_web/server/calculate/testssl.sh/testssl.sh -p --parallel --quiet --color 0 $p >> TXT 2>/dev/null
                 cat TXT | sed -ne '/ SSLv2/,/ ALPN\/HTTP2/p' >> c
                 if [ -z `cat c` ]; then
                 protocal_all="E,E,E,E,E,E,E,E"; 
@@ -312,3 +312,4 @@ fi;
        rm a.temp 2>/dev/null
 #DATE_WITH_TIME_f=`date "+%Y%m%d-%H%M%S"`
 #--------------------------------------------------------------------------#
+rm TXT c 2>/dev/null
