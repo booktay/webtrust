@@ -167,7 +167,7 @@ router.get('/score/url/:url/:add', async (req, res) => {
     }
 });
 
-router.get('/score/:name/:file/:add', async (req, res) => {
+router.get('/score/name/:name/:file/:add', async (req, res) => {
     const data = await readFile(`../file/${req.params.file}.json`);
     const webdomain = JSON.parse(data);
 
@@ -228,7 +228,7 @@ router.get('/score/:name/:file/:add', async (req, res) => {
 
         if (req.params.add == "add") {
             client.index({
-                index: url,
+                index: webdomain[web],
                 type: req.params.name + 'url',
                 body: dataCal
             }, function (err, resp, status) {
@@ -327,7 +327,7 @@ router.get('/score/subdomain/:domain/:subdomain/:add', async (req, res) => {
 
         if (req.params.add == "add") {
             client.index({
-                index: url,
+                index: webdomain[web],
                 type: 'url',
                 body: dataCal
             }, function (err, resp, status) {
