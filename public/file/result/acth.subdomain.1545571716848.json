@@ -1,0 +1,70 @@
+{
+    "domain": "th",
+    "subdomain": "ac",
+    "url": [
+        "www.mahidol.ac.th",
+        "www.ku.ac.th",
+        "www.chula.ac.th",
+        "www.psu.ac.th",
+        "www.cmu.ac.th",
+        "www.kku.ac.th",
+        "www.tu.ac.th",
+        "www.ru.ac.th",
+        "www.buu.ac.th",
+        "www.nu.ac.th",
+        "www.sut.ac.th",
+        "www.su.ac.th",
+        "www.stou.ac.th",
+        "www.kmutt.ac.th",
+        "www.kmitl.ac.th",
+        "www.msu.ac.th",
+        "www.swu.ac.th",
+        "www.mju.ac.th",
+        "www.rmutt.ac.th",
+        "www.kmutnb.ac.th",
+        "www.bu.ac.th",
+        "www.ipst.ac.th",
+        "www.mfu.ac.th",
+        "www.spu.ac.th",
+        "www.wu.ac.th",
+        "www.dpu.ac.th",
+        "www.mcu.ac.th",
+        "www.rmutl.ac.th",
+        "www.ubu.ac.th",
+        "www.dlit.ac.th"
+    ],
+    "activehttp": 28,
+    "inactivehttp": 2,
+    "activehttps": 19,
+    "inactivehttps": 11,
+    "havecertificate": 19,
+    "nothavecertificate": 11,
+    "code": {
+        "200": 12,
+        "300": 16,
+        "500": 1,
+        "other": 1
+    },
+    "scode": {
+        "200": 14,
+        "300": 5,
+        "other": 11
+    },
+    "protocol": {
+        "TLS12": 18,
+        "TLS1": 1
+    },
+    "timestamp": 1545571716848,
+    "score": [
+        7.533333333333334,
+        9.333333333333332,
+        6.333333333333331,
+        5.999999999999999,
+        2.6666666666666665,
+        22.333333333333332
+    ],
+    "grade": [
+        "54.200000000000045",
+        "b"
+    ]
+}

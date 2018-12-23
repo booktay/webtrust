@@ -1,0 +1,70 @@
+{
+    "domain": "th",
+    "subdomain": "co",
+    "url": [
+        "www.google.co.th",
+        "www.lazada.co.th",
+        "www.manager.co.th",
+        "www.thairath.co.th",
+        "www.khaosod.co.th",
+        "www.siamsport.co.th",
+        "www.matichon.co.th",
+        "www.11street.co.th",
+        "www.tnews.co.th",
+        "www.advice.co.th",
+        "www.shopee.co.th",
+        "www.ais.co.th",
+        "www.dailynews.co.th",
+        "www.truecorp.co.th",
+        "www.jib.co.th",
+        "www.thailandpost.co.th",
+        "www.expedia.co.th",
+        "www.ktb.co.th",
+        "www.3bb.co.th",
+        "www.dtac.co.th",
+        "www.central.co.th",
+        "www.homepro.co.th",
+        "www.voicetv.co.th",
+        "www.scb.co.th",
+        "www.yellowpages.co.th",
+        "www.skyscanner.co.th",
+        "www.coins.co.th",
+        "www.bualuang.co.th",
+        "www.craigslist.co.th",
+        "www.officemate.co.th"
+    ],
+    "activehttp": 30,
+    "inactivehttp": 0,
+    "activehttps": 28,
+    "inactivehttps": 2,
+    "havecertificate": 29,
+    "nothavecertificate": 1,
+    "code": {
+        "200": 8,
+        "300": 22,
+        "other": 0
+    },
+    "scode": {
+        "200": 18,
+        "300": 10,
+        "500": 1,
+        "other": 1
+    },
+    "protocol": {
+        "TLS12": 28,
+        "TLS1": 1
+    },
+    "timestamp": 1545574924227,
+    "score": [
+        9.6,
+        14.499999999999998,
+        9.666666666666666,
+        9.499999999999998,
+        5.333333333333332,
+        35.666666666666664
+    ],
+    "grade": [
+        "84.26666666666661",
+        "a"
+    ]
+}

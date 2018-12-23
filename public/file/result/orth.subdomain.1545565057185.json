@@ -1,0 +1,71 @@
+{
+    "domain": "th",
+    "subdomain": "or",
+    "url": [
+        "www.set.or.th",
+        "www.studentloan.or.th",
+        "www.glo.or.th",
+        "www.thaihealth.or.th",
+        "www.thaipbs.or.th",
+        "www.gsb.or.th",
+        "www.thailis.or.th",
+        "www.bot.or.th",
+        "www.cuas.or.th",
+        "www.kanchanapisek.or.th",
+        "www.doctor.or.th",
+        "www.nstda.or.th",
+        "www.niets.or.th",
+        "www.sec.or.th",
+        "www.goldtraders.or.th",
+        "www.mea.or.th",
+        "www.tpa.or.th",
+        "www.tcdc.or.th",
+        "www.nectec.or.th",
+        "www.trf.or.th",
+        "www.ksp.or.th",
+        "www.coe.or.th",
+        "www.posn.or.th",
+        "www.tkpark.or.th",
+        "www.baac.or.th",
+        "www.fap.or.th",
+        "www.britishcouncil.or.th",
+        "www.asa.or.th",
+        "www.redcross.or.th",
+        "www.etda.or.th"
+    ],
+    "activehttp": 27,
+    "inactivehttp": 3,
+    "activehttps": 17,
+    "inactivehttps": 13,
+    "havecertificate": 18,
+    "nothavecertificate": 12,
+    "code": {
+        "200": 10,
+        "300": 17,
+        "400": 1,
+        "500": 1,
+        "other": 1
+    },
+    "scode": {
+        "200": 13,
+        "300": 4,
+        "400": 1,
+        "other": 12
+    },
+    "protocol": {
+        "TLS12": 18
+    },
+    "timestamp": 1545565057185,
+    "score": [
+        7,
+        8.333333333333332,
+        5.999999999999998,
+        5.999999999999998,
+        3,
+        21.833333333333332
+    ],
+    "grade": [
+        "52.1666666666667",
+        "b"
+    ]
+}

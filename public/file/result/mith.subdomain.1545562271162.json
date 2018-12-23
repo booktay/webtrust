@@ -1,0 +1,44 @@
+{
+    "domain": "th",
+    "subdomain": "mi",
+    "url": [
+        "www.rtaf.mi.th",
+        "www.rta.mi.th",
+        "www.navy.mi.th",
+        "www.rtarf.mi.th",
+        "www.smic.mi.th",
+        "www.tdc.mi.th"
+    ],
+    "activehttp": 6,
+    "inactivehttp": 0,
+    "activehttps": 1,
+    "inactivehttps": 5,
+    "havecertificate": 2,
+    "nothavecertificate": 4,
+    "code": {
+        "200": 3,
+        "300": 3,
+        "other": 0
+    },
+    "scode": {
+        "200": 1,
+        "400": 1,
+        "other": 4
+    },
+    "protocol": {
+        "TLS12": 2
+    },
+    "timestamp": 1545562271162,
+    "score": [
+        0.9999999999999999,
+        0.5,
+        0.6666666666666666,
+        0.6666666666666666,
+        0.3333333333333333,
+        2.166666666666667
+    ],
+    "grade": [
+        "5.333333333333334",
+        "f"
+    ]
+}

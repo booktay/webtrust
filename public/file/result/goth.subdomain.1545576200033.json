@@ -1,0 +1,70 @@
+{
+    "domain": "th",
+    "subdomain": "go",
+    "url": [
+        "www.moph.go.th",
+        "www.cgd.go.th",
+        "www.obec.go.th",
+        "www.tmd.go.th",
+        "www.rd.go.th",
+        "www.dbd.go.th",
+        "www.dla.go.th",
+        "www.gprocurement.go.th",
+        "www.prd.go.th",
+        "www.sso.go.th",
+        "www.nhso.go.th",
+        "www.doe.go.th",
+        "www.moe.go.th",
+        "www.ocsc.go.th",
+        "www.doae.go.th",
+        "www.rid.go.th",
+        "www.soc.go.th",
+        "www.bangkok.go.th",
+        "www.dol.go.th",
+        "www.dlt.go.th",
+        "www.mail.go.th",
+        "www.fisheries.go.th",
+        "www.dnp.go.th",
+        "www.dopa.go.th",
+        "www.cdd.go.th",
+        "www.mol.go.th",
+        "www.police.go.th",
+        "www.mfa.go.th",
+        "www.customs.go.th",
+        "www.treasury.go.th"
+    ],
+    "activehttp": 28,
+    "inactivehttp": 2,
+    "activehttps": 15,
+    "inactivehttps": 15,
+    "havecertificate": 15,
+    "nothavecertificate": 15,
+    "code": {
+        "200": 12,
+        "300": 16,
+        "400": 1,
+        "500": 1,
+        "other": 0
+    },
+    "scode": {
+        "200": 9,
+        "300": 6,
+        "other": 15
+    },
+    "protocol": {
+        "TLS12": 15
+    },
+    "timestamp": 1545576200033,
+    "score": [
+        6.733333333333335,
+        7.333333333333332,
+        4.666666666666666,
+        4.999999999999999,
+        3,
+        18
+    ],
+    "grade": [
+        "44.733333333333356",
+        "c+"
+    ]
+}

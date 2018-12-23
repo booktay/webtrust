@@ -6,6 +6,7 @@ var client = require('./connection.js');
 var fs = require('fs');
 const util = require('util');
 const readFile = util.promisify(fs.readFile)
+const appendFile = util.promisify(fs.appendFile)
 const shell = require('shelljs');
 shell.cd('./public/calculate')
 
@@ -132,7 +133,7 @@ async function calculateOne(url, time) {
     else if (score >= 40) grade = "c+"
     else if (score >= 30) grade = "c"
     else if (score >= 20) grade = "d"
-    data['GRADE'] = [score, grade];
+    data['GRADE'] = [score.toString(), grade];
     return data;
 }
 
@@ -153,7 +154,7 @@ router.get('/score/url/:url/:add', async (req, res) => {
     const url = req.params.url
     const time = Date.now();
     const data = await calculateOne(url, time);
-    if (req.params.add == "add") {
+    if (req.params.add == "es") {
         client.index({
             index: url,
             type: 'url',
@@ -161,6 +162,9 @@ router.get('/score/url/:url/:add', async (req, res) => {
         }, function (err, resp, status) {
             return res.send(resp)
         });
+    }
+    else if (req.params.add == "file") {
+        await appendFile(`../file/result/${url}.${time}.json`, [JSON.stringify(data)], 'utf-8');
     }
     else {
         return res.json(data)
@@ -192,6 +196,7 @@ router.get('/score/name/:name/:file/:add', async (req, res) => {
         "grade": [0, "D"]
     };
 
+    var dataall = [];
     for (let web in webdomain) {
         var dataCal = await calculateOne(webdomain[web], time);
         domainInfo['url'].push(webdomain[web])
@@ -226,7 +231,7 @@ router.get('/score/name/:name/:file/:add', async (req, res) => {
         };
         console.log(webdomain[web])
 
-        if (req.params.add == "add") {
+        if (req.params.add == "es") {
             client.index({
                 index: webdomain[web],
                 type: req.params.name + 'url',
@@ -235,7 +240,9 @@ router.get('/score/name/:name/:file/:add', async (req, res) => {
                 console.log(status)
             });
         }
-
+        else if (req.params.add == "file") {
+            dataall.push(dataCal)
+        }
         if (start == limit) break;
         else start += 1;
 
@@ -250,6 +257,7 @@ router.get('/score/name/:name/:file/:add', async (req, res) => {
     else if (score >= 20) grade = "d"
     domainInfo['grade'] = [score.toString(), grade];
 
+    console.log("Complete wait for write")
     if (req.params.add == "add") {
         client.index({
             index: "th",
@@ -258,6 +266,11 @@ router.get('/score/name/:name/:file/:add', async (req, res) => {
         }, function (err, resp, status) {
             return res.send(resp)
         });
+    }
+    else if (req.params.add == "file") {
+        await appendFile(`../file/result/${req.params.file}.url.${time}.json`, JSON.stringify(dataall), 'utf-8');
+        await appendFile(`../file/result/${req.params.file}.subdomain.${time}.json`, JSON.stringify(domainInfo), 'utf-8');
+        return res.json(domainInfo)
     }
     else {
         return res.json(domainInfo)
@@ -270,7 +283,7 @@ router.get('/score/subdomain/:domain/:subdomain/:add', async (req, res) => {
 
     const time = Date.now();
 
-    const limit = 1;
+    const limit = 29;
     var start = 0, score = 0;
 
     const domainInfo = {
@@ -291,6 +304,7 @@ router.get('/score/subdomain/:domain/:subdomain/:add', async (req, res) => {
         "grade": [0, "D"]
     };
 
+    var dataall = [];
     for (let web in webdomain) {
         var dataCal = await calculateOne(webdomain[web], data);
         domainInfo['url'].push(webdomain[web])
@@ -325,7 +339,7 @@ router.get('/score/subdomain/:domain/:subdomain/:add', async (req, res) => {
         };
         console.log(webdomain[web])
 
-        if (req.params.add == "add") {
+        if (req.params.add == "es") {
             client.index({
                 index: webdomain[web],
                 type: 'url',
@@ -334,7 +348,9 @@ router.get('/score/subdomain/:domain/:subdomain/:add', async (req, res) => {
                 console.log(status)
             });
         }
-
+        else if (req.params.add == "file") {
+            dataall.push(dataCal)
+        }
         if (start == limit) break;
         else start += 1;
 
@@ -349,7 +365,8 @@ router.get('/score/subdomain/:domain/:subdomain/:add', async (req, res) => {
     else if (score >= 20) grade = "d"
     domainInfo['grade'] = [score.toString(), grade];
 
-    if (req.params.add == "add") {
+    console.log("Complete wait for write")
+    if (req.params.add == "es") {
         client.index({
             index: req.params.domain + "" + req.params.subdomain,
             type: 'subdomain',
@@ -358,22 +375,34 @@ router.get('/score/subdomain/:domain/:subdomain/:add', async (req, res) => {
             return res.send(resp)
         });
     }
+    else if (req.params.add == "file") {
+        await appendFile(`../file/result/${req.params.subdomain + req.params.domain}.url.${time}.json`, JSON.stringify(dataall), 'utf-8');
+        await appendFile(`../file/result/${req.params.subdomain + req.params.domain}.subdomain.${time}.json`, JSON.stringify(domainInfo), 'utf-8');
+        return res.json(domainInfo)
+    }
     else {
         return res.json(domainInfo)
     }
+
 });
 
-router.get('/es/search/name/:type/:index/', (req, res) => {
+router.get('/es/search/all/', (req, res) => {
     client.search({
-        index: req.params.index,
-        type: req.params.type,
         body: {
             query: {
-                match: {
-                    match_all: {}
-                }
+                match_all: {}
             }
         }
+    }).then(function (resp) {
+        res.send(resp.hits.hits);
+    }, function (err) {
+        res.send(err.message);
+    });
+});
+
+router.get('/es/delete/all', (req, res) => {
+    client.delete({
+        index: '_all'
     }).then(function (resp) {
         res.send(resp.hits.hits);
     }, function (err) {
