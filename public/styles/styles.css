@@ -31,7 +31,7 @@
 }
 
 .bottomcontent {
-    min-height: 88vh;
+    min-height: -webkit-fill-available;
     width: inherit;
     background: lightgrey;
 }

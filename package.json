@@ -29,6 +29,7 @@
     "recharts": "^1.4.1",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.83.0",
+    "serve-index": "^1.9.1",
     "shelljs": "^0.8.3",
     "superagent": "^4.0.0",
     "url-loader": "^1.1.2"

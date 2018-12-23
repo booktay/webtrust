@@ -2,17 +2,35 @@ import React, { Component } from 'react'
 import {
     Segment, Dimmer, Loader, Statistic, Grid, Header, Progress, Pagination, Table
 } from 'semantic-ui-react'
-import {withRouter} from "next/router";
+import { withRouter } from "next/router";
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 }
-from 'recharts';
+    from 'recharts';
 
-const renderBodyRow = ({ id,url,CertificateStatus,Expired,total_score, domain_grade }, i) => ({
-  key: id,
-  cells: [
-    id,url,CertificateStatus,Expired,total_score, domain_grade
-  ],
+function toUpperFirst(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function useProtocol(protocol) {
+    const protocol_keys = Object.keys(protocol);
+    for (let keyin in protocol_keys) {
+        if (keyin > 1 && ["offered (OK)", "offered"].includes(protocol[protocol_keys[keyin]])) return protocol_keys[keyin]
+    }
+    return ""
+}
+
+const renderBodyRow = ({ URL, HTTP, HTTPS, PROTOCOL, CERT, GRADE }, i) => ({
+    key: URL,
+    cells: [
+        URL ? { key: 'URL', content: URL } : 'Unknown',
+        HTTP ? { key: 'HTTP', content: toUpperFirst(HTTP) } : 'Unknown',
+        HTTPS ? { key: 'HTTPS', content: toUpperFirst(HTTPS) } : 'Unknown',
+        useProtocol(PROTOCOL) ? { key: 'PROTOCOL', content: useProtocol(PROTOCOL) } : 'Unknown',
+        CERT['STATUS'] ? { key: 'CERT', content: toUpperFirst(CERT['STATUS']) } : 'Unknown',
+        CERT['EXPIRED'][1] ? { key: 'EXPIRED', content: toUpperFirst(CERT['EXPIRED'][1]) } : 'Unknown',
+        GRADE ? { key: 'GRADE', content: GRADE[1].toUpperCase() } : 'Unknown'
+    ],
 })
 
 class Content extends Component {
@@ -20,7 +38,7 @@ class Content extends Component {
         super(props)
         this.state = {
             dataSubdomain: undefined,
-            header: ['id', 'url', 'CertificateStatus', 'Expired', 'total_score', 'domain_grade'],
+            header: ['URL', 'HTTP', 'HTTPS', 'PROTOCOL', 'CERT STATUS', 'EXPIRED DATE', 'GRADE'],
             allPage: 1,
             activePage: 1
         }
@@ -30,39 +48,49 @@ class Content extends Component {
 
     certHave(dataDomain) {
         return [
-            {name:"Yes", value:dataDomain.havecertificate},
-            {name:"No", value:dataDomain.nothavecertificate},
+            { name: "Yes", value: dataDomain.havecertificate },
+            { name: "No", value: dataDomain.nothavecertificate },
         ]
     }
 
-    certValid(dataDomain) {
+    statusCode(status) {
+        const code_keys = ["100", "200", "300", "400", "500", "other"];
+
         return [
-            {name:"Yes", value:dataDomain.havecertificate},
-            {name:"No", value:dataDomain.nothavecertificate},
+            {
+                name: "Http",
+                "1XX": status[0][code_keys[0]] ? status[0][code_keys[0]] : 0,
+                "2XX": status[0][code_keys[1]] ? status[0][code_keys[1]] : 0,
+                "3XX": status[0][code_keys[2]] ? status[0][code_keys[2]] : 0,
+                "4XX": status[0][code_keys[3]] ? status[0][code_keys[3]] : 0,
+                "5XX": status[0][code_keys[4]] ? status[0][code_keys[4]] : 0,
+                other: status[0][code_keys[5]] ? status[0][code_keys[5]] : 0,
+            },
+            {
+                name: "Https",
+                "1XX": status[1][code_keys[0]] ? status[1][code_keys[0]] : 0,
+                "2XX": status[1][code_keys[1]] ? status[1][code_keys[1]] : 0,
+                "3XX": status[1][code_keys[2]] ? status[1][code_keys[2]] : 0,
+                "4XX": status[1][code_keys[3]] ? status[1][code_keys[3]] : 0,
+                "5XX": status[1][code_keys[4]] ? status[1][code_keys[4]] : 0,
+                other: status[1][code_keys[5]] ? status[1][code_keys[5]] : 0,
+            }
         ]
     }
 
-    protocolHave(dataDomain) {
-        const search = ["SSLv2", "SSLv3", "TLS1", "TLS11", "TLS12", "TLS13"]
-        var protocol = []
-        for (var lookup in search) {
-            var temp = {name:search[lookup], yes:0, no:0, undefined:0};
-            for (var data in dataDomain) {
-                if (dataDomain[data][search[lookup]] === "yes") temp['yes'] += 1
-                else if (dataDomain[data][search[lookup]] === "no") temp['no'] += 1
-                else temp['undefined'] += 1
-            }
-            protocol.push(temp)
+    protocolHave(protocol) {
+        const protocol_keys = Object.keys(protocol);
+        var protocol_format = [];
+        for (var lookup in protocol_keys) {
+            protocol_format.push({ name: protocol_keys[lookup], total: protocol[protocol_keys[lookup]] });
         }
-        return protocol;
+        return protocol_format;
     }
 
     activeHave(dataDomain) {
         var active = [
-            {name:"activehttp", value:dataDomain['activehttp']},
-            {name:"inactivehttp", value:dataDomain['inactivehttp']},
-            {name:"activehttps", value:dataDomain['activehttps']},
-            {name:"inactivehttps", value:dataDomain['inactivehttps']},
+            { name: "Http", active: dataDomain['activehttp'], inactive: dataDomain['inactivehttp'] },
+            { name: "Https", active: dataDomain['activehttps'], inactive: dataDomain['inactivehttps'] },
         ];
         return active;
     }
@@ -82,8 +110,8 @@ class Content extends Component {
     }
 
     handlePaginationChange = async (e, { activePage }) => {
-        const {domain, subdomain} = this.props.dataDomain
-        const {dataSubdomain} = await this.loadTableData(domain, subdomain, activePage)
+        const { domain, subdomain } = this.props.dataDomain
+        const { dataSubdomain } = await this.loadTableData(domain, subdomain, activePage)
         this.setState(state => {
             state.dataSubdomain = dataSubdomain
             state.activePage = activePage
@@ -92,10 +120,10 @@ class Content extends Component {
     }
 
     async componentDidMount() {
-        const {domain, subdomain} = this.props.dataDomain
-        const {activePage} = this.state
-        const {allPage} = await this.loadPage(domain, subdomain)
-        const {dataSubdomain}  = await this.loadTableData(domain, subdomain, activePage)
+        const { domain, subdomain } = this.props.dataDomain
+        const { activePage } = this.state
+        const { allPage } = await this.loadPage(this.props.dataDomain)
+        const { dataSubdomain } = await this.loadTableData(domain, subdomain, activePage)
         this.setState(state => {
             state.dataSubdomain = dataSubdomain
             state.allPage = allPage
@@ -103,61 +131,66 @@ class Content extends Component {
         })
     }
 
-    async loadPage(domain, subdomain) {
-        const response = await fetch(`/test/score/subdomain/${domain}/${subdomain}/web/count`)
-        const responseJson = await response.json()
-        return {allPage:responseJson['total']}
+    async componentWillReceiveProps(nextProps) {
+        if (this.props.dataDomain.subdomain !== nextProps.dataDomain.subdomain) {
+            const { domain, subdomain } = nextProps.dataDomain
+            const { allPage } = await this.loadPage(nextProps.dataDomain)
+            const { dataSubdomain } = await this.loadTableData(domain, subdomain, 1)
+            this.setState(state => {
+                state.dataSubdomain = dataSubdomain
+                state.allPage = allPage
+                state.activePage = 1
+                return state
+            })
+        }
+    }
+
+    async loadPage(dataDomain) {
+        return { allPage: Math.ceil(dataDomain['url'].length / 10) }
     }
 
     async loadTableData(domain, subdomain, page) {
-        const {header} = this.state
-        const response = await fetch(`/test/score/subdomain/${domain}/${subdomain}/web/${page}`)
+        const response = await fetch(`/api/search/score/subdomain/${domain}/${subdomain}/url/${page}`)
         const responseJson = await response.json()
-        const dataSubdomain = responseJson.map(item => {
-            const result = {}
-            for (let column of header) {
-                result[column] = item[column]
-            }
-            return result
-        })
-        return {dataSubdomain:dataSubdomain}
+        return { dataSubdomain: responseJson }
     }
 
     render() {
-        const {dataDomain} = this.props
-        const {activePage, dataSubdomain, allPage, header} = this.state
+        const { dataDomain } = this.props
+        const { activePage, dataSubdomain, allPage, header } = this.state
+        console.log(dataSubdomain);
 
         if (dataDomain.domain) {
             return (
                 <React.Fragment>
                     <Grid columns='equal' textAlign='center' divided className="chartgrid">
                         <Grid.Row>
-                            <Grid.Column style={{minWidth:"247.31px"}}>
-                            <Segment.Group horizontal>
-                                <Segment>
-                                    <Statistic size='huge'>
-                                        <Statistic.Label>Subdomain</Statistic.Label>
-                                        <Statistic.Value>{dataDomain.subdomain}</Statistic.Value>
-                                    </Statistic>
-                                </Segment>
-                                <Segment>
-                                    <Statistic size='huge'>
-                                        <Statistic.Label>Domain</Statistic.Label>
-                                        <Statistic.Value>{dataDomain.domain}</Statistic.Value>
-                                    </Statistic>
-                                </Segment>
-                            </Segment.Group>
+                            <Grid.Column style={{ minWidth: "247.31px" }}>
+                                <Segment.Group horizontal>
+                                    <Segment>
+                                        <Statistic size='huge'>
+                                            <Statistic.Label>Subdomain</Statistic.Label>
+                                            <Statistic.Value>{dataDomain.subdomain}</Statistic.Value>
+                                        </Statistic>
+                                    </Segment>
+                                    <Segment>
+                                        <Statistic size='huge'>
+                                            <Statistic.Label>Domain</Statistic.Label>
+                                            <Statistic.Value>{dataDomain.domain}</Statistic.Value>
+                                        </Statistic>
+                                    </Segment>
+                                </Segment.Group>
                             </Grid.Column>
                             <Grid.Column width={5}>
-                                < Segment.Group horizontal style = {
+                                < Segment.Group horizontal style={
                                     {
-                                        backgroundColor: (dataDomain['domainscore'] > 80) ? "lightgreen" : ((dataDomain['domainscore'] >= 50) ? "lightyellow" : "lightsalmon")
+                                        backgroundColor: (dataDomain['grade'][0] > 80) ? "lightgreen" : ((dataDomain['grade'][0] >= 50) ? "lightyellow" : "lightsalmon")
                                     }
                                 } >
                                     <Segment>
-                                        < Statistic color="black" size = 'huge' >
+                                        < Statistic color="black" size='huge' >
                                             <Statistic.Label>Grade</Statistic.Label>
-                                            <Statistic.Value>{dataDomain.domaingrade}</Statistic.Value>
+                                            <Statistic.Value>{dataDomain['grade'][1]}</Statistic.Value>
                                         </Statistic>
                                     </Segment>
                                 </Segment.Group>
@@ -172,27 +205,25 @@ class Content extends Component {
                             <Grid.Column>
                                 <Segment>
                                     <Header as="h3">Active-Inactive</Header>
-                                    <Progress value={Math.ceil(dataDomain.score1)} color='olive' total='10' progress='ratio' />
+                                    <Progress value={Math.ceil(dataDomain['score'][0])} color='olive' total='10' progress='ratio' />
                                     <Header as="h3">Basic status</Header>
-                                    <Progress value={Math.ceil(dataDomain.score2)} color='green' total='20' progress='ratio' />
+                                    <Progress value={Math.ceil(dataDomain['score'][1])} color='green' total='20' progress='ratio' />
                                     <Header as="h3">Revoke status</Header>
-                                    <Progress value={Math.ceil(dataDomain.score3)} color='teal' total='10' progress='ratio' />
+                                    <Progress value={Math.ceil(dataDomain['score'][2])} color='teal' total='10' progress='ratio' />
                                 </Segment>
                             </Grid.Column>
                             <Grid.Column>
                                 <Segment>
                                     <Header as="h3">Expired</Header>
-                                    <Progress value={Math.ceil(dataDomain.score4)} color='violet' total='10' progress='ratio' />
+                                    <Progress value={Math.ceil(dataDomain['score'][3])} color='violet' total='10' progress='ratio' />
                                     <Header as="h3">Valid-Invalid</Header>
-                                    <Progress value={Math.ceil(dataDomain.score5)} color='purple' total='10' progress='ratio' />
+                                    <Progress value={Math.ceil(dataDomain['score'][4])} color='purple' total='10' progress='ratio' />
                                     <Header as="h3">Protocol type</Header>
-                                    <Progress value={Math.ceil(dataDomain.score6)} color='pink' total='40' progress='ratio' />
+                                    <Progress value={Math.ceil(dataDomain['score'][5])} color='pink' total='40' progress='ratio' />
                                 </Segment>
                             </Grid.Column>
                         </Grid.Row>
-                        {/* <Grid.Row>
-                            <Header as="h2">Certification Detail</Header>
-                        </Grid.Row> */}
+                        {/* Row 2 */}
                         <Grid.Row>
                             <Grid.Column>
                                 <Segment>
@@ -200,52 +231,53 @@ class Content extends Component {
                                         Have Certification
                                     </Header>
                                     <BarChart width={640} height={450} data={this.certHave(dataDomain)}
-                                        margin={{top: 15, right: 30, left: 20, bottom: 5}}>
-                                        <CartesianGrid strokeDasharray="3 3"/>
-                                        <XAxis dataKey="name"/>
-                                        <YAxis/>
-                                        <Tooltip/>
+                                        margin={{ top: 15, right: 30, left: 20, bottom: 5 }}>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="name" />
+                                        <YAxis />
+                                        <Tooltip />
                                         <Legend />
-                                        <Bar dataKey="value" fill="#82ca9d" minPointSize={10}/>
+                                        <Bar dataKey="value" fill="#2B3959" minPointSize={10} />
                                     </BarChart>
                                 </Segment>
                             </Grid.Column>
                             <Grid.Column>
                                 <Segment>
                                     <Header as="h3">
-                                        Valid Certification
+                                        Status Code
                                     </Header>
-                                    <BarChart width={640} height={450} data={this.certValid(dataDomain)}
-                                        margin={{top: 15, right: 30, left: 20, bottom: 5}}>
-                                        <CartesianGrid strokeDasharray="3 3"/>
-                                        <XAxis dataKey="name"/>
-                                        <YAxis/>
-                                        <Tooltip/>
+                                    <BarChart width={640} height={450} data={this.statusCode([dataDomain['code'], dataDomain['scode']])}
+                                        margin={{ top: 15, right: 30, left: 20, bottom: 5 }}>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="name" />
+                                        <YAxis />
+                                        <Tooltip />
                                         <Legend />
-                                        <Bar dataKey="value" fill="#82ca9d" minPointSize={10}/>
+                                        <Bar dataKey="other" stackId="a" fill="#1494A2" minPointSize={8} />
+                                        <Bar dataKey="5XX" stackId="a" fill="#780829" minPointSize={8} />
+                                        <Bar dataKey="3XX" stackId="a" fill="#DA3521" minPointSize={8} />
+                                        <Bar dataKey="2XX" stackId="a" fill="#DB8830" minPointSize={8} />
+                                        <Bar dataKey="4XX" stackId="a" fill="#8D683A" minPointSize={8} />
+                                        <Bar dataKey="1XX" stackId="a" fill="#333923" minPointSize={8} />
                                     </BarChart>
                                 </Segment>
                             </Grid.Column>
                         </Grid.Row>
-                        {/* <Grid.Row>
-                            <Header as="h2">Protocol Detail</Header>
-                        </Grid.Row> */}
+                        {/* Row 3 */}
                         <Grid.Row>
                             <Grid.Column>
                                 <Segment>
                                     <Header as="h3">
                                         Protocol Detail
                                     </Header>
-                                    <BarChart width={640} height={450} data={this.protocolHave(dataDomain)}
-                                        margin={{top: 15, right: 30, left: 20, bottom: 5}}>
-                                        <CartesianGrid strokeDasharray="3 3"/>
-                                        <XAxis dataKey="name"/>
-                                        <YAxis/>
-                                        <Tooltip/>
+                                    <BarChart width={640} height={450} data={this.protocolHave(dataDomain['protocol'])}
+                                        margin={{ top: 15, right: 30, left: 20, bottom: 5 }}>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="name" />
+                                        <YAxis />
+                                        <Tooltip />
                                         <Legend />
-                                        <Bar dataKey="undefined" fill="#82ca9d" minPointSize={2}/>
-                                        <Bar dataKey="no" fill="#82ca9d" minPointSize={6}/>
-                                        <Bar dataKey="yes" fill="#82ca9d" minPointSize={10}/>
+                                        <Bar dataKey="total" fill="#C19641" minPointSize={8} />
                                     </BarChart>
                                 </Segment>
                             </Grid.Column>
@@ -255,13 +287,14 @@ class Content extends Component {
                                         Active-Inactive
                                     </Header>
                                     <BarChart width={640} height={450} data={this.activeHave(dataDomain)}
-                                        margin={{top: 15, right: 30, left: 20, bottom: 5}}>
-                                        <CartesianGrid strokeDasharray="3 3"/>
-                                        <XAxis dataKey="name"/>
-                                        <YAxis/>
-                                        <Tooltip/>
+                                        margin={{ top: 15, right: 30, left: 20, bottom: 5 }}>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="name" />
+                                        <YAxis />
+                                        <Tooltip />
                                         <Legend />
-                                        <Bar dataKey="value" fill="#82ca9d" minPointSize={10}/>
+                                        <Bar dataKey="active" fill="#66887C" minPointSize={10} />
+                                        <Bar dataKey="inactive" fill="#C19641" minPointSize={10} />
                                     </BarChart>
                                 </Segment>
                             </Grid.Column>
@@ -272,8 +305,8 @@ class Content extends Component {
                         <Grid.Row>
                             <Grid.Column>
                                 {
-                                    dataSubdomain ? <Table celled headerRow={header} tableData={dataSubdomain} renderBodyRow={renderBodyRow} />:
-                                    this.loadStatus()
+                                    dataSubdomain ? <Table celled headerRow={header} tableData={dataSubdomain} renderBodyRow={renderBodyRow} /> :
+                                        this.loadStatus()
                                 }
                             </Grid.Column>
                         </Grid.Row>

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import {
     Menu, Breadcrumb, Segment, Form, Dimmer, Loader, Header, Input, Button
 } from 'semantic-ui-react'
-import {withRouter} from "next/router";
-import {Router} from "../../Routes";
+import { withRouter } from "next/router";
+import { Router } from "../../Routes";
 import Content from './content';
 
 class Web extends Component {
@@ -14,16 +14,16 @@ class Web extends Component {
             url: '',
         }
     }
-    
+
     handleChange = (e, { name, value }) => {
-        this.setState({ 
+        this.setState({
             [name]: value,
         })
     }
 
     handleSubmit = () => {
-        const {url} = this.state
-        if (url !== ""){
+        const { url } = this.state
+        if (url !== "") {
             Router.pushRoute(`/testscore/${url}`)
         }
         else {
@@ -32,9 +32,9 @@ class Web extends Component {
     }
 
     async componentDidMount() {
-        const {router} = this.props
+        const { router } = this.props
         if (router.query.url) {
-            const {data} = await this.loadData(router.query.url)
+            const { data } = await this.loadData(router.query.url)
             this.setState(state => {
                 state.data = data
                 return state
@@ -44,7 +44,7 @@ class Web extends Component {
 
     async componentWillReceiveProps(nextProps) {
         if (this.props.router.asPath !== nextProps.router.asPath) {
-            const {data} = await this.loadData(nextProps.router.query.url)
+            const { data } = await this.loadData(nextProps.router.query.url)
             this.setState(state => {
                 state.data = data
                 return state
@@ -53,7 +53,7 @@ class Web extends Component {
     }
 
     async loadData(url) {
-        const response = await fetch(`/test/score/${url}`)
+        const response = await fetch(`/api/score/url/${url}`)
         const responseJson = await response.json()
         return { data: responseJson }
     }
@@ -73,8 +73,8 @@ class Web extends Component {
     }
 
     render() {
-        const {url, data} = this.state
-        const {router} = this.props
+        const { url, data } = this.state
+        const { router } = this.props
 
         return (
             <React.Fragment>
@@ -86,13 +86,13 @@ class Web extends Component {
                             <Breadcrumb.Section><a href='/testscore'>Testweb</a></Breadcrumb.Section>
                             {
                                 router.query.url ?
-                                <React.Fragment>
-                                    <Breadcrumb.Divider icon='right angle' />
-                                    <Breadcrumb.Section active>
-                                        Search for Website : 
+                                    <React.Fragment>
+                                        <Breadcrumb.Divider icon='right angle' />
+                                        <Breadcrumb.Section active>
+                                            Search for Website :
                                         <a href={router.asPath}> {router.query.url}</a>
-                                    </Breadcrumb.Section>
-                                </React.Fragment>:<React.Fragment></React.Fragment>
+                                        </Breadcrumb.Section>
+                                    </React.Fragment> : <React.Fragment></React.Fragment>
                             }
                         </Breadcrumb>
                     </Menu.Item>
@@ -104,14 +104,14 @@ class Web extends Component {
                             <Form.Field>
                                 <label>Input URL</label>
                                 <Input action>
-                                    <Input label='https://' placeholder='example.com' name='url' value={url} onChange={this.handleChange}/>
+                                    <Input label='https://' placeholder='example.com' name='url' value={url} onChange={this.handleChange} />
                                     <Button onClick={this.handleSubmit} color='blue' >Scoring!!!</Button>
                                 </Input>
                             </Form.Field>
                         </Form>
                     </Segment>
-                    {!router.query.url ? <React.Fragment></React.Fragment> : 
-                        data ? <Content data={data} /> : this.loadStatus() }
+                    {!router.query.url ? <React.Fragment></React.Fragment> :
+                        data ? <Content data={data} /> : this.loadStatus()}
                 </Segment>
             </React.Fragment>
         )

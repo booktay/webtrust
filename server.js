@@ -2,13 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const path = require('path');
+const serveIndex = require('serve-index');
 
-var http = require('http');
-var https = require('https');
-var fs = require('fs');
-var privateKey = fs.readFileSync('./server/sslcert/localhost.key', 'utf8');
-var certificate = fs.readFileSync('./server/sslcert/localhost.crt', 'utf8');
-var credentials = { key: privateKey, cert: certificate };
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
+const privateKey = fs.readFileSync('./server/sslcert/localhost.key', 'utf8');
+const certificate = fs.readFileSync('./server/sslcert/localhost.crt', 'utf8');
+const credentials = { key: privateKey, cert: certificate };
 
 const dev = process.env.NODE_ENV !== 'production';
 const next = require('next');
@@ -26,7 +27,7 @@ const {
 
 const PORT = process.env.PORT || 3000;
 const APIRoutes = require('./server/api.js');
-const TestRoutes = require('./server/test.js');
+// const TestRoutes = require('./server/test.js');
 
 app.prepare().then(() => {
     const server = express();
@@ -43,10 +44,14 @@ app.prepare().then(() => {
 
     // API Route
     server.use('/api', APIRoutes);
+
     // Test Route
-    server.use('/test', TestRoutes);
+    // server.use('/test', TestRoutes);
+
     // Public side
-    server.use(express.static('./public'))
+    server.use(express.static(path.join(__dirname, 'public')));
+    server.use('/files', express.static(path.join(__dirname, 'public/file')), serveIndex(path.join(__dirname, 'public/file'), { 'icons': true, 'view': "details" }));
+
     // Server-side
     const route = pathMatch();
 
@@ -78,10 +83,16 @@ app.prepare().then(() => {
     // });
 
     var httpServer = http.createServer(server);
-    httpServer.listen(8080);
+    httpServer.listen(8080, (err) => {
+        if (err) throw err;
+        console.log(`Server ready on http://localhost:8080`);
+    });
     var httpsServer = https.createServer(credentials, server);
-    httpsServer.listen(8443);
-    
+    httpsServer.listen(8443, (err) => {
+        if (err) throw err;
+        console.log(`Server ready on https://localhost:8443`);
+    });
+
 }).catch((ex) => {
     console.error(ex.stack)
     process.exit(1)
