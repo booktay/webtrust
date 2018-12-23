@@ -50,7 +50,7 @@ app.prepare().then(() => {
 
     // Public side
     server.use(express.static(path.join(__dirname, 'public')));
-    server.use('/files', express.static(path.join(__dirname, 'public/file')), serveIndex(path.join(__dirname, 'public/file'), { 'icons': true, 'view': "details" }));
+    server.use('/dir', express.static(path.join(__dirname, 'public/file')), serveIndex(path.join(__dirname, 'public/file'), { 'icons': true, 'view': "details" }));
 
     // Server-side
     const route = pathMatch();

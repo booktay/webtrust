@@ -1,37 +1,12 @@
 import React, { Component } from 'react'
 import {
-    Segment, Dimmer, Loader, Statistic, Grid, Header, Progress, Pagination, Table
+    Segment, Dimmer, Loader, Statistic, Grid, Header, Progress, Pagination, Table, Modal
 } from 'semantic-ui-react'
 import { withRouter } from "next/router";
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend
 }
     from 'recharts';
-
-function toUpperFirst(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-function useProtocol(protocol) {
-    const protocol_keys = Object.keys(protocol);
-    for (let keyin in protocol_keys) {
-        if (keyin > 1 && ["offered (OK)", "offered"].includes(protocol[protocol_keys[keyin]])) return protocol_keys[keyin]
-    }
-    return ""
-}
-
-const renderBodyRow = ({ URL, HTTP, HTTPS, PROTOCOL, CERT, GRADE }, i) => ({
-    key: URL,
-    cells: [
-        URL ? { key: 'URL', content: URL } : 'Unknown',
-        HTTP ? { key: 'HTTP', content: toUpperFirst(HTTP) } : 'Unknown',
-        HTTPS ? { key: 'HTTPS', content: toUpperFirst(HTTPS) } : 'Unknown',
-        useProtocol(PROTOCOL) ? { key: 'PROTOCOL', content: useProtocol(PROTOCOL) } : 'Unknown',
-        CERT['STATUS'] ? { key: 'CERT', content: toUpperFirst(CERT['STATUS']) } : 'Unknown',
-        CERT['EXPIRED'][1] ? { key: 'EXPIRED', content: toUpperFirst(CERT['EXPIRED'][1]) } : 'Unknown',
-        GRADE ? { key: 'GRADE', content: GRADE[1].toUpperCase() } : 'Unknown'
-    ],
-})
 
 class Content extends Component {
     constructor(props) {
@@ -155,10 +130,204 @@ class Content extends Component {
         return { dataSubdomain: responseJson }
     }
 
+    toUpperFirst(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    useProtocol(protocol) {
+        const protocol_keys = Object.keys(protocol);
+        for (let keyin in protocol_keys) {
+            if (keyin > 1 && ["offered (OK)", "offered"].includes(protocol[protocol_keys[keyin]])) return protocol_keys[keyin]
+        }
+        return ""
+    }
+
+    findData(data, key) {
+        for (let line in data) {
+            if (data[line].URL == key) return data[line];
+        }
+        return {};
+    }
+
+    genModal(word) {
+        const { dataSubdomain } = this.state;
+        const data = this.findData(dataSubdomain, word)
+        return (
+            <Modal trigger={<a>{word}</a>}>
+                <Modal.Header>{word}</Modal.Header>
+                <Modal.Content>
+                    <Modal.Description>
+                        <Grid columns='equal' textAlign='center' className="chartgrid">
+                            <Grid.Row>
+                                <Segment>
+                                    <Grid.Column>
+                                        <Statistic size='huge'>
+                                            <Statistic.Label>Total Score</Statistic.Label>
+                                            <Statistic.Value>{data.GRADE[0]} %</Statistic.Value>
+                                        </Statistic>
+                                    </Grid.Column>
+                                </Segment>
+                                <Grid.Column>
+                                    < Segment style={
+                                        {
+                                            backgroundColor: (data.GRADE[0] > 80) ? "lightgreen" : ((data.GRADE[0] >= 50) ? "lightyellow" : "lightsalmon")
+                                        }
+                                    } >
+                                        < Statistic color="black" size='huge' >
+                                            <Statistic.Label>Grade</Statistic.Label>
+                                            <Statistic.Value>{data.GRADE[1] ? data.GRADE[1] : "Unk"}</Statistic.Value>
+                                        </Statistic>
+                                    </Segment>
+                                </Grid.Column>
+                                <Grid.Column>
+                                    < Segment style={
+                                        {
+                                            backgroundColor: (data['Expired'] > 60) ? "lightgreen" : ((data['Expired'] >= 30) ? "lightyellow" : "lightsalmon")
+                                        }
+                                    } >
+                                        < Statistic color="black" size='huge' >
+                                            <Statistic.Label>Expired Left (Days)</Statistic.Label>
+                                            <Statistic.Value>{data.CERT.EXPIRED[1] ? data.CERT.EXPIRED[1] : "Unk"}</Statistic.Value>
+                                        </Statistic>
+                                    </Segment>
+                                </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <Header as="h2">Scoring Detail</Header>
+                                <Segment style={{ width: "-webkit-fill-available" }}>
+                                    <Header as="h3">Active-Inactive</Header>
+                                    <Progress value={data.SCORE[0][0]} color='orange' total={data.SCORE[0][1]} inverted progress='ratio' />
+                                    <Header as="h3">Basic status</Header>
+                                    <Progress value={data.SCORE[1][0]} color='olive' total={data.SCORE[1][1]} inverted progress='ratio' />
+                                    <Header as="h3">Revoke status</Header>
+                                    <Progress value={data.SCORE[2][0]} color='green' total={data.SCORE[2][1]} inverted progress='ratio' />
+                                    <Header as="h3">Expired</Header>
+                                    <Progress value={data.SCORE[3][0]} color='blue' total={data.SCORE[3][1]} inverted progress='ratio' />
+                                    <Header as="h3">Valid-Invalid</Header>
+                                    <Progress value={data.SCORE[4][0]} color='purple' total={data.SCORE[4][1]} inverted progress='ratio' />
+                                    <Header as="h3">Protocol type</Header>
+                                    <Progress value={data.SCORE[5][0]} color='pink' total={data.SCORE[5][1]} inverted progress='ratio' />
+                                </Segment>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <Header as="h2">Protocol Detail</Header>
+                                <Table color='red' key='red' celled>
+                                    <Table.Header>
+                                        <Table.Row>
+                                            <Table.HeaderCell>Protocol</Table.HeaderCell>
+                                            <Table.HeaderCell>Status</Table.HeaderCell>
+                                        </Table.Row>
+                                    </Table.Header>
+                                    <Table.Body>
+                                        <Table.Row>
+                                            <Table.Cell>SSLv2</Table.Cell>
+                                            <Table.Cell key="SSLv2">{data.PROTOCOL['SSLv2'] ? data.PROTOCOL['SSLv2'] : "Unknown"}</Table.Cell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <Table.Cell>SSLv3</Table.Cell>
+                                            <Table.Cell key="SSLv3">{data.PROTOCOL['SSLv3'] ? data.PROTOCOL['SSLv3'] : "Unknown"}</Table.Cell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <Table.Cell>TLS1</Table.Cell>
+                                            <Table.Cell key="TLS1">{data.PROTOCOL['TLS1'] ? data.PROTOCOL['TLS1'] : "Unknown"}</Table.Cell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <Table.Cell>TLS11</Table.Cell>
+                                            <Table.Cell key="TLS11">{data.PROTOCOL['TLS11'] ? data.PROTOCOL['TLS11'] : "Unknown"}</Table.Cell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <Table.Cell>TLS12</Table.Cell>
+                                            <Table.Cell key="TLS12">{data.PROTOCOL['TLS12'] ? data.PROTOCOL['TLS12'] : "Unknown"}</Table.Cell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <Table.Cell>TLS13</Table.Cell>
+                                            <Table.Cell key="TLS13">{data.PROTOCOL['TLS13'] ? data.PROTOCOL['TLS13'] : "Unknown"}</Table.Cell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <Table.Cell>NPNSPDY</Table.Cell>
+                                            <Table.Cell key="NPNSPDY">{data.PROTOCOL['NPNSPDY'] ? data.PROTOCOL['NPNSPDY'] : "Unknown"}</Table.Cell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <Table.Cell>ALPNHTTP2</Table.Cell>
+                                            <Table.Cell key="ALPNHTTP2">{data.PROTOCOL['ALPNHTTP2'] ? data.PROTOCOL['ALPNHTTP2'] : "Unknown"}</Table.Cell>
+                                        </Table.Row>
+                                    </Table.Body>
+                                </Table>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <Header as="h2">More Detail</Header>
+                                <Table color='yellow' key='yellow' celled>
+                                    <Table.Header>
+                                        <Table.Row>
+                                            <Table.HeaderCell width={8}>HTTP</Table.HeaderCell>
+                                            <Table.HeaderCell>Status</Table.HeaderCell>
+                                        </Table.Row>
+                                    </Table.Header>
+                                    <Table.Body>
+                                        <Table.Row key="code">
+                                            <Table.Cell>HTTP Status Code</Table.Cell>
+                                            <Table.Cell>{data['CODE'] ? data['CODE'] : "Unknown"}</Table.Cell>
+                                        </Table.Row>
+                                        <Table.Row key="scode">
+                                            <Table.Cell>HTTPS Status Code</Table.Cell>
+                                            <Table.Cell>{data['SCODE'] ? data['SCODE'] : "Unknown"}</Table.Cell>
+                                        </Table.Row>
+                                        <Table.Row key="shsts">
+                                            <Table.Cell>HSTS</Table.Cell>
+                                            <Table.Cell >{data['SHSTS'] ? data['SHSTS'] : "Unknown"}</Table.Cell>
+                                        </Table.Row>
+                                    </Table.Body>
+                                </Table>
+                                <Table color='green' key='green' celled>
+                                    <Table.Header>
+                                        <Table.Row>
+                                            <Table.HeaderCell width={8}>Certification</Table.HeaderCell>
+                                            <Table.HeaderCell>Status</Table.HeaderCell>
+                                        </Table.Row>
+                                    </Table.Header>
+                                    <Table.Body>
+                                        <Table.Row>
+                                            <Table.Cell>Certificate</Table.Cell>
+                                            <Table.Cell key="status">{data.CERT['STATUS'] ? data.CERT['STATUS'] : "Unknown"}</Table.Cell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <Table.Cell>Signature</Table.Cell>
+                                            <Table.Cell key="signature">{data.CERT['SIGNATURE'] ? data.CERT['SIGNATURE'] : "Unknown"}</Table.Cell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <Table.Cell>Fingerprint</Table.Cell>
+                                            <Table.Cell key="fingerprint">{data.CERT['FINGERPRINT'] ? data.CERT['FINGERPRINT'] : "Unknown"}</Table.Cell>
+                                        </Table.Row>
+                                        <Table.Row>
+                                            <Table.Cell>TRUSTED</Table.Cell>
+                                            <Table.Cell key="vendor">{data.CERT['VENDOR'] ? data.CERT['VENDOR'] : "Unknown"}</Table.Cell>
+                                        </Table.Row>
+                                    </Table.Body>
+                                </Table>
+                            </Grid.Row>
+                        </Grid>
+                    </Modal.Description>
+                </Modal.Content>
+            </Modal>
+        );
+    }
+
+    renderBodyRow = ({ URL, HTTP, HTTPS, PROTOCOL, CERT, GRADE }, i) => ({
+        key: URL,
+        cells: [
+            { key: 'url', content: this.genModal(URL) },
+            HTTP ? { key: 'http', content: this.toUpperFirst(HTTP) } : 'NoHTTP',
+            HTTPS ? { key: 'https', content: this.toUpperFirst(HTTPS) } : 'NoHTTPS',
+            this.useProtocol(PROTOCOL) ? { key: 'protocol', content: this.useProtocol(PROTOCOL) } : 'NoProtocol',
+            CERT['STATUS'] ? { key: 'cert', content: this.toUpperFirst(CERT['STATUS']) } : 'NoStatus',
+            CERT['EXPIRED'][1] ? { key: 'expired', content: this.toUpperFirst(CERT['EXPIRED'][1]) } : '0',
+            GRADE ? { key: 'grade', content: GRADE[1].toUpperCase() } : 'NoCert'
+        ],
+    })
+
     render() {
         const { dataDomain } = this.props
         const { activePage, dataSubdomain, allPage, header } = this.state
-        console.log(dataSubdomain);
 
         if (dataDomain.domain) {
             return (
@@ -305,13 +474,16 @@ class Content extends Component {
                         <Grid.Row>
                             <Grid.Column>
                                 {
-                                    dataSubdomain ? <Table celled headerRow={header} tableData={dataSubdomain} renderBodyRow={renderBodyRow} /> :
+                                    dataSubdomain ? <Table celled headerRow={header} tableData={dataSubdomain} renderBodyRow={this.renderBodyRow} /> :
                                         this.loadStatus()
                                 }
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row>
                             <Pagination activePage={activePage} onPageChange={this.handlePaginationChange} totalPages={allPage} />
+                        </Grid.Row>
+                        <Grid.Row>
+                            Timestamp : {dataDomain['timestamp']}
                         </Grid.Row>
                     </Grid>
                 </React.Fragment>

@@ -23,7 +23,7 @@ export default class Plate extends Component {
         vertical visible={visible} width='thin' color="black">
         <Menu.Item as='a' onClick={() => Router.push('/')}>
           <Header as='h4' inverted textAlign='left'>
-            < Icon name = 'dashboard' / >
+            < Icon name='dashboard' />
             <Header.Content >
               Dashboard
               < Header.Subheader > TH Domain </Header.Subheader>
@@ -32,25 +32,52 @@ export default class Plate extends Component {
         </Menu.Item>
         < Menu.Item as='a' onClick={() => Router.push('/domain')}>
           <Header as='h4' inverted textAlign='left' >
-            < Icon name = 'area graph' / >
+            < Icon name='area graph' />
             <Header.Content >
-              Domain
-              < Header.Subheader > Total Score </Header.Subheader>
+              Subdomain
+              < Header.Subheader > Score </Header.Subheader>
             </Header.Content>
           </Header>
         </Menu.Item>
         < Menu.Item as='a' onClick={() => Router.push('/testscore')}>
           <Header as='h4' inverted textAlign='left' >
-            < Icon name = 'less' / >
+            < Icon name='code' />
             <Header.Content >
-              Grade
-              < Header.Subheader > Score Test</Header.Subheader>
+              URL
+              < Header.Subheader > Web Score</Header.Subheader>
+            </Header.Content>
+          </Header>
+        </Menu.Item>
+        < Menu.Item as='a' onClick={() => Router.push('/dir')}>
+          <Header as='h4' inverted textAlign='left' >
+            < Icon name='folder open' />
+            <Header.Content >
+              Files
+              < Header.Subheader > Directory</Header.Subheader>
+            </Header.Content>
+          </Header>
+        </Menu.Item>
+        < Menu.Item as='a' onClick={() => Router.push('/upload')}>
+          <Header as='h4' inverted textAlign='left' >
+            < Icon name='cloud upload' />
+            <Header.Content >
+              Upload
+              < Header.Subheader > Upload file</Header.Subheader>
+            </Header.Content>
+          </Header>
+        </Menu.Item>
+        < Menu.Item as='a' onClick={() => Router.push('/file')}>
+          <Header as='h4' inverted textAlign='left' >
+            < Icon name='file alternate' />
+            <Header.Content >
+              Name
+              < Header.Subheader > File Score</Header.Subheader>
             </Header.Content>
           </Header>
         </Menu.Item>
         < Menu.Item as='a' onClick={() => Router.push('/rule')}>
           <Header as='h4' inverted textAlign='left' >
-            < Icon name = 'file code' / >
+            < Icon name='law' />
             <Header.Content >
               Rule
               < Header.Subheader > Grade Test</Header.Subheader>

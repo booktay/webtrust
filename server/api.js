@@ -511,4 +511,14 @@ router.get('/search/score/name/:name/url/:page', async (req, res) => {
     res.status(200).json(data)
 });
 
+router.get('/search/th', async (req, res) => {
+    const subdomain = ['ac', 'co', 'in', 'mi', 'go', 'or', 'net']
+    var webdata = [];
+    for (let i in subdomain) {
+        var data = await readFile(`../file/result/${subdomain[i]}th.subdomain.json`);
+        webdata.push(await JSON.parse(data));
+    }
+    res.status(200).json(webdata)
+});
+
 module.exports = router;
