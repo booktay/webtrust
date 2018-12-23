@@ -4,25 +4,12 @@ const router = express.Router();
 // Run script
 var client = require('./connection.js');
 var fs = require('fs');
+const util = require('util');
+const readFile = util.promisify(fs.readFile)
 const shell = require('shelljs');
 shell.cd('./public/calculate')
 
-// Elastic search
-router.get('/elasticsearch', (req, res) => {
-    client.ping({
-        requestTimeout: 1000
-    }, function (error) {
-        if (error) {
-            return res.status(500).send('Elasticsearch is Down!!!');
-        } else {
-            res.status(200).send('Elasticsearch OK!!');
-        }
-    });
-});
-
-router.get('/score/:url', async (req, res) => {
-    const url = req.params.url
-
+async function calculateOne(url, time) {
     var data = {
         "URL": url
     }
@@ -90,6 +77,8 @@ router.get('/score/:url', async (req, res) => {
         }
     }
 
+    data['TIMESTAMP'] = time
+
     //Scoring
     var score = 0;
     data['SCORE'] = [];
@@ -144,13 +133,324 @@ router.get('/score/:url', async (req, res) => {
     else if (score >= 30) grade = "c"
     else if (score >= 20) grade = "d"
     data['GRADE'] = [score, grade];
+    return data;
+}
 
-    return res.status(200).json(data);
+// Elastic search
+router.get('/elasticsearch', (req, res) => {
+    client.ping({
+        requestTimeout: 1000
+    }, function (error) {
+        if (error) {
+            return res.status(500).send('Elasticsearch is Down!!!');
+        } else {
+            res.status(200).send('Elasticsearch OK!!');
+        }
+    });
 });
 
-router.get('/score/:domain/:subdomain', async (req, res) => {
-    shell.cd("..")
-    const mockWebdomain = require(`./file/domain/${req.params.domain}/${req.params.subdomain}.json`);
-    console.log(mockWebdomain)
+router.get('/score/url/:url/:add', async (req, res) => {
+    const url = req.params.url
+    const time = Date.now();
+    const data = await calculateOne(url, time);
+    if (req.params.add == "add") {
+        client.index({
+            index: url,
+            type: 'url',
+            body: data
+        }, function (err, resp, status) {
+            return res.send(resp)
+        });
+    }
+    else {
+        return res.json(data)
+    }
 });
+
+router.get('/score/:name/:file/:add', async (req, res) => {
+    const data = await readFile(`../file/${req.params.file}.json`);
+    const webdomain = JSON.parse(data);
+
+    const time = Date.now();
+
+    const limit = 49;
+    var start = 0, score = 0;
+
+    const domainInfo = {
+        "url": [],
+        "activehttp": 0,
+        "inactivehttp": 0,
+        "activehttps": 0,
+        "inactivehttps": 0,
+        "havecertificate": 0,
+        "nothavecertificate": 0,
+        "code": { "other": 0 },
+        "scode": { "other": 0 },
+        "protocol": {},
+        "timestamp": "",
+        "score": [0, 0, 0, 0, 0, 0],
+        "grade": [0, "D"]
+    };
+
+    for (let web in webdomain) {
+        var dataCal = await calculateOne(webdomain[web], time);
+        domainInfo['url'].push(webdomain[web])
+        if (["1", "2", "3"].includes(dataCal['CODE'][0])) domainInfo['activehttp'] += 1;
+        else domainInfo['inactivehttp'] += 1;
+        if (["1", "2", "3"].includes(dataCal['SCODE'][0])) domainInfo['activehttps'] += 1;
+        else domainInfo['inactivehttps'] += 1;
+        if (dataCal['CERT']['STATUS'] != "-") domainInfo['havecertificate'] += 1;
+        else domainInfo['nothavecertificate'] += 1;
+        if (dataCal['CODE'][0] != undefined) {
+            if (domainInfo['code'][dataCal['CODE'][0] + "00"]) domainInfo['code'][dataCal['CODE'][0] + "00"] += 1;
+            else domainInfo['code'][dataCal['CODE'][0] + "00"] = 1;
+        }
+        else domainInfo['code']["other"] += 1;
+        if (dataCal['SCODE'][0] != undefined) {
+            if (domainInfo['scode'][dataCal['SCODE'][0] + "00"]) domainInfo['scode'][dataCal['SCODE'][0] + "00"] += 1;
+            else domainInfo['scode'][dataCal['SCODE'][0] + "00"] = 1;
+        }
+        else domainInfo['scode']["other"] += 1;
+        const key_protocol = Object.keys(dataCal['PROTOCOL']);
+        for (let k in key_protocol) {
+            if (k > 1 && ["offered", "offered (OK)"].includes(dataCal['PROTOCOL'][key_protocol[k]])) {
+                if (domainInfo['protocol'][key_protocol[k]]) domainInfo['protocol'][key_protocol[k]] += 1;
+                else domainInfo['protocol'][key_protocol[k]] = 1;
+                break;
+            }
+        }
+        domainInfo['timestamp'] = time;
+        for (let i in dataCal['SCORE']) {
+            domainInfo['score'][i] += dataCal['SCORE'][i][0] / (limit + 1);
+            score += dataCal['SCORE'][i][0] / (limit + 1);
+        };
+        console.log(webdomain[web])
+
+        if (req.params.add == "add") {
+            client.index({
+                index: url,
+                type: req.params.name + 'url',
+                body: dataCal
+            }, function (err, resp, status) {
+                console.log(status)
+            });
+        }
+
+        if (start == limit) break;
+        else start += 1;
+
+    }
+
+    var grade = "f";
+    if (score >= 70) grade = "a"
+    else if (score >= 60) grade = "b+"
+    else if (score >= 50) grade = "b"
+    else if (score >= 40) grade = "c+"
+    else if (score >= 30) grade = "c"
+    else if (score >= 20) grade = "d"
+    domainInfo['grade'] = [score.toString(), grade];
+
+    if (req.params.add == "add") {
+        client.index({
+            index: "th",
+            type: req.params.name + 'domain',
+            body: domainInfo
+        }, function (err, resp, status) {
+            return res.send(resp)
+        });
+    }
+    else {
+        return res.json(domainInfo)
+    }
+});
+
+router.get('/score/subdomain/:domain/:subdomain/:add', async (req, res) => {
+    const data = await readFile(`../file/domain/${req.params.domain}/${req.params.subdomain}.json`);
+    const webdomain = JSON.parse(data);
+
+    const time = Date.now();
+
+    const limit = 1;
+    var start = 0, score = 0;
+
+    const domainInfo = {
+        "domain": req.params.domain,
+        "subdomain": req.params.subdomain,
+        "url": [],
+        "activehttp": 0,
+        "inactivehttp": 0,
+        "activehttps": 0,
+        "inactivehttps": 0,
+        "havecertificate": 0,
+        "nothavecertificate": 0,
+        "code": { "other": 0 },
+        "scode": { "other": 0 },
+        "protocol": {},
+        "timestamp": "",
+        "score": [0, 0, 0, 0, 0, 0],
+        "grade": [0, "D"]
+    };
+
+    for (let web in webdomain) {
+        var dataCal = await calculateOne(webdomain[web], data);
+        domainInfo['url'].push(webdomain[web])
+        if (["1", "2", "3"].includes(dataCal['CODE'][0])) domainInfo['activehttp'] += 1;
+        else domainInfo['inactivehttp'] += 1;
+        if (["1", "2", "3"].includes(dataCal['SCODE'][0])) domainInfo['activehttps'] += 1;
+        else domainInfo['inactivehttps'] += 1;
+        if (dataCal['CERT']['STATUS'] != "-") domainInfo['havecertificate'] += 1;
+        else domainInfo['nothavecertificate'] += 1;
+        if (dataCal['CODE'][0] != undefined) {
+            if (domainInfo['code'][dataCal['CODE'][0] + "00"]) domainInfo['code'][dataCal['CODE'][0] + "00"] += 1;
+            else domainInfo['code'][dataCal['CODE'][0] + "00"] = 1;
+        }
+        else domainInfo['code']["other"] += 1;
+        if (dataCal['SCODE'][0] != undefined) {
+            if (domainInfo['scode'][dataCal['SCODE'][0] + "00"]) domainInfo['scode'][dataCal['SCODE'][0] + "00"] += 1;
+            else domainInfo['scode'][dataCal['SCODE'][0] + "00"] = 1;
+        }
+        else domainInfo['scode']["other"] += 1;
+        const key_protocol = Object.keys(dataCal['PROTOCOL']);
+        for (let k in key_protocol) {
+            if (k > 1 && ["offered", "offered (OK)"].includes(dataCal['PROTOCOL'][key_protocol[k]])) {
+                if (domainInfo['protocol'][key_protocol[k]]) domainInfo['protocol'][key_protocol[k]] += 1;
+                else domainInfo['protocol'][key_protocol[k]] = 1;
+                break;
+            }
+        }
+        domainInfo['timestamp'] = time;
+        for (let i in dataCal['SCORE']) {
+            domainInfo['score'][i] += dataCal['SCORE'][i][0] / (limit + 1);
+            score += dataCal['SCORE'][i][0] / (limit + 1);
+        };
+        console.log(webdomain[web])
+
+        if (req.params.add == "add") {
+            client.index({
+                index: url,
+                type: 'url',
+                body: dataCal
+            }, function (err, resp, status) {
+                console.log(status)
+            });
+        }
+
+        if (start == limit) break;
+        else start += 1;
+
+    }
+
+    var grade = "f";
+    if (score >= 70) grade = "a"
+    else if (score >= 60) grade = "b+"
+    else if (score >= 50) grade = "b"
+    else if (score >= 40) grade = "c+"
+    else if (score >= 30) grade = "c"
+    else if (score >= 20) grade = "d"
+    domainInfo['grade'] = [score.toString(), grade];
+
+    if (req.params.add == "add") {
+        client.index({
+            index: req.params.domain + "" + req.params.subdomain,
+            type: 'subdomain',
+            body: domainInfo
+        }, function (err, resp, status) {
+            return res.send(resp)
+        });
+    }
+    else {
+        return res.json(domainInfo)
+    }
+});
+
+router.get('/es/search/name/:type/:index/', (req, res) => {
+    client.search({
+        index: req.params.index,
+        type: req.params.type,
+        body: {
+            query: {
+                match: {
+                    match_all: {}
+                }
+            }
+        }
+    }).then(function (resp) {
+        res.send(resp.hits.hits);
+    }, function (err) {
+        res.send(err.message);
+    });
+});
+
+router.get('/es/delete/name/:type/:index/:id', (req, res) => {
+    client.delete({
+        index: req.params.index,
+        type: req.params.type,
+        id: req.params.id,
+    }).then(function (resp) {
+        res.send(resp);
+    }, function (err) {
+        res.send(err.message);
+    });
+});
+
+router.get('/es/search/subdomain/:type/:domain/:subdomain/', (req, res) => {
+    client.search({
+        index: req.params.domain + "" + req.params.subdomain,
+        type: req.params.type,
+        body: {
+            query: {
+                match: {
+                    subdomain: req.params.subdomain
+                }
+            }
+        }
+    }).then(function (resp) {
+        res.send(resp.hits.hits);
+    }, function (err) {
+        res.send(err.message);
+    });
+});
+
+router.get('/es/delete/subdomain/:type/:domain/:subdomain/:id', (req, res) => {
+    client.delete({
+        index: req.params.domain + "" + req.params.subdomain,
+        type: req.params.type,
+        id: req.params.id,
+    }).then(function (resp) {
+        res.send(resp);
+    }, function (err) {
+        res.send(err.message);
+    });
+});
+
+router.get('/es/search/url/:type/:url/', (req, res) => {
+    client.search({
+        index: req.params.url,
+        type: req.params.type,
+        body: {
+            query: {
+                match: {
+                    URL: req.params.url
+                }
+            }
+        }
+    }).then(function (resp) {
+        res.send(resp.hits.hits);
+    }, function (err) {
+        res.send(err.message);
+    });
+});
+
+router.get('/es/delete/url/:type/:url/:id', (req, res) => {
+    client.delete({
+        index: req.params.url,
+        type: req.params.type,
+        id: req.params.id,
+    }).then(function (resp) {
+        res.send(resp);
+    }, function (err) {
+        res.send(err.message);
+    });
+});
+
 module.exports = router;
