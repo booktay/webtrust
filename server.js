@@ -3,6 +3,13 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const path = require('path');
 
+var http = require('http');
+var https = require('https');
+var fs = require('fs');
+var privateKey = fs.readFileSync('./server/sslcert/localhost.key', 'utf8');
+var certificate = fs.readFileSync('./server/sslcert/localhost.crt', 'utf8');
+var credentials = { key: privateKey, cert: certificate };
+
 const dev = process.env.NODE_ENV !== 'production';
 const next = require('next');
 const pathMatch = require('path-match');
@@ -39,7 +46,7 @@ app.prepare().then(() => {
     // Test Route
     server.use('/test', TestRoutes);
     // Public side
-    server.use(express.static('public'))
+    server.use(express.static('./public'))
     // Server-side
     const route = pathMatch();
 
@@ -65,10 +72,16 @@ app.prepare().then(() => {
     });
 
     /* eslint-disable no-console */
-    server.listen(PORT, (err) => {
-        if (err) throw err;
-        console.log(`Server ready on http://localhost:${PORT}`);
-    });
+    // server.listen(PORT, (err) => {
+    //     if (err) throw err;
+    //     console.log(`Server ready on http://localhost:${PORT}`);
+    // });
+
+    var httpServer = http.createServer(server);
+    httpServer.listen(8080);
+    var httpsServer = https.createServer(credentials, server);
+    httpsServer.listen(8443);
+    
 }).catch((ex) => {
     console.error(ex.stack)
     process.exit(1)
