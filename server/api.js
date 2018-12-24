@@ -511,6 +511,34 @@ router.get('/search/score/name/:name/url/:page', async (req, res) => {
     res.status(200).json(data)
 });
 
+router.get('/search/score/file/:name', async (req, res) => {
+    try {
+        const data1 = await readFile(`../file/upload/${req.params.name}.subdomain.json`);
+        const webdomain = JSON.parse(data1);
+
+        if (webdomain) {
+            return res.status(200).json(webdomain);
+        }
+    }
+    catch (err) {
+        res.status(404).json([])
+    }
+});
+
+router.get('/search/score/file/:name/url/:page', async (req, res) => {
+    try {
+        const data2 = await readFile(`../file/upload/${req.params.name}.url.json`);
+        const webdata = JSON.parse(data2);
+        data = []
+        for (row = 10 * (req.params.page - 1); row < 10 * (req.params.page); row++) {
+            data.push(webdata[row])
+        }
+        res.status(200).json(data)
+    } catch (err) {
+        res.status(404).json([])
+    }
+});
+
 router.get('/search/th', async (req, res) => {
     const subdomain = ['ac', 'co', 'in', 'mi', 'go', 'or', 'net']
     var webdata = [];

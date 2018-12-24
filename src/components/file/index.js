@@ -11,7 +11,7 @@ class Filescore extends Component {
         super(props)
         this.state = {
             data: undefined,
-            name: '',
+            filename: '',
         }
     }
 
@@ -22,19 +22,19 @@ class Filescore extends Component {
     }
 
     handleSubmit = () => {
-        const { name } = this.state
-        if (name !== "") {
-            Router.pushRoute(`/file/${name}`)
+        const { filename } = this.state
+        if (filename !== "") {
+            Router.pushRoute(`/filename/${filename}`)
         }
         else {
-            alert("Please input URL!!!")
+            alert("Please input Name!!!")
         }
     }
 
     async componentDidMount() {
         const { router } = this.props
-        if (router.query.name) {
-            const { data } = await this.loadData(router.query.name)
+        if (router.query.filename) {
+            const { data } = await this.loadData(router.query.filename)
             this.setState(state => {
                 state.data = data
                 return state
@@ -44,7 +44,7 @@ class Filescore extends Component {
 
     async componentWillReceiveProps(nextProps) {
         if (this.props.router.asPath !== nextProps.router.asPath) {
-            const { data } = await this.loadData(nextProps.router.query.name)
+            const { data } = await this.loadData(nextProps.router.query.filename)
             this.setState(state => {
                 state.data = data
                 return state
@@ -52,8 +52,8 @@ class Filescore extends Component {
         }
     }
 
-    async loadData(name) {
-        const response = await fetch(`/api/score/file/${name}`)
+    async loadData(filename) {
+        const response = await fetch(`/api/search/score/file/${filename}`)
         const responseJson = await response.json()
         return { data: responseJson }
     }
@@ -73,9 +73,9 @@ class Filescore extends Component {
     }
 
     render() {
-        const { url, data } = this.state
+        const { filename, data } = this.state
         const { router } = this.props
-
+        // console.log(data)
         return (
             <React.Fragment>
                 <Menu secondary inverted color="blue" attached='top'>
@@ -83,14 +83,14 @@ class Filescore extends Component {
                         <Breadcrumb>
                             <Breadcrumb.Section><a href='/'>Home</a></Breadcrumb.Section>
                             <Breadcrumb.Divider />
-                            <Breadcrumb.Section><a href='/file'>File score</a></Breadcrumb.Section>
+                            <Breadcrumb.Section><a href='/filename'>FileTest</a></Breadcrumb.Section>
                             {
-                                router.query.name ?
+                                router.query.filename ?
                                     <React.Fragment>
                                         <Breadcrumb.Divider icon='right angle' />
                                         <Breadcrumb.Section active>
-                                            Search for File :
-                                        <a href={router.asPath}> {router.query.name}</a>
+                                            Search for Filename :
+                                        <a href={router.asPath}> {router.query.filename}</a>
                                         </Breadcrumb.Section>
                                     </React.Fragment> : <React.Fragment></React.Fragment>
                             }
@@ -103,14 +103,14 @@ class Filescore extends Component {
                         <Form>
                             <Form.Field>
                                 <Input action>
-                                    <Input label='Filename' placeholder='alexa' name='filename' value={filename} onChange={this.handleChange} />
+                                    <Input label='Input Filename' placeholder='50alexath' name='filename' value={filename} onChange={this.handleChange} />
                                     <Button onClick={this.handleSubmit} color='blue' >Scoring!!!</Button>
                                 </Input>
                             </Form.Field>
                         </Form>
                     </Segment>
-                    {!router.query.name ? <React.Fragment></React.Fragment> :
-                        data ? <Content data={data} /> : this.loadStatus()}
+                    {!router.query.filename ? <React.Fragment></React.Fragment> :
+                        data ? <Content dataDomain={data} /> : this.loadStatus()}
                 </Segment>
             </React.Fragment>
         )

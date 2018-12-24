@@ -71,27 +71,24 @@ app.prepare().then(() => {
         const params = route('/testscore/:url')(parse(req.url).pathname);
         return app.render(req, res, '/testscore', params);
     });
-
+    server.get('/filename/:filename', (req, res) => {
+        const params = route('/filename/:filename')(parse(req.url).pathname);
+        return app.render(req, res, '/filename', params);
+    });
     server.get('*', (req, res) => {
         return handle(req, res);
     });
-
-    /* eslint-disable no-console */
-    // server.listen(PORT, (err) => {
-    //     if (err) throw err;
-    //     console.log(`Server ready on http://localhost:${PORT}`);
-    // });
 
     var httpServer = http.createServer(server);
     httpServer.listen(8080, (err) => {
         if (err) throw err;
         console.log(`Server ready on http://localhost:8080`);
     });
-    var httpsServer = https.createServer(credentials, server);
-    httpsServer.listen(8443, (err) => {
-        if (err) throw err;
-        console.log(`Server ready on https://localhost:8443`);
-    });
+    // var httpsServer = https.createServer(credentials, server);
+    // httpsServer.listen(8443, (err) => {
+    //     if (err) throw err;
+    //     console.log(`Server ready on https://localhost:8443`);
+    // });
 
 }).catch((ex) => {
     console.error(ex.stack)

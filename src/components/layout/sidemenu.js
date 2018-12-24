@@ -66,7 +66,7 @@ export default class Plate extends Component {
             </Header.Content>
           </Header>
         </Menu.Item>
-        < Menu.Item as='a' onClick={() => Router.push('/file')}>
+        < Menu.Item as='a' onClick={() => Router.push('/filename')}>
           <Header as='h4' inverted textAlign='left' >
             < Icon name='file alternate' />
             <Header.Content >
