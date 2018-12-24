@@ -57,7 +57,7 @@ export default class Plate extends Component {
             </Header.Content>
           </Header>
         </Menu.Item>
-        < Menu.Item as='a' onClick={() => Router.push('/upload')}>
+        {/* < Menu.Item as='a' onClick={() => Router.push('/upload')}>
           <Header as='h4' inverted textAlign='left' >
             < Icon name='cloud upload' />
             <Header.Content >
@@ -65,7 +65,7 @@ export default class Plate extends Component {
               < Header.Subheader > Upload file</Header.Subheader>
             </Header.Content>
           </Header>
-        </Menu.Item>
+        </Menu.Item> */}
         < Menu.Item as='a' onClick={() => Router.push('/filename')}>
           <Header as='h4' inverted textAlign='left' >
             < Icon name='file alternate' />

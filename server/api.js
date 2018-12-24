@@ -273,7 +273,7 @@ router.get('/score/subdomain/:domain/:subdomain/:add', async (req, res) => {
 
     const time = Date.now();
 
-    const limit = 29;
+    const limit = 100;
     const n = webdomain.length < limit ? webdomain.length : limit;
     var start = 0, score = 0;
 

@@ -15,6 +15,7 @@ export default class Index extends Component {
       sidebarOpened: true,
       filename: ""
     }
+    this.onChangeFile = this.onChangeFile.bind(this);
     this.handleOpenSidebar = this.handleOpenSidebar.bind(this)
   }
 
@@ -38,6 +39,14 @@ export default class Index extends Component {
     }
     else {
       alert("Please input Name!!!")
+    }
+  }
+
+  onChangeFile() {
+    const fileButton = document.getElementById(this.id);
+    const file = fileButton ? fileButton.files[0] : null;
+    if (this.props.onSelect) {
+      this.props.onSelect(file);
     }
   }
 
@@ -70,17 +79,20 @@ export default class Index extends Component {
                   <Form.Field>
                     <Header as="h3">Upload Detail</Header>
                     <Input action>
-                      <Input label='Input Filename' placeholder='50alexath' name='filename' value={filename} onChange={this.handleChange} />
+                      <Input fluid label='Input Filename' placeholder='50alexath' name='filename' value={filename} onChange={this.handleChange} />
+                    </Input>
+                    <Input action>
+                      <Input fluid hidden multiple type="file" onChange={this.onChangeFile} />
                     </Input>
                   </Form.Field>
                 </Form>
+                <Button primary onClick={this.handleSubmit}>Add file</Button>
               </Segment>
               <Segment placeholder>
                 <Header icon>
                   <Icon name='file alternate' />
                   You can find any score files at directory <a href="/dir">/dir</a>
                 </Header>
-                <Button primary onClick={this.handleSubmit}>Add file</Button>
               </Segment>
             </Segment>
           </Sidebar.Pusher>
