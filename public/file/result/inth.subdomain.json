@@ -1,0 +1,70 @@
+{
+    "domain": "th",
+    "subdomain": "in",
+    "url": [
+        "www.garena.in.th",
+        "www.goal.in.th",
+        "www.chordtabs.in.th",
+        "www.igdara.in.th",
+        "www.bx.in.th",
+        "www.exe.in.th",
+        "www.renthub.in.th",
+        "www.alive.in.th",
+        "www.dailyenglish.in.th",
+        "www.mustplay.in.th",
+        "www.gun.in.th",
+        "www.playlol.in.th",
+        "www.liverpool.in.th",
+        "www.hon.in.th",
+        "www.img.in.th",
+        "www.cosmenet.in.th",
+        "www.thekop.in.th",
+        "www.comico.in.th",
+        "www.careerjet.in.th",
+        "www.gg.in.th",
+        "www.brandbuffet.in.th",
+        "www.vanilla.in.th",
+        "www.mygame.in.th",
+        "www.rov.in.th",
+        "www.gump.in.th",
+        "www.hotcourses.in.th",
+        "www.wepay.in.th",
+        "www.thumbsup.in.th",
+        "www.modify.in.th",
+        "www.fhm.in.th"
+    ],
+    "activehttp": 29,
+    "inactivehttp": 1,
+    "activehttps": 20,
+    "inactivehttps": 10,
+    "havecertificate": 21,
+    "nothavecertificate": 9,
+    "code": {
+        "200": 8,
+        "300": 21,
+        "400": 1,
+        "other": 0
+    },
+    "scode": {
+        "200": 15,
+        "300": 5,
+        "400": 1,
+        "other": 9
+    },
+    "protocol": {
+        "TLS12": 21
+    },
+    "timestamp": 1545575670829,
+    "score": [
+        7.8666666666666645,
+        10.5,
+        6.999999999999997,
+        6.416666666666666,
+        4,
+        27.66666666666666
+    ],
+    "grade": [
+        "63.450000000000074",
+        "b+"
+    ]
+}

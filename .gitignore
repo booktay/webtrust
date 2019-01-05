@@ -59,3 +59,9 @@ typings/
 
 # next.js build output
 .next
+
+# Calculate Module 
+# Please read readme for install
+public/calculate/check_ssl_cert/
+public/calculate/oscpcheck/
+public/calculate/testssl.sh/

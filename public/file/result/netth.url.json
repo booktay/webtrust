@@ -1,0 +1,90 @@
+[
+    {
+        "URL": "www.uni.net.th",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "200",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "GlobalSign Organization Validation CA - SHA256 - G2",
+            "EXPIRED": [
+                "Nov 10 07:13:43 2019 GMT",
+                "321"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "not offered",
+            "TLS11": "not offered",
+            "TLS1": "offered",
+            "SSLv3": "offered (NOT ok)",
+            "SSLv2": "offered (NOT ok), also VULNERABLE to DROWN attack -- 6 ciphers"
+        },
+        "TIMESTAMP": {
+            "type": "Buffer",
+            "data": [
+                91,
+                10,
+                32,
+                32,
+                32,
+                32,
+                34,
+                119,
+                119,
+                119,
+                46,
+                117,
+                110,
+                105,
+                46,
+                110,
+                101,
+                116,
+                46,
+                116,
+                104,
+                34,
+                10,
+                93
+            ]
+        },
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                5,
+                40
+            ]
+        ],
+        "GRADE": [
+            "45",
+            "c+"
+        ]
+    }
+]

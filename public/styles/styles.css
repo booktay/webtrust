@@ -1,0 +1,57 @@
+#sidebarhead {
+    margin: auto;
+    border-radius: 0px;
+    border: none;
+    border-bottom: white;
+    background-color:#e6e6e6;
+    min-height:calc(100vh - 50px);
+    min-width: calc(100vw - 30px);
+}
+
+#sidebarcontent {
+    margin: 1em;
+}
+
+.menuhide {
+    width: 100vw;
+}
+
+.menushow {
+    width: 91vw;
+}
+
+.ui.menu {
+    margin: auto;
+    border-radius: 0px;
+}
+
+.ui.breadcrumb a,
+.ui.breadcrumb .divider {
+    color: white;
+}
+
+.bottomcontent {
+    min-height: -webkit-fill-available;
+    width: inherit;
+    background: lightgrey;
+}
+
+.ui.segment.chartcontent {
+    margin-top: 1em;
+    margin-left: 0.1em;
+    margin-right: 2em;
+    margin-bottom: 2em;
+    /* width: fit-content; */
+    /* height: fit-content; */
+}
+
+.fitcontent {
+    display: -webkit-inline-box;
+    width: fit-content;
+    /* height: fit-content; */
+}
+
+.chartgrid {
+    margin-right: 0em;
+    width:inherit;
+}

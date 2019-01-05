@@ -1,0 +1,2984 @@
+[
+    {
+        "URL": "www.google.co.th",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "200",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "Google Internet Authority G3",
+            "EXPIRED": [
+                "Feb 26 09:32:00 2019 GMT",
+                "64"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "grpc-exp, h2, http/1.1 (advertised)",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "90",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.pantip.com",
+        "SHSTS": "max-age=15768001;",
+        "HSTS": "",
+        "SCODE": "301",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "COMODO RSA Domain Validation Secure Server CA",
+            "EXPIRED": [
+                "Jan 27 23:59:59 2020 GMT",
+                "400"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "h2, http/1.1 (advertised)",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                20,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "100",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.sanook.com",
+        "SHSTS": "max-age=15724800;",
+        "HSTS": "max-age=15724800;",
+        "SCODE": "200",
+        "CODE": "302",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "DigiCert SHA2 Secure Server CA",
+            "EXPIRED": [
+                "Jun  7 12:00:00 2019 GMT",
+                "166"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "http/1.1 (offered)",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                20,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "100",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.kapook.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "COMODO RSA Domain Validation Secure Server CA",
+            "EXPIRED": [
+                "Aug 22 23:59:59 2020 GMT",
+                "608"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "h2, http/1.1 (advertised)",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "95",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.mthai.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "302",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "RapidSSL RSA CA 2018",
+            "EXPIRED": [
+                "Feb 25 12:00:00 2020 GMT",
+                "429"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "95",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.dek-d.com",
+        "SHSTS": "max-age=31536000",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "RapidSSL RSA CA 2018",
+            "EXPIRED": [
+                "Dec  6 12:00:00 2019 GMT",
+                "348"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                20,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "100",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.thairath.co.th",
+        "SHSTS": "max-age=86400",
+        "HSTS": "",
+        "SCODE": "302",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "COMODO RSA Domain Validation Secure Server CA",
+            "EXPIRED": [
+                "Jul 23 23:59:59 2019 GMT",
+                "212"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "h2, http/1.1 (advertised)",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                20,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "100",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.kaidee.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "DigiCert SHA2 Secure Server CA",
+            "EXPIRED": [
+                "Mar 26 12:00:00 2021 GMT",
+                "824"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "http/1.1 (offered)",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "offered (NOT ok)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                30,
+                40
+            ]
+        ],
+        "GRADE": [
+            "85",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.siamsport.co.th",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "",
+        "CODE": "200",
+        "HTTP": "yes",
+        "HTTPS": "-",
+        "CERT": {
+            "STATUS": "-",
+            "SIGNATURE": "-",
+            "VENDOR": "",
+            "EXPIRED": "-",
+            "FINGERPRINT": "-"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "-",
+            "NPN/SPDY": "-",
+            "TLS13": "-",
+            "TLS12": "-",
+            "TLS11": "-",
+            "TLS1": "-",
+            "SSLv3": "-",
+            "SSLv2": "-"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                4,
+                10
+            ],
+            [
+                0,
+                20
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                40
+            ]
+        ],
+        "GRADE": [
+            "4",
+            "f"
+        ]
+    },
+    {
+        "URL": "www.longdo.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "302",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "Network Solutions OV Server CA 2",
+            "EXPIRED": [
+                "Aug 16 23:59:59 2019 GMT",
+                "236"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "offered (NOT ok)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                30,
+                40
+            ]
+        ],
+        "GRADE": [
+            "85",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.moph.go.th",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "DigiCert SHA2 Secure Server CA",
+            "EXPIRED": [
+                "Aug 21 12:00:00 2019 GMT",
+                "241"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "offered (NOT ok)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                30,
+                40
+            ]
+        ],
+        "GRADE": [
+            "85",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.ku.ac.th",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "RapidSSL RSA CA 2018",
+            "EXPIRED": [
+                "Jan 22 12:00:00 2019 GMT",
+                "30"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "not offered",
+            "TLS11": "not offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                25,
+                40
+            ]
+        ],
+        "GRADE": [
+            "80",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.adintrend.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "301",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "Lets Encrypt Authority X3",
+            "EXPIRED": [
+                "Feb 14 04:04:11 2019 GMT",
+                "52"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "h2, http/1.1 (advertised)",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "95",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.mahidol.ac.th",
+        "SHSTS": "max-age=31536000;",
+        "HSTS": "max-age=31536000;",
+        "SCODE": "301",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "Go Daddy Secure Certificate Authority - G2",
+            "EXPIRED": [
+                "Jun 14 07:16:20 2020 GMT",
+                "538"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "h2, http/1.1 (advertised)",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                20,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "90",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.thaiware.com",
+        "SHSTS": "max-age=63072000;",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "302",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "COMODO RSA Domain Validation Secure Server CA",
+            "EXPIRED": [
+                "Feb 27 23:59:59 2020 GMT",
+                "431"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                20,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "100",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.gotoknow.org",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "302",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "CloudFlare Inc ECC CA-2",
+            "EXPIRED": [
+                "Aug 28 12:00:00 2019 GMT",
+                "248"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "h2, http/1.1 (advertised)",
+            "TLS13": "offered (OK): draft 28, draft 23, final",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "85",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.dailynews.co.th",
+        "SHSTS": "max-age=15768000;",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "302",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "GeoTrust RSA CA 2018",
+            "EXPIRED": [
+                "May 19 12:00:00 2019 GMT",
+                "147"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                20,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "100",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.teenee.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "",
+        "CODE": "200",
+        "HTTP": "yes",
+        "HTTPS": "-",
+        "CERT": {
+            "STATUS": "-",
+            "SIGNATURE": "-",
+            "VENDOR": "",
+            "EXPIRED": "-",
+            "FINGERPRINT": "-"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "-",
+            "NPN/SPDY": "-",
+            "TLS13": "-",
+            "TLS12": "-",
+            "TLS11": "-",
+            "TLS1": "-",
+            "SSLv3": "-",
+            "SSLv2": "-"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                4,
+                10
+            ],
+            [
+                0,
+                20
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                40
+            ]
+        ],
+        "GRADE": [
+            "4",
+            "f"
+        ]
+    },
+    {
+        "URL": "www.psu.ac.th",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "COMODO RSA Domain Validation Secure Server CA",
+            "EXPIRED": [
+                "Jun  2 23:59:59 2019 GMT",
+                "161"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "85",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.chula.ac.th",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "302",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "Thawte TLS RSA CA G1",
+            "EXPIRED": [
+                "Dec 29 12:00:00 2019 GMT",
+                "371"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2 (offered)",
+            "NPN/SPDY": "h2, http/1.1 (advertised)",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "not offered",
+            "TLS1": "not offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                30,
+                40
+            ]
+        ],
+        "GRADE": [
+            "75",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.gprocurement.go.th",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "",
+        "CODE": "302",
+        "HTTP": "yes",
+        "HTTPS": "-",
+        "CERT": {
+            "STATUS": "-",
+            "SIGNATURE": "-",
+            "VENDOR": "",
+            "EXPIRED": "-",
+            "FINGERPRINT": "-"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "-",
+            "NPN/SPDY": "-",
+            "TLS13": "-",
+            "TLS12": "-",
+            "TLS11": "-",
+            "TLS1": "-",
+            "SSLv3": "-",
+            "SSLv2": "-"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                4,
+                10
+            ],
+            [
+                0,
+                20
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                40
+            ]
+        ],
+        "GRADE": [
+            "4",
+            "f"
+        ]
+    },
+    {
+        "URL": "www.nationtv.tv",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "",
+        "CODE": "302",
+        "HTTP": "yes",
+        "HTTPS": "-",
+        "CERT": {
+            "STATUS": "-",
+            "SIGNATURE": "-",
+            "VENDOR": "",
+            "EXPIRED": "-",
+            "FINGERPRINT": "-"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "-",
+            "NPN/SPDY": "-",
+            "TLS13": "-",
+            "TLS12": "-",
+            "TLS11": "-",
+            "TLS1": "-",
+            "SSLv3": "-",
+            "SSLv2": "-"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                4,
+                10
+            ],
+            [
+                0,
+                20
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                40
+            ]
+        ],
+        "GRADE": [
+            "4",
+            "f"
+        ]
+    },
+    {
+        "URL": "www.kku.ac.th",
+        "SHSTS": "max-age=15768000",
+        "HSTS": "",
+        "SCODE": "302",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "COMODO RSA Extended Validation Secure Server CA",
+            "EXPIRED": [
+                "May  4 23:59:59 2019 GMT",
+                "132"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                20,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "100",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.ais.co.th",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "200",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "COMODO ECC Domain Validation Secure Server CA 2",
+            "EXPIRED": [
+                "May  1 23:59:59 2019 GMT",
+                "129"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "h2, http/1.1 (advertised)",
+            "TLS13": "offered (OK): draft 28, draft 23, final",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "80",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.cmu.ac.th",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "",
+        "HTTP": "-",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "COMODO RSA Domain Validation Secure Server CA",
+            "EXPIRED": [
+                "Apr 15 23:59:59 2020 GMT",
+                "479"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                6,
+                10
+            ],
+            [
+                5,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "81",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.postjung.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "301",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "Go Daddy Secure Certificate Authority - G2",
+            "EXPIRED": [
+                "Feb  2 04:54:00 2019 GMT",
+                "40"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "http/1.1 (offered)",
+            "NPN/SPDY": "http/1.1 (advertised)",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "85",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.campus-star.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "302",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "RapidSSL RSA CA 2018",
+            "EXPIRED": [
+                "Aug 17 12:00:00 2019 GMT",
+                "237"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "not offered",
+            "TLS11": "not offered",
+            "TLS1": "offered",
+            "SSLv3": "offered (NOT ok)",
+            "SSLv2": "offered (NOT ok), also VULNERABLE to DROWN attack -- 7 ciphers"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                5,
+                40
+            ]
+        ],
+        "GRADE": [
+            "60",
+            "b+"
+        ]
+    },
+    {
+        "URL": "www.tu.ac.th",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "",
+        "CODE": "200",
+        "HTTP": "yes",
+        "HTTPS": "-",
+        "CERT": {
+            "STATUS": "-",
+            "SIGNATURE": "-",
+            "VENDOR": "",
+            "EXPIRED": "-",
+            "FINGERPRINT": "-"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "-",
+            "NPN/SPDY": "-",
+            "TLS13": "-",
+            "TLS12": "-",
+            "TLS11": "-",
+            "TLS1": "-",
+            "SSLv3": "-",
+            "SSLv2": "-"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                4,
+                10
+            ],
+            [
+                0,
+                20
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                40
+            ]
+        ],
+        "GRADE": [
+            "4",
+            "f"
+        ]
+    },
+    {
+        "URL": "www.bangkokbank.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "302",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "DigiCert ECC Extended Validation Server CA",
+            "EXPIRED": [
+                "Jun 12 12:00:00 2020 GMT",
+                "537"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "h2, h2-14, http/1.1, http/1.0 (advertised)",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "85",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.advice.co.th",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "200",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "Thawte RSA CA 2018",
+            "EXPIRED": [
+                "May 14 12:00:00 2019 GMT",
+                "142"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "server responded with higher version number (TLSv1.2) than requested by client (NOT ok)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                30,
+                40
+            ]
+        ],
+        "GRADE": [
+            "80",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.notebookspec.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "301",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "Lets Encrypt Authority X3",
+            "EXPIRED": [
+                "Feb 21 19:15:22 2019 GMT",
+                "60"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "h2, http/1.1 (advertised)",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "95",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.priceza.com",
+        "SHSTS": "max-age=600;",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "Go Daddy Secure Certificate Authority - G2",
+            "EXPIRED": [
+                "Feb 20 06:28:00 2019 GMT",
+                "58"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                20,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "90",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.kasikornbank.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "302",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "Entrust Certification Authority - L1M",
+            "EXPIRED": [
+                "Sep  5 02:10:46 2019 GMT",
+                "255"
+            ],
+            "FINGERPRINT": ""
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "h2, http/1.1 (advertised)",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "not offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                35,
+                40
+            ]
+        ],
+        "GRADE": [
+            "80",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.swu.ac.th",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "303",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "AlphaSSL CA - SHA256 - G2",
+            "EXPIRED": [
+                "Apr 26 03:12:00 2019 GMT",
+                "123"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "offered (NOT ok)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                30,
+                40
+            ]
+        ],
+        "GRADE": [
+            "75",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.posttoday.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "AlphaSSL CA - SHA256 - G2",
+            "EXPIRED": [
+                "Apr 20 03:17:04 2020 GMT",
+                "483"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "http/1.1 (advertised)",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "not offered",
+            "TLS1": "not offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                30,
+                40
+            ]
+        ],
+        "GRADE": [
+            "75",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.majorcineplex.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "301",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "DigiCert SHA2 High Assurance Server CA",
+            "EXPIRED": [
+                "May 13 12:00:00 2020 GMT",
+                "507"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "95",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.ktb.co.th",
+        "SHSTS": "max-age=15552000;includeSubDomains",
+        "HSTS": "",
+        "SCODE": "302",
+        "CODE": "302",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "Entrust Certification Authority - L1K",
+            "EXPIRED": [
+                "Aug 16 03:18:34 2019 GMT",
+                "235"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "not offered",
+            "TLS1": "not offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                20,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                30,
+                40
+            ]
+        ],
+        "GRADE": [
+            "80",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.buu.ac.th",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "200",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "RapidSSL RSA CA 2018",
+            "EXPIRED": [
+                "Mar 14 12:00:00 2019 GMT",
+                "81"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "offered (NOT ok)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                30,
+                40
+            ]
+        ],
+        "GRADE": [
+            "80",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.siamzone.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "200",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "COMODO RSA Domain Validation Secure Server CA",
+            "EXPIRED": [
+                "Feb 28 23:59:59 2019 GMT",
+                "67"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "90",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.se-ed.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "303",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "GeoTrust RSA CA 2018",
+            "EXPIRED": [
+                "Jul  7 12:00:00 2019 GMT",
+                "196"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "85",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.bangkokpost.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "AlphaSSL CA - SHA256 - G2",
+            "EXPIRED": [
+                "Apr 19 09:54:49 2020 GMT",
+                "482"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "http/1.1 (advertised)",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "not offered",
+            "TLS1": "not offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                30,
+                40
+            ]
+        ],
+        "GRADE": [
+            "75",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.ch7.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "200",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "DigiCert ECC Extended Validation Server CA",
+            "EXPIRED": [
+                "Apr  9 12:00:00 2020 GMT",
+                "473"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "h2, h2-14, http/1.1, http/1.0 (advertised)",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "80",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.nu.ac.th",
+        "SHSTS": "max-age=31536000",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "RapidSSL TLS RSA CA G1",
+            "EXPIRED": [
+                "Jun 10 00:00:00 2020 GMT",
+                "534"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "h2, http/1.1 (advertised)",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "not offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                20,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                35,
+                40
+            ]
+        ],
+        "GRADE": [
+            "85",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.myhora.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "COMODO RSA Domain Validation Secure Server CA",
+            "EXPIRED": [
+                "Nov 29 23:59:59 2020 GMT",
+                "707"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "offered (NOT ok)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                30,
+                40
+            ]
+        ],
+        "GRADE": [
+            "75",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.dtac.co.th",
+        "SHSTS": "max-age=0;",
+        "HSTS": "",
+        "SCODE": "301",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "DigiCert SHA2 High Assurance Server CA",
+            "EXPIRED": [
+                "Oct 25 12:00:00 2020 GMT",
+                "672"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                20,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "100",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.kroobannok.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "200",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "COMODO RSA Domain Validation Secure Server CA",
+            "EXPIRED": [
+                "Jun 22 23:59:59 2019 GMT",
+                "181"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "offered (NOT ok)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                30,
+                40
+            ]
+        ],
+        "GRADE": [
+            "80",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.uamulet.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "200",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "no",
+            "VENDOR": "COMODO ECC Domain Validation Secure Server CA 2",
+            "EXPIRED": [
+                "Feb  9 23:59:59 2019 GMT",
+                "48"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "h2, http/1.1 (advertised)",
+            "TLS13": "offered (OK): draft 28, draft 23, final",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "80",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.siamha.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "",
+        "CODE": "200",
+        "HTTP": "yes",
+        "HTTPS": "-",
+        "CERT": {
+            "STATUS": "-",
+            "SIGNATURE": "-",
+            "VENDOR": "",
+            "EXPIRED": "-",
+            "FINGERPRINT": "-"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "-",
+            "NPN/SPDY": "-",
+            "TLS13": "-",
+            "TLS12": "-",
+            "TLS11": "-",
+            "TLS1": "-",
+            "SSLv3": "-",
+            "SSLv2": "-"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                4,
+                10
+            ],
+            [
+                0,
+                20
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                10
+            ],
+            [
+                0,
+                40
+            ]
+        ],
+        "GRADE": [
+            "4",
+            "f"
+        ]
+    },
+    {
+        "URL": "www.set.or.th",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "DigiCert SHA2 Secure Server CA",
+            "EXPIRED": [
+                "Mar 11 12:00:00 2020 GMT",
+                "444"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "not offered",
+            "NPN/SPDY": "not offered",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "95",
+            "a"
+        ]
+    },
+    {
+        "URL": "www.one2car.com",
+        "SHSTS": "",
+        "HSTS": "",
+        "SCODE": "200",
+        "CODE": "301",
+        "HTTP": "yes",
+        "HTTPS": "yes",
+        "CERT": {
+            "STATUS": "good",
+            "SIGNATURE": "OK",
+            "VENDOR": "COMODO RSA Domain Validation Secure Server CA",
+            "EXPIRED": [
+                "Feb 17 23:59:59 2019 GMT",
+                "56"
+            ],
+            "FINGERPRINT": "SHA1"
+        },
+        "PROTOCOL": {
+            "ALPN/HTTP2": "h2, http/1.1 (offered)",
+            "NPN/SPDY": "grpc-exp, h2, http/1.1 (advertised)",
+            "TLS13": "not offered",
+            "TLS12": "offered (OK)",
+            "TLS11": "offered",
+            "TLS1": "offered",
+            "SSLv3": "not offered (OK)",
+            "SSLv2": "not offered (OK)"
+        },
+        "TIMESTAMP": 1545559003087,
+        "SCORE": [
+            [
+                10,
+                10
+            ],
+            [
+                15,
+                20
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                10,
+                10
+            ],
+            [
+                40,
+                40
+            ]
+        ],
+        "GRADE": [
+            "95",
+            "a"
+        ]
+    }
+]
